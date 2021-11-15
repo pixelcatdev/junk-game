@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Interactive
+  - ShipAirlock
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - HitLayer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1622383607
+    locked: 0
+  - name: Wall
+    uniqueID: 1699960689
+    locked: 0
+  - name: Objects
+    uniqueID: 3518809455
+    locked: 0
+  - name: Units
+    uniqueID: 741949445
+    locked: 0
+  - name: UI
+    uniqueID: 3249477217
+    locked: 0
