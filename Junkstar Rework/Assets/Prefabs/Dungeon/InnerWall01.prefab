@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6905487592012326584}
   m_Layer: 8
   m_Name: InnerWall01
-  m_TagString: Untagged
+  m_TagString: ShipTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,6 +205,10 @@ MonoBehaviour:
   healthBar: {fileID: 2118252841797483871}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+  lootList:
+  - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
+    min: 1
+    max: 3
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!1 &8025879572869085102

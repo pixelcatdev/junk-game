@@ -1,0 +1,31 @@
+Junkstar Game plan
+
+- destruction
+	- tile damage
+	- tile destroy
+		- spawn loot
+	- explodables
+- crafting
+- repairing
+	- tile repair
+- shooting
+- enemy spawns
+- overworld
+	- navigation
+	- scan
+- map gen
+	- randomise map
+	- damage based on quality
+	- loot based on quality
+	- enemy type based on enemy
+- trading
+- inventory
+- ship events
+	- boarding party
+	- debris field
+	- sos
+- missions
+- save/load
+- config
+- input mapping
+- player customization

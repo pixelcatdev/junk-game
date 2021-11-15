@@ -12,8 +12,25 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    public bool isDestroying;
+    private Vector2 targetDirection;
     private GameObject lastHit;
     private bool tileHit;
+
+    public static PlayerController instance;
+
+    // Singleton Initialization
+    void Awake()
+    {
+        if (!PlayerController.instance)
+        {
+            PlayerController.instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -40,10 +57,26 @@ public class PlayerController : MonoBehaviour
         if(dirX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<SpriteRenderer>())
+                {
+                    transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = true;
+                }                
+            }
         }
         else if (dirX > 0)
-        {            
+        {
             GetComponent<SpriteRenderer>().flipX = false;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<SpriteRenderer>())
+                {
+                    transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = false;
+                }
+            }
         }
         
 
@@ -51,25 +84,40 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             aimDirection = Vector2.up;
-            CastRay();
+            isDestroying = true;
         }
-
-        if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             aimDirection = Vector2.down;
-            CastRay();
+            isDestroying = true;
         }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             aimDirection = Vector2.left;
-            CastRay();
+            isDestroying = true;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            aimDirection = Vector2.right;            
+            isDestroying = true;
+        }
+        else
+        {
+            isDestroying = false;
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (isDestroying)
         {
-            aimDirection = Vector2.right;
+            Debug.Log("Is destroying");
             CastRay();
+        }
+        else
+        {
+            Debug.Log("Is not destroying");
+            if (lastHit != null)
+            {
+                lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(false);
+            }
         }
 
         //Get interaction input
@@ -96,13 +144,18 @@ public class PlayerController : MonoBehaviour
     void CastRay()
     {
         Vector3 startPos = aimDirection.normalized * 0.5f;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + startPos, aimDirection, 0.05f);
+
+        LayerMask hitLayer = LayerMask.GetMask("HitLayer");
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position + startPos, aimDirection, 0.05f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + startPos, aimDirection, 0.05f, hitLayer);
         Debug.DrawRay(transform.position + startPos, aimDirection * 0.25f, Color.green);
 
-        if (hit)
+        if (hits.Length > 0)
         {
+            System.Array.Sort(hits, (h1, h2) => h2.transform.gameObject.layer.CompareTo(h1.transform.gameObject.layer));
+            GameObject hit = hits[0].transform.gameObject;
 
-            if(lastHit == null)
+            if (lastHit == null)
             {
                 lastHit = hit.transform.gameObject;
             }
@@ -121,23 +174,23 @@ public class PlayerController : MonoBehaviour
             }
 
             //Apply cutterDamage
-            if (hit.transform.gameObject.GetComponent<TileProps>().canDestroy)
+            try
             {
-                hit.transform.gameObject.GetComponent<TileProps>().curHealth -= cutterDamage * Time.deltaTime;
-                hit.transform.gameObject.GetComponent<TileProps>().isTakingDamage = true;
+                if (hit.transform.gameObject.GetComponent<TileProps>().canDestroy)
+                {
+                    hit.transform.gameObject.GetComponent<TileProps>().curHealth -= cutterDamage * Time.deltaTime;
+                    hit.transform.gameObject.GetComponent<TileProps>().isTakingDamage = true;
+                }
             }
+            catch (System.Exception)
+            {
+                Debug.Log(hit.transform.name);
+                throw;
+            }
+
         }
         
     }
-
-    ////Clears the last hit target if there's no input
-    //void ClearLastHit()
-    //{
-    //    if (!tileHit)
-    //    {
-    //        lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(false);
-    //    }
-    //}
 
     void FireWeapon()
     {
@@ -146,15 +199,18 @@ public class PlayerController : MonoBehaviour
 
     void Animator()
     {
-        //run
-        if(rb.velocity.magnitude > 0)
+        if (enabled)
         {
-            animator.Play("Player_Run");
-        }
-        //idle
-        else
-        {
-            animator.Play("Player_Idle");
+            //run
+            if (rb.velocity.magnitude > 0)
+            {
+                animator.Play("Player_Run");
+            }
+            //idle
+            else
+            {
+                animator.Play("Player_Idle");
+            }
         }
     }
 }

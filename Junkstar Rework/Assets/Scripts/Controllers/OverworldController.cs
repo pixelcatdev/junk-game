@@ -54,17 +54,18 @@ public class OverworldController : MonoBehaviour
             isTravelling = true;
 
             //If already docked with a generated map, undock and clear the map
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().playerShipIsDocked = false;
-            if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().generatedMap)
+            
+            TargetShipController.instance.playerShipIsDocked = false;
+            if (TargetShipController.instance.generatedMap)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().MapClear();
+                TargetShipController.instance.MapClear();
             }            
         }
 
         //Debug for quitting overworld screen
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ToggleWorlds();
+            GameController.instance.ToggleWorlds();
         }
 
         SelectTarget();
@@ -196,8 +197,7 @@ public class OverworldController : MonoBehaviour
     private void ReachDestination()
     {        
         isTravelling = false;
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().MapGen();
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().playerShipIsDocked = true;
+        TargetShipController.instance.MapGen();
 
         //Allow boarding etc
     }

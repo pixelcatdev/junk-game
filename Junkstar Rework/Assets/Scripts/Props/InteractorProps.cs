@@ -13,7 +13,7 @@ public class InteractorProps : MonoBehaviour
         {
             //Launch Overworld Map
             case InteractorType.bridge:
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ToggleWorlds();
+                GameController.instance.ToggleWorlds();
                 break;
 
             //Launch System Repair List
@@ -22,9 +22,9 @@ public class InteractorProps : MonoBehaviour
 
             //Transport Player to Dungeon
             case InteractorType.playerAirlock:
-                if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().playerShipIsDocked)
+                if (TargetShipController.instance.playerShipIsDocked)
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().EnterShip();
+                    TargetShipController.instance.EnterShip();
                 }
                 else
                 {
@@ -35,7 +35,7 @@ public class InteractorProps : MonoBehaviour
 
             //Transport Player to Junkstar
             case InteractorType.shipAirlock:
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ExitShip();
+                TargetShipController.instance.ExitShip();
                 break;
 
             //Open Inventory & Crate UI
