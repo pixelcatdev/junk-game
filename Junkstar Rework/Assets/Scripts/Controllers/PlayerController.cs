@@ -147,8 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 startPos = aimDirection.normalized * 0.5f;
 
-        LayerMask hitLayer = LayerMask.GetMask("HitLayer");
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position + startPos, aimDirection, 0.05f);
+        LayerMask hitLayer = LayerMask.GetMask("ShipTile","Object");
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + startPos, aimDirection, 0.05f, hitLayer);
         Debug.DrawRay(transform.position + startPos, aimDirection * 0.25f, Color.green);
 

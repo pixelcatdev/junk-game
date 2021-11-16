@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: -4214100371174203551
     second: Object_Bridge
+  - first:
+      213: 6337645998324770355
+    second: Object_Barrel
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -364,7 +367,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -372,6 +375,27 @@ TextureImporter:
       bones: []
       spriteID: 16fd1582a028485c0800000000000000
       internalID: -4214100371174203551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Barrel
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336e25a0577d3f750800000000000000
+      internalID: 6337645998324770355
       vertices: []
       indices: 
       edges: []

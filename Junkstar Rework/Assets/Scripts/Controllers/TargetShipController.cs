@@ -45,7 +45,6 @@ public class TargetShipController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        MapGen();
     }
 
     //Debug
@@ -120,7 +119,8 @@ public class TargetShipController : MonoBehaviour
 
         Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
 
-        //spawn x loot based on quality
+        //spawn x objects based on quality
+
         playerShipIsDocked = true;
         Debug.Log("Map generated");
     }
@@ -152,8 +152,15 @@ public class TargetShipController : MonoBehaviour
     //Move player to airlock on target ship
     public void EnterShip()
     {
-        PlayerController.instance.transform.position = GameObject.FindGameObjectWithTag("ShipAirlock").transform.position;
-        playerIsBoarded = true;
+        if (playerShipIsDocked)
+        {
+            PlayerController.instance.transform.position = GameObject.FindGameObjectWithTag("ShipAirlock").transform.position;
+            playerIsBoarded = true;
+        }
+        else
+        {
+            Debug.Log("Cannot use airlock when ship is not docked");
+        }        
     }
 
     //Move player to airlock on player ship

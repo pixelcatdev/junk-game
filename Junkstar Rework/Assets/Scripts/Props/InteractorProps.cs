@@ -23,15 +23,7 @@ public class InteractorProps : MonoBehaviour
 
             //Transport Player to Dungeon
             case InteractorType.playerAirlock:
-                if (TargetShipController.instance.playerShipIsDocked)
-                {
-                    TargetShipController.instance.EnterShip();
-                }
-                else
-                {
-                    Debug.Log("Cannot use airlock when ship is not docked");
-                }
-                
+                TargetShipController.instance.EnterShip();                               
                 break;
 
             //Transport Player to Junkstar

@@ -74,6 +74,12 @@ public class TileProps : MonoBehaviour
             }
         }
 
+        //Trigger Exploder if present
+        if (GetComponent<ExploderProps>())
+        {
+            GetComponent<ExploderProps>().Explode();
+        }
+
         //Remove the tile from the Target Ships tilelist
         TargetShipController.instance.shipTiles.Remove(gameObject);
 
