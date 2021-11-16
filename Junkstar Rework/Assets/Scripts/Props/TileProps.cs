@@ -42,7 +42,7 @@ public class TileProps : MonoBehaviour
             }
             else
             {
-                DestroyTile();
+                DestroyTile(true);
             }
         }
         else
@@ -52,9 +52,8 @@ public class TileProps : MonoBehaviour
     }
 
     //Destroy the tile and spawn any loot/trigger any effects
-    public void DestroyTile()
+    public void DestroyTile(bool spawnLoot)
     {
-        Debug.Log("Destroying");
         //Spawn object on destroy
         foreach (GameObject spawnObj in spawnOnDestroy)
         {
@@ -62,17 +61,28 @@ public class TileProps : MonoBehaviour
         }
 
         //Spawn loot on destroy
-        for (int i = 0; i < lootList.Count; i++)
+        if (spawnLoot)
         {
-            Debug.Log(i);
-            int lootQty = Random.Range(lootList[i].min, lootList[i].max);
-            for (int qty = 0; qty < lootQty; qty++)
+            for (int i = 0; i < lootList.Count; i++)
             {
-                Vector2 newPos = new Vector2(transform.position.x,transform.position.y) + Random.insideUnitCircle * 1;
-                GameObject newObj = Instantiate(lootList[i].loot, newPos, transform.rotation, transform.parent);
-            }            
+                Debug.Log(i);
+                int lootQty = Random.Range(lootList[i].min, lootList[i].max);
+                for (int qty = 0; qty < lootQty; qty++)
+                {
+                    Vector2 newPos = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 1;
+                    GameObject newObj = Instantiate(lootList[i].loot, newPos, transform.rotation, transform.parent);
+                }
+            }
         }
 
+        //Remove the tile from the Target Ships tilelist
+        TargetShipController.instance.shipTiles.Remove(gameObject);
+
+        if(tag == "ShipTile")
+        {
+            TargetShipController.instance.mapCurHealth -= 1;
+        }       
+        
         //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().isDestroying = false;
         Destroy(gameObject);
     }

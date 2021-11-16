@@ -5,8 +5,8 @@ using UnityEngine;
 public class ShipProps : MonoBehaviour
 {
 
-    string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS "};
-    string[] shipNameB = { "Storm", "Duchess", "Tokyo", "Jupiter", "Starlight", "Beauty" };
+    string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS ", "Atala-", "Orphan ", "Dawn", "Morning ", "Midnight "};
+    string[] shipNameB = { "Storm", "Duchess", "Tokyo", "Jupiter", "Starlight", "Beauty", "Warrior", "Ocean", "Advent", "Trojan", "Pride", "Danger" };
 
     public enum shipSize { small, medium, large }
     public enum shipQuality { poor, average, good }

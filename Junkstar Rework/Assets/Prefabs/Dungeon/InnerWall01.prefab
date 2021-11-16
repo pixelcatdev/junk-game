@@ -204,7 +204,7 @@ MonoBehaviour:
   ui_tile: {fileID: 8025879572869085102}
   healthBar: {fileID: 2118252841797483871}
   spawnOnDestroy:
-  - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+  - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1

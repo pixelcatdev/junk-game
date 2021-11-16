@@ -27,48 +27,51 @@ public class OverworldController : MonoBehaviour
 
     private void Start()
     {
-        Scan();
+        //Scan();
         canSwitchTarget = true;
     }
 
     private void Update()
     {
         //Debug for setting new Scans
-        if (Input.GetKeyDown(KeyCode.X))
+        if (GameController.instance.gameState == GameController.GameState.overworld)
         {
-            if(shipwrecks.Count > 0)
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                ClearScan();
+                if (shipwrecks.Count > 0)
+                {
+                    ClearScan();
+                }
+                Scan();
+                SwitchTarget();
             }
-            Scan();
-            SwitchTarget();
-        }
 
-        //Debug for travelling to selected target
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //Turn off any UI elements
-            playerShip.gameObject.GetComponent<LineRenderer>().enabled = false;
-            ui_Selector.SetActive(false);
-
-            isTravelling = true;
-
-            //If already docked with a generated map, undock and clear the map
-            
-            TargetShipController.instance.playerShipIsDocked = false;
-            if (TargetShipController.instance.generatedMap)
+            //Debug for travelling to selected target
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                TargetShipController.instance.MapClear();
-            }            
+                //Turn off any UI elements
+                playerShip.gameObject.GetComponent<LineRenderer>().enabled = false;
+                ui_Selector.SetActive(false);
+
+                isTravelling = true;
+
+                //If already docked with a generated map, undock and clear the map
+                TargetShipController.instance.playerShipIsDocked = false;
+                if (TargetShipController.instance.generatedMap)
+                {
+                    TargetShipController.instance.MapClear();
+                }
+            }
+
+            //Debug for quitting overworld screen
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                GameController.instance.SwitchToGame();
+            }
+
+            SelectTarget();
         }
 
-        //Debug for quitting overworld screen
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameController.instance.ToggleWorlds();
-        }
-
-        SelectTarget();
         Travel();
     }
 
@@ -76,18 +79,27 @@ public class OverworldController : MonoBehaviour
     public void Scan()
     {
         //Reset playerShip Position
-        playerShip.position = new Vector2(-3.5f, 0.5f);
+        playerShip.position = transform.position;
 
         //Randomise shipwrecks
         int randomWreckTotal = Random.Range(2, 5);
 
         for (int i = 0; i < randomWreckTotal; i++)
         {
-            GameObject newWreck = Instantiate(wreckShip, playerShip.position, mapScreen.transform.rotation, transform.GetChild(0));
-            newWreck.transform.position = Random.insideUnitCircle * 4;
+            Vector2 newPos = new Vector2(playerShip.position.x, playerShip.position.y) + Random.insideUnitCircle * 4f;
+            GameObject newWreck = Instantiate(wreckShip, newPos, mapScreen.transform.rotation, transform.GetChild(0));
+
             shipwrecks.Add(newWreck);
         }
 
+        //Enable UI elements
+        EnableScanUI();
+
+
+    }
+
+    private void EnableScanUI()
+    {
         //Enable UI elements
         playerShip.gameObject.GetComponent<LineRenderer>().enabled = true;
         ui_Selector.SetActive(true);
@@ -97,7 +109,6 @@ public class OverworldController : MonoBehaviour
         ui_Selector.transform.position = shipwrecks[curTarget].transform.position;
         UpdateTargetUI();
     }
-
 
     //Clears the map and removes all shipwrecks
     public void ClearScan()
@@ -152,6 +163,7 @@ public class OverworldController : MonoBehaviour
     void SwitchTarget()
     {
         ui_Selector.transform.position = shipwrecks[curTarget].transform.position;
+        playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(0, playerShip.transform.position);
         playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(1, shipwrecks[curTarget].transform.position);
         canSwitchTarget = false;
         StartCoroutine("SwitchTargetReset");
@@ -165,9 +177,14 @@ public class OverworldController : MonoBehaviour
         txt_shipQuality.text = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString().ToUpper();
         txt_shipEnemy.text = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString().ToUpper();
 
+        //Get the ships stats and pass them into TargetShipMap so it can create the appropriate map (quality, size, enemy etc)                
+        TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<ShipProps>().shipName.ToUpper();
+        TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<ShipProps>().size.ToString();
+        TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString();
+        TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString();
+
         //Calculate Distance
         float distance = Vector2.Distance(playerShip.position, shipwrecks[curTarget].transform.position);
-        txt_shipDistance.text = distance + " CLICKS";
 
         //Calculate fuel
         //Fuel consumption per unit * distance vs Current Fuel
@@ -197,9 +214,8 @@ public class OverworldController : MonoBehaviour
     private void ReachDestination()
     {        
         isTravelling = false;
+        canSwitchTarget = true;
         TargetShipController.instance.MapGen();
-
-        //Allow boarding etc
     }
 
     //Stops the shipwreck selector spamming through all available wrecks

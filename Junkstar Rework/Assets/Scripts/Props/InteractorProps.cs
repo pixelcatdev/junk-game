@@ -13,7 +13,8 @@ public class InteractorProps : MonoBehaviour
         {
             //Launch Overworld Map
             case InteractorType.bridge:
-                GameController.instance.ToggleWorlds();
+                //GameController.instance.ToggleWorlds();
+                GameController.instance.SwitchToOverworld();
                 break;
 
             //Launch System Repair List

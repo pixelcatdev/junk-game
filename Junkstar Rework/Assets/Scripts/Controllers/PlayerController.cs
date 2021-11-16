@@ -40,8 +40,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerInput();
-        Animator();
+        //Player input only if in game mode
+        if(GameController.instance.gameState == GameController.GameState.game)
+        {
+            PlayerInput();
+            Animator();
+        }        
     }
 
     void PlayerInput()
@@ -108,12 +112,10 @@ public class PlayerController : MonoBehaviour
 
         if (isDestroying)
         {
-            Debug.Log("Is destroying");
             CastRay();
         }
         else
         {
-            Debug.Log("Is not destroying");
             if (lastHit != null)
             {
                 lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(false);
