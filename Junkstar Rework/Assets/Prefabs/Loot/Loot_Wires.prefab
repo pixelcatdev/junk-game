@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1199138035590655357}
   - component: {fileID: 5920912439717895824}
+  - component: {fileID: -151023490512373072}
   m_Layer: 0
   m_Name: Loot_Wires
   m_TagString: Untagged
@@ -58,6 +59,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-151023490512373072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806229792521677760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb53c3b6cad2fd942b8a02bf5741a49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTimer: 3
 --- !u!1 &7677245260825748554
 GameObject:
   m_ObjectHideFlags: 0

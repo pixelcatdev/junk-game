@@ -38,11 +38,10 @@ public class TileProps : MonoBehaviour
             if (curHealth - dmgAmount > 0)
             {
                 curHealth -= dmgAmount;
-
             }
             else
             {
-                DestroyTile(true);
+                DestroyTile(true, true);
             }
         }
         else
@@ -52,7 +51,7 @@ public class TileProps : MonoBehaviour
     }
 
     //Destroy the tile and spawn any loot/trigger any effects
-    public void DestroyTile(bool spawnLoot)
+    public void DestroyTile(bool spawnLoot, bool camShake)
     {
         //Spawn object on destroy
         foreach (GameObject spawnObj in spawnOnDestroy)
@@ -81,8 +80,14 @@ public class TileProps : MonoBehaviour
         if(tag == "ShipTile")
         {
             TargetShipController.instance.mapCurHealth -= 1;
-        }       
-        
+        }
+
+        //Shake camera
+        if (camShake)
+        {
+            Camera.main.GetComponent<Animator>().Play("Shake_Small", - 1, 0f);
+        }        
+
         //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().isDestroying = false;
         Destroy(gameObject);
     }

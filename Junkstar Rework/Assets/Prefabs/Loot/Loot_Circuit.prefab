@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2548234532158368008}
   - component: {fileID: 2775391845354677261}
+  - component: {fileID: -5426444436775072692}
   m_Layer: 0
   m_Name: Loot_Circuit
   m_TagString: Untagged
@@ -58,6 +59,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5426444436775072692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335509057318779265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb53c3b6cad2fd942b8a02bf5741a49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTimer: 3
 --- !u!1 &8383614852727624800
 GameObject:
   m_ObjectHideFlags: 0

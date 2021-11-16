@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Holds all generated map info; structure, power, enemy type etc
 public class TargetShipController : MonoBehaviour
 {
-    public int mapCurHealth;
-    public int mapMaxHealth;
-    public int mapCritHealth;
+    public float mapCurHealth;
+    public float mapMaxHealth;
+    public float mapCritHealth;
     public float mapPower;
+    public Image img_healthBar;
 
     public List<GameObject> shipTiles;
     public Transform playerAirlock;
@@ -21,6 +23,9 @@ public class TargetShipController : MonoBehaviour
 
     public bool playerShipIsDocked;
     public bool playerIsBoarded;
+    private bool isCollapsing;
+    public float collapseInterval;
+    private float collapseTimer;
 
     public GameObject generatedMap;
     public List<GameObject> shipsSmall;
@@ -58,6 +63,7 @@ public class TargetShipController : MonoBehaviour
             }
 
             MapHealth();
+            CollapseMap();
         }
     }
 
@@ -106,10 +112,10 @@ public class TargetShipController : MonoBehaviour
             int randomTile = Random.Range(0, shipTiles.Count - 1);
             GameObject tile = shipTiles[randomTile];
             //shipTiles.RemoveAt(randomTile);
-            tile.GetComponent<TileProps>().DestroyTile(false);
-        }       
+            tile.GetComponent<TileProps>().DestroyTile(false, false);
+        }
 
-        mapCritHealth = Random.Range(2, 10); //Mathf.RoundToInt(mapCurHealth * 0.05f);
+        mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
         mapCurHealth = shipTiles.Count;
 
         Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
@@ -126,9 +132,13 @@ public class TargetShipController : MonoBehaviour
         {
             if (mapCurHealth < mapCritHealth)
             {
-                Debug.Log("Map will break apart shortly");
+                if (!isCollapsing)
+                {
+                    isCollapsing = true;
+                }
             }
-        }        
+            img_healthBar.fillAmount = (mapCurHealth / mapMaxHealth);
+        }
     }
 
     //Remove the instantiated ship map, and clear down any variables and lists relating to it
@@ -149,7 +159,50 @@ public class TargetShipController : MonoBehaviour
     //Move player to airlock on player ship
     public void ExitShip()
     {
+        if (isCollapsing)
+        {
+            isCollapsing = false;
+            MapClear();
+            playerShipIsDocked = false;
+        }
         PlayerController.instance.transform.position = playerAirlock.position;
         playerIsBoarded = false;
-    }    
+    }
+
+    //Destroy the map tile by tile
+    void CollapseMap()
+    {
+        if (isCollapsing)
+        {
+            if (collapseTimer < collapseInterval)
+            {
+                collapseTimer += Time.deltaTime;
+            }
+            else
+            {
+                //Every second, destroy a remaining ship tile
+                if (mapCurHealth > 0)
+                {
+                    //select a random tile
+                    int randomTile = Random.Range(0, shipTiles.Count - 1);
+                    GameObject tile = shipTiles[randomTile];
+                    tile.GetComponent<TileProps>().DestroyTile(false, true);
+                    collapseTimer = 0;
+                }
+                //if there are no ship tiles left, if the player is boarded, kill them, otherwise destroy the map
+                else
+                {
+                    if (!playerIsBoarded)
+                    {
+                        isCollapsing = false;
+                        MapClear();
+                    }
+                    else
+                    {
+                        Debug.Log("Game Over - didn't escape the ship in time");
+                    }
+                }
+            }
+        }
+    }
 }

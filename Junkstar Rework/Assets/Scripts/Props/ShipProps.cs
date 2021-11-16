@@ -29,13 +29,13 @@ public class ShipProps : MonoBehaviour
         shipName = shipNameA[Random.Range(0, shipNameA.Length)] + shipNameB[Random.Range(0, shipNameB.Length)];
 
         //Generate the size
-        size = (shipSize)Random.Range(0, 2);
+        size = (shipSize)Random.Range(0, 3);
 
         //Generate the loot
-        quality = (shipQuality)Random.Range(0, 2);
+        quality = (shipQuality)Random.Range(0, 3);
 
         //Generate the enemyType
-        enemy = (shipEnemy)Random.Range(0, 2);
+        enemy = (shipEnemy)Random.Range(0, 3);
     }
 
 }
