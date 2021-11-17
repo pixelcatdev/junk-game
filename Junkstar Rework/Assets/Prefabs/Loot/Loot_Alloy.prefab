@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8554680165206483941}
   - component: {fileID: 5634526833508600704}
   - component: {fileID: -7075771780813761972}
+  - component: {fileID: -7553819163183234976}
   m_Layer: 0
   m_Name: Loot_Alloy
   m_TagString: Untagged
@@ -71,7 +72,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb53c3b6cad2fd942b8a02bf5741a49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 3
+  destroyTimer: 5
+  lootSprite: {fileID: 0}
+  lootName: Alloy
+  lootTxt: Refined metals bonded to form spacefaring materials
+  lootQty: 0
+  lootStack: 5
+  vacuumLoot: 0
+--- !u!58 &-7553819163183234976
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846879895408548662}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
 --- !u!1 &3546893579494821984
 GameObject:
   m_ObjectHideFlags: 0

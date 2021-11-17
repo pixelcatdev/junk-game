@@ -16,10 +16,8 @@ public class ExploderProps : MonoBehaviour
     //apply the exploderDamage to any objects in the trigger radius that CAN take damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.transform.name);
         if (collision.GetComponent<TileProps>())
         {
-            Debug.Log("Destroying object");
             if (collision.GetComponent<TileProps>().canDestroy == true)
             {
                 collision.GetComponent<TileProps>().DestroyTile(false, true);

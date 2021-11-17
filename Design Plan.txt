@@ -1,25 +1,28 @@
 Junkstar Game plan
 
 - destruction
-	- tile damage
-	- tile destroy
-		- spawn loot
-	- explodables
+	- tile damage				DONE
+	- tile destroy				DONE
+		- spawn loot			DONE
+	- explodables				DONE
 - crafting
 - repairing
 	- tile repair
 - shooting
 - enemy spawns
 - overworld
-	- navigation
-	- scan
+	- navigation				DONE
+	- scan					DONE
 - map gen
-	- randomise map
-	- damage based on quality
-	- loot based on quality
+	- randomise map				DONE
+	- damage based on quality		DONE
+	- loot based on quality			DONE
 	- enemy type based on enemy
 - trading
 - inventory
+	- add item				DONE
+	- trash item
+	- store item
 - ship events
 	- boarding party
 	- debris field

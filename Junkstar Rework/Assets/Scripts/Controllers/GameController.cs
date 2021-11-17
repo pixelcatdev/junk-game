@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour
     public GameObject dungeonWorld;
     public GameObject overWorld;
 
-    public GameObject camera;
     public Transform player;
 
     //public bool playerShipIsDocked;
@@ -41,7 +40,7 @@ public class GameController : MonoBehaviour
     public void SwitchToOverworld()
     {
         GameController.instance.gameState = GameController.GameState.overworld;
-        camera.GetComponent<CameraProps>().target = overWorldMap;
+        CameraController.instance.target = overWorldMap;
 
         ui_overworld.SetActive(true);
         ui_game.SetActive(false);
@@ -50,7 +49,7 @@ public class GameController : MonoBehaviour
     public void SwitchToGame()
     {
         GameController.instance.gameState = GameController.GameState.game;
-        camera.GetComponent<CameraProps>().target = player.gameObject;
+        CameraController.instance.target = player.gameObject;
 
         ui_overworld.SetActive(false);
         ui_game.SetActive(true);
