@@ -50,6 +50,15 @@ TextureImporter:
   - first:
       213: -6470838788655621988
     second: Player_Hair04
+  - first:
+      213: 1996351457949379554
+    second: Player_Helmet_01
+  - first:
+      213: -9126656337502835246
+    second: Player_Helmet_02
+  - first:
+      213: -8703651888060580257
+    second: Player_Helmet_03
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -429,6 +438,69 @@ TextureImporter:
       bones: []
       spriteID: c98dc5bd766f236a0800000000000000
       internalID: -6470838788655621988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Helmet_01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebe7e9e21774bb10800000000000000
+      internalID: 1996351457949379554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Helmet_02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd63188a6a975180800000000000000
+      internalID: -9126656337502835246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Helmet_03
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5ebd73c8ba663780800000000000000
+      internalID: -8703651888060580257
       vertices: []
       indices: 
       edges: []

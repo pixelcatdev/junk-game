@@ -6,24 +6,31 @@ using UnityEngine;
 public class ExploderProps : MonoBehaviour
 {
     public float explodeRadius;
+    public float cleanupTimer;
 
-    public void Explode()
+    private void Start()
     {
-        //Cast an overlap circle all at the centre
-        //destroy everything it hits 
+        GetComponent<CircleCollider2D>().radius = explodeRadius;
+    }
 
-        LayerMask hitLayer = LayerMask.GetMask("ShipTile", "Object");
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explodeRadius, hitLayer);
-
-        if (colliders.Length > 0)
+    //apply the exploderDamage to any objects in the trigger radius that CAN take damage
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.transform.name);
+        if (collision.GetComponent<TileProps>())
         {
-            //System.Array.Sort(colliders, (h1, h2) => h2.transform.gameObject.layer.CompareTo(h1.transform.gameObject.layer));
-            //GameObject hit = colliders[0].transform.gameObject;
-
-            //if (hit.GetComponent<TileProps>())
-            //{
-            //    hit.GetComponent<TileProps>().DestroyTile(false, true);
-            //}
+            Debug.Log("Destroying object");
+            if (collision.GetComponent<TileProps>().canDestroy == true)
+            {
+                collision.GetComponent<TileProps>().DestroyTile(false, true);
+            }
         }
+        StartCoroutine("ClearUpEffect");
+    }
+
+    IEnumerator ClearUpEffect()
+    {
+        yield return new WaitForSeconds(cleanupTimer);
+        Destroy(gameObject);
     }
 }

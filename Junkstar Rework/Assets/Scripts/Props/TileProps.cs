@@ -64,7 +64,6 @@ public class TileProps : MonoBehaviour
         {
             for (int i = 0; i < lootList.Count; i++)
             {
-                Debug.Log(i);
                 int lootQty = Random.Range(lootList[i].min, lootList[i].max);
                 for (int qty = 0; qty < lootQty; qty++)
                 {
@@ -74,16 +73,10 @@ public class TileProps : MonoBehaviour
             }
         }
 
-        //Trigger Exploder if present
-        if (GetComponent<ExploderProps>())
-        {
-            GetComponent<ExploderProps>().Explode();
-        }
-
         //Remove the tile from the Target Ships tilelist
         TargetShipController.instance.shipTiles.Remove(gameObject);
 
-        if(tag == "ShipTile")
+        if(tag == "ShipTileFloor" || tag == "ShipTileWall")
         {
             TargetShipController.instance.mapCurHealth -= 1;
         }

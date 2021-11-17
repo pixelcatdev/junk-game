@@ -37,7 +37,34 @@ TextureImporter:
     second: Object_Bridge
   - first:
       213: 6337645998324770355
-    second: Object_Barrel
+    second: Object_BarrelRed
+  - first:
+      213: 6669174184951893330
+    second: Object_BarrelGreen
+  - first:
+      213: -9010560566405859568
+    second: Object_BarrelOrange
+  - first:
+      213: 3826136994431210545
+    second: Object_Terminal01
+  - first:
+      213: 2088355033477309496
+    second: Object_Conduit01
+  - first:
+      213: -6509907423657800196
+    second: Floor04
+  - first:
+      213: 4202034327893123218
+    second: Object_Terminal03
+  - first:
+      213: 2080032470163990520
+    second: Object_Terminal02
+  - first:
+      213: -406923707960537672
+    second: Object_Conduit03
+  - first:
+      213: 5549275894771049350
+    second: Object_Conduit02
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -380,11 +407,137 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Object_Barrel
+      name: Object_BarrelRed
       rect:
         serializedVersion: 2
         x: 112
         y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336e25a0577d3f750800000000000000
+      internalID: 6337645998324770355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_BarrelGreen
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d434f169aad8c50800000000000000
+      internalID: 6669174184951893330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_BarrelOrange
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0177c34a7ee04f280800000000000000
+      internalID: -9010560566405859568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Terminal01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1349d0f135b291530800000000000000
+      internalID: 3826136994431210545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Conduit01
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 834605f96d35bfc10800000000000000
+      internalID: 2088355033477309496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor04
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfdc23c60b928a5a0800000000000000
+      internalID: -6509907423657800196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Terminal03
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -394,8 +547,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 336e25a0577d3f750800000000000000
-      internalID: 6337645998324770355
+      spriteID: 290211835ff905a30800000000000000
+      internalID: 4202034327893123218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Terminal02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f72769d282cddc10800000000000000
+      internalID: 2080032470163990520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Conduit03
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bdc3582b015a5af0800000000000000
+      internalID: -406923707960537672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Conduit02
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6836774660df20d40800000000000000
+      internalID: 5549275894771049350
       vertices: []
       indices: 
       edges: []

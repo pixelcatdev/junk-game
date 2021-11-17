@@ -198,7 +198,7 @@ public class OverworldController : MonoBehaviour
         {
             float distance = Vector3.Distance(playerShip.position, shipwrecks[curTarget].transform.position);
 
-            if (distance > 0.05f)
+            if (distance > 0f)
             {
                 playerShip.position = Vector2.MoveTowards(playerShip.transform.position, shipwrecks[curTarget].transform.position, travelSpeed * Time.deltaTime);
             }

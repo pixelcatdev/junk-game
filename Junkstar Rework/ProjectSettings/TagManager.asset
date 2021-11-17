@@ -8,6 +8,8 @@ TagManager:
   - ShipAirlock
   - ShipTile
   - PlayerShipAirlock
+  - ShipTileFloor
+  - ShipTileWall
   layers:
   - Default
   - TransparentFX

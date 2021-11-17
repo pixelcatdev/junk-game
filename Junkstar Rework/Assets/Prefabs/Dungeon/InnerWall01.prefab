@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: -5428278619197521387}
   m_Layer: 8
   m_Name: InnerWall01
-  m_TagString: ShipTile
+  m_TagString: ShipTileWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

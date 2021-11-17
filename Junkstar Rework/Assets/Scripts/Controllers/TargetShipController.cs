@@ -13,6 +13,7 @@ public class TargetShipController : MonoBehaviour
     public Image img_healthBar;
 
     public List<GameObject> shipTiles;
+    public List<GameObject> shipFloorTiles;
     public Transform playerAirlock;
 
     public string shipName;
@@ -31,6 +32,8 @@ public class TargetShipController : MonoBehaviour
     public List<GameObject> shipsSmall;
     public List<GameObject> shipsMedium;
     public List<GameObject> shipsLarge;
+
+    public List<GameObject> shipObjects;
 
     public static TargetShipController instance;
 
@@ -84,7 +87,14 @@ public class TargetShipController : MonoBehaviour
         }
 
         //Get the map health by adding all ShipTile tagged objects to the shipTiles list
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTile"))
+        //Floors
+        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileFloor"))
+        {
+            shipTiles.Add(tile);
+            shipFloorTiles.Add(tile);
+        }
+        //Walls
+        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileWall"))
         {
             shipTiles.Add(tile);
         }
@@ -114,12 +124,23 @@ public class TargetShipController : MonoBehaviour
             tile.GetComponent<TileProps>().DestroyTile(false, false);
         }
 
+        //Spawn ship Objects on floor ShipTiles (clear after for optimization)
+        for (int i = 0; i < mapMaxHealth * (qualityPer / 8); i++)
+        {
+            //select a random tile
+            int randomTile = Random.Range(0, shipFloorTiles.Count -1);
+            GameObject tile = shipFloorTiles[randomTile];
+            Instantiate(shipObjects[Random.Range(0, shipObjects.Count -1)], tile.transform.position,tile.transform.rotation);
+            shipFloorTiles.RemoveAt(randomTile);
+        }
+        shipFloorTiles.Clear();
+
         mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
         mapCurHealth = shipTiles.Count;
 
         Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
 
-        //spawn x objects based on quality
+        //spawn x enemy based on ship size and enemy type
 
         playerShipIsDocked = true;
         Debug.Log("Map generated");
@@ -153,8 +174,10 @@ public class TargetShipController : MonoBehaviour
     public void EnterShip()
     {
         if (playerShipIsDocked)
-        {
+        {            
             PlayerController.instance.transform.position = GameObject.FindGameObjectWithTag("ShipAirlock").transform.position;
+            PlayerController.instance.helmet.SetActive(true);
+            PlayerController.instance.hair.SetActive(false);
             playerIsBoarded = true;
         }
         else
@@ -173,6 +196,8 @@ public class TargetShipController : MonoBehaviour
             playerShipIsDocked = false;
         }
         PlayerController.instance.transform.position = playerAirlock.position;
+        PlayerController.instance.helmet.SetActive(false);
+        PlayerController.instance.hair.SetActive(true);
         playerIsBoarded = false;
     }
 

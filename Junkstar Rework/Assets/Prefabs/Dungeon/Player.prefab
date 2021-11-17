@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6858772953001067279}
   - component: {fileID: 3554066945302576449}
+  - component: {fileID: 2706128405872095025}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
@@ -152,8 +153,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 741949445
   m_SortingLayer: 4
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 1996351457949379554, guid: 985f3dd27c3f6bd4d8c827a59805688e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,9 +162,28 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2706128405872095025
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105722031043149635}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98254a4d41710fa438690b5a40766ab8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4550911987198210571
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,4 +519,7 @@ MonoBehaviour:
   speed: 0
   health: 0
   cutterDamage: 0
+  helmet: {fileID: 4105722031043149635}
+  hair: {fileID: 4712601729928466029}
+  outfit: {fileID: 4550911987198210571}
   isDestroying: 0
