@@ -104,15 +104,15 @@ public class TargetShipController : MonoBehaviour
         //Quality - poor, damage 75% of tiles / average - 50%, good - 25% (testing at 50%)
         if (quality == "poor")
         {
-            qualityPer = 0.75f;
+            qualityPer = 0.5f;
         }
         else if (quality == "average")
         {
-            qualityPer = 0.5f;
+            qualityPer = 0.25f;
         }
         else if (quality == "good")
         {
-            qualityPer = 0.25f;
+            qualityPer = 0.05f;
         }
 
         for (int i = 0; i < mapMaxHealth * qualityPer; i++)
