@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject playerShipMap;
     public GameObject targetShipMap;
 
-    public enum GameState { menu, game, overworld }
+    public enum GameState { menu, game, overworld, inventory }
     public GameState gameState;
 
     public GameObject ui_overworld;

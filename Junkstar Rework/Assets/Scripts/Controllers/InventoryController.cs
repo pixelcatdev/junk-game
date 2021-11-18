@@ -9,8 +9,11 @@ public class InventoryController : MonoBehaviour
 {
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     public List<GameObject> lootRefs;
-
     public List<GameObject> inventorySlotsUI;
+
+    public GameObject ui_Selector;
+    private int curTarget;
+    private bool canSwitchTarget;
 
     public static InventoryController instance;
 
@@ -24,6 +27,43 @@ public class InventoryController : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        canSwitchTarget = true;
+    }
+
+    private void Update()
+    {
+        //Switching to Inventory Input
+        if (GameController.instance.gameState == GameController.GameState.game)
+        {
+            if (Input.GetKey(KeyCode.I))
+            {
+                GameController.instance.gameState = GameController.GameState.inventory;
+                curTarget = 0;
+                SwitchSlotTarget();
+                ui_Selector.SetActive(true);
+            }
+        }
+
+        //Inventory Input
+        else if (GameController.instance.gameState == GameController.GameState.inventory)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                GameController.instance.gameState = GameController.GameState.game;
+                ui_Selector.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                ClearInventorySlot(curTarget);
+            }
+
+            NavigateInventory();
         }
     }
 
@@ -128,18 +168,87 @@ public class InventoryController : MonoBehaviour
         return slot;
     }
 
-    //Clear each slot out completely
-    private void ClearinventorySlots()
+    //Clear target slot out completely
+    private void ClearInventorySlot(int slotIndex)
     {
-
+        inventorySlots[slotIndex].slotSprite = null;
+        inventorySlots[slotIndex].slotName = null;
+        inventorySlots[slotIndex].slotTxt = null;
+        inventorySlots[slotIndex].slotQty = 0;
+        inventorySlots[slotIndex].slotStack = 0;
+        UpdateSlotUI(slotIndex);
     }
 
     //Update Slot UI, setting sprite and text
     void UpdateSlotUI(int slotIndex)
     {
-        inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-        inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotSprite.sprite = inventorySlots[slotIndex].slotSprite;
-        inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotQty.text = "X" + inventorySlots[slotIndex].slotQty.ToString();        
+        if(inventorySlots[slotIndex].slotName != null)
+        {
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotSprite.sprite = inventorySlots[slotIndex].slotSprite;
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotQty.text = "X" + inventorySlots[slotIndex].slotQty.ToString();
+        }
+        else
+        {
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
+            inventorySlotsUI[slotIndex].GetComponent<InventorySlotProps>().slotQty.text = null;
+        }
+        
+    }
+
+    //Navigate through the Inventory Slots
+    private void NavigateInventory()
+    {
+        if (canSwitchTarget)
+        {
+            float dirX = Input.GetAxisRaw("Horizontal");
+
+            //Navigate right
+            if (dirX > 0)
+            {
+                if (curTarget + 1 > inventorySlots.Count - 1)
+                {
+                    curTarget = 0;
+                }
+                else
+                {
+                    curTarget += 1;
+                }
+
+                SwitchSlotTarget();
+
+            }
+
+            //Navigate right
+            else if (dirX < 0)
+            {
+                if (curTarget - 1 < 0)
+                {
+                    curTarget = inventorySlots.Count - 1;
+                }
+                else
+                {
+                    curTarget -= 1;
+                }
+
+                SwitchSlotTarget();
+            }
+        }        
+    }
+
+    void SwitchSlotTarget()
+    {
+        ui_Selector.transform.position = inventorySlotsUI[curTarget].transform.position;        
+        canSwitchTarget = false;
+        StartCoroutine("SwitchTargetReset");
+    }
+
+    //Stops the shipwreck selector spamming through all available wrecks
+    IEnumerator SwitchTargetReset()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canSwitchTarget = true;
     }
 
 }
