@@ -44,10 +44,86 @@ public class TileProps : MonoBehaviour
                 DestroyTile(true, true);
             }
         }
+    }
+
+    public void TakeDamage(float damage, bool isShotAt)
+    {
+        if (canDestroy == true)
+        {
+            //Deduct object health until destroyed
+            if (curHealth - damage > 0)
+            {
+                curHealth -= damage;
+
+                if (isShotAt == true)
+                {
+                    StartCoroutine("FlashDamage");
+                }
+            }
+            else
+            {
+                DestroyObject(isShotAt, true);
+            }
+
+            //Draw healthbar
+            healthBar.fillAmount = curHealth / maxHealth;
+        }
         else
         {
-            //ui_tile.SetActive(false);
+            Debug.Log("Cannot damage");
         }
+    }
+
+    public void DestroyObject(bool isShotAt, bool camShake)
+    {
+        //Clear any UI elements on the object
+        //ui_tile.SetActive(false);
+
+        //Spawn object on destroy
+        foreach (GameObject spawnObj in spawnOnDestroy)
+        {
+            GameObject newObj = Instantiate(spawnObj, transform.position, transform.rotation, transform.parent);
+        }
+
+        //Spawn loot only if it was destroyed by the cutter
+        if (isShotAt == false)
+        {
+            for (int i = 0; i < lootList.Count; i++)
+            {
+                int lootQty = Random.Range(lootList[i].min, lootList[i].max);
+                for (int qty = 0; qty < lootQty; qty++)
+                {
+                    Vector2 newPos = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 1;
+                    GameObject newObj = Instantiate(lootList[i].loot, newPos, transform.rotation, transform.parent);
+                }
+            }
+        }
+
+        //Shake camera
+        if (camShake)
+        {
+            Camera.main.GetComponent<Animator>().Play("Shake_Small", -1, 0f);
+        }
+
+        //If this is a player built object, remove it from the list of player built objects and deduct the power cost if possible
+        //if (PlayerController.instance.builtObjects.Contains(gameObject.transform))
+        //{
+        //    Player.Instance.builtObjects.Remove(gameObject.transform);
+        //    transform.parent.GetComponent<Object>().canDestroy = true;
+        //    transform.parent.GetComponent<Object>().isOccupied = false;
+        //}
+
+        //Remove the tile from the Target Ships tilelist
+        TargetShipController.instance.shipTiles.Remove(gameObject);
+
+        if (tag == "ShipTileFloor" || tag == "ShipTileWall")
+        {
+            TargetShipController.instance.mapCurHealth -= 1;
+        }
+
+        //Player.Instance.beamObj.SetActive(false);
+        PlayerController.instance.isDestroying = false;
+        Destroy(gameObject);
     }
 
     //Destroy the tile and spawn any loot/trigger any effects

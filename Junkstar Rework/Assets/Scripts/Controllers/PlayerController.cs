@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float health;
-    public int cutterDamage;
+    public float cutterDamage;
+    public float cutterRange;
     public float gunCooldown;
     private float gunTimer;
     private Vector2 aimDirection;
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject hair;
     public GameObject outfit;
 
-    public enum EquipType { cutter, welder, gun }
+    public enum EquipType { destroy, build, shoot }
     public EquipType equipped;
     public GameObject projectile;
 
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 targetDirection;
     private GameObject lastHit;
     private bool tileHit;
+
+    public GameObject buildingObject;
 
     public static PlayerController instance;
 
@@ -55,6 +58,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerInput();
             Animator();
+
+            DestroyMode();
         }
     }
 
@@ -91,52 +96,27 @@ public class PlayerController : MonoBehaviour
                     transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
-        }
-
-
-        //Get right input
-        if (equipped == EquipType.cutter)
+        }        
+        else if (equipped == EquipType.build)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            //work out if the player can afford it and color the blueprint accordingly
+            if (Input.GetKeyDown(KeyCode.B))
             {
-                aimDirection = Vector2.up;
-                isDestroying = true;
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                aimDirection = Vector2.down;
-                isDestroying = true;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                aimDirection = Vector2.left;
-                isDestroying = true;
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                aimDirection = Vector2.right;
-                isDestroying = true;
-            }
-            else
-            {
-                isDestroying = false;
-            }
+                if (InventoryController.instance.HasResources(buildingObject) == true)
+                {
+                    Debug.Log("Enough loot, can build");
+                    //build object
+                }
+                else
+                {
+                    Debug.Log("Not enough loot, cannot build");
+                    //don't build object
+                }
+            }            
         }
-        else if (equipped == EquipType.gun)
+        else if (equipped == EquipType.shoot)
         {
             FireWeapon();
-        }
-
-        if (isDestroying)
-        {
-            FireCutter();
-        }
-        else
-        {
-            if (lastHit != null)
-            {
-                lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(false);
-            }
         }
 
         //Get interaction input
@@ -146,68 +126,83 @@ public class PlayerController : MonoBehaviour
             foreach (Collider2D collider in colliders)
             {
                 GameObject targetObj = collider.gameObject;
-
-                //if (targetObj.tag == "Interactive")
-                //{                   
+          
                 //If the object has an InteractorProps attached, call Activate()
                 if (targetObj.GetComponent<InteractorProps>())
                 {
                     targetObj.GetComponent<InteractorProps>().Activate();
                 }
-                //}
             }
         }
     }
 
-    //Cast a ray in the input direction to cut away tiles
-    void FireCutter()
+    void DestroyMode()
     {
-        Vector3 startPos = aimDirection.normalized * 0.5f;
-
-        LayerMask hitLayer = LayerMask.GetMask("ShipTile", "Object");
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + startPos, aimDirection, 0.05f, hitLayer);
-        Debug.DrawRay(transform.position + startPos, aimDirection * 0.25f, Color.green);
-
-        if (hits.Length > 0)
+        if (equipped == EquipType.destroy)
         {
-            System.Array.Sort(hits, (h1, h2) => h2.transform.gameObject.layer.CompareTo(h1.transform.gameObject.layer));
-            GameObject hit = hits[0].transform.gameObject;
+            LayerMask hitLayer = LayerMask.GetMask("ShipTile", "Object");
 
-            if (lastHit == null)
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
+
+            if (hits.Length > 0)
             {
-                lastHit = hit.transform.gameObject;
-            }
-            else
-            {
-                if (lastHit != hit.transform.gameObject)
+                System.Array.Sort(hits, (h1, h2) => h2.transform.gameObject.layer.CompareTo(h1.transform.gameObject.layer));
+                GameObject hit = hits[0].transform.gameObject;
+                GameObject hitObj = hit.transform.gameObject;
+
+                float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+
+                //if the hit obj is within than the players range
+                if (objDistance < cutterRange && hitObj.GetComponent<TileProps>())
                 {
-                    lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(false);
-                    hit.transform.gameObject.GetComponent<TileProps>().ui_tile.SetActive(true);
-                    lastHit = hit.transform.gameObject;
+                    //if there's no objects previously hit, set the current object to that last object and highlight it
+                    if (lastHit == null)
+                    {
+                        lastHit = hitObj;
+                        hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                    }
+                    else
+                    {
+                        //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
+                        if (hitObj != lastHit)
+                        {
+                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                            lastHit = hitObj;
+                            hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                        }
+                    }
+
+                    //If the player presses the mouse 0, start damaging the object
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        isDestroying = true;
+                        //anim.SetBool("isShooting", true);
+                    }
+                    else
+                    {
+                        //SetBool("isShooting", false);
+                    }
+
+                    if (Input.GetKey(KeyCode.Mouse0) && isDestroying == true)
+                    {
+                        hit.transform.GetComponent<TileProps>().TakeDamage(cutterDamage, false);
+                    }
+                    else
+                    {
+                        isDestroying = false;
+                    }
+
                 }
                 else
                 {
-                    lastHit.gameObject.GetComponent<TileProps>().ui_tile.SetActive(true);
+                    //If the player goes out of range of the object, clear the highlight on that object
+                    if (lastHit != null)
+                    {
+                        lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                    }
                 }
             }
-
-            //Apply cutterDamage
-            try
-            {
-                if (hit.transform.gameObject.GetComponent<TileProps>().canDestroy)
-                {
-                    hit.transform.gameObject.GetComponent<TileProps>().curHealth -= cutterDamage * Time.deltaTime;
-                    hit.transform.gameObject.GetComponent<TileProps>().isTakingDamage = true;
-                }
-            }
-            catch (System.Exception)
-            {
-                Debug.Log(hit.transform.name);
-                throw;
-            }
-
         }
-
     }
 
     void FireWeapon()

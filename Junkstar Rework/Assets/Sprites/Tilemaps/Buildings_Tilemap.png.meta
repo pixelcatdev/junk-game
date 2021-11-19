@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 81f16dad924a9994881bbfda342571f8
+guid: 4607fbf833101e541bc86732c840527c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1885875236619925605
-    second: GameUI_InventoryCrafting
+      213: -8336177768466177307
+    second: Building_TurretBase01
   - first:
-      213: 8239143626073171675
-    second: GameUI_Slot
-  - first:
-      213: -4310517633768675746
-    second: GameUI_LargeSlot
-  - first:
-      213: 8213209443941966412
-    second: GameUI_mouseCursor
+      213: -7296602256069416252
+    second: Building_Turret01
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,74 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameUI_InventoryCrafting
+      name: Building_TurretBase01
       rect:
         serializedVersion: 2
-        x: 219
-        y: 0
-        width: 101
-        height: 240
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b97409ec67604d5e0800000000000000
-      internalID: -1885875236619925605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_Slot
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd6e38d9971575270800000000000000
-      internalID: 8239143626073171675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_LargeSlot
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 176
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e562929dc07fd24c0800000000000000
-      internalID: -4310517633768675746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_mouseCursor
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 208
+        x: 0
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -202,8 +133,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c426b0c497e2bf170800000000000000
-      internalID: 8213209443941966412
+      spriteID: 5e2a01e8c72ff4c80800000000000000
+      internalID: -8336177768466177307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_Turret01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca2bab38e24dba90800000000000000
+      internalID: -7296602256069416252
       vertices: []
       indices: 
       edges: []

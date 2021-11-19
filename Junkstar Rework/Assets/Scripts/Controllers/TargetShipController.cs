@@ -176,6 +176,7 @@ public class TargetShipController : MonoBehaviour
         if (playerShipIsDocked)
         {            
             PlayerController.instance.transform.position = GameObject.FindGameObjectWithTag("ShipAirlock").transform.position;
+            CameraController.instance.JumpToTarget();
             PlayerController.instance.helmet.SetActive(true);
             PlayerController.instance.hair.SetActive(false);
             playerIsBoarded = true;
@@ -196,6 +197,7 @@ public class TargetShipController : MonoBehaviour
             playerShipIsDocked = false;
         }
         PlayerController.instance.transform.position = playerAirlock.position;
+        CameraController.instance.JumpToTarget();
         PlayerController.instance.helmet.SetActive(false);
         PlayerController.instance.hair.SetActive(true);
         playerIsBoarded = false;

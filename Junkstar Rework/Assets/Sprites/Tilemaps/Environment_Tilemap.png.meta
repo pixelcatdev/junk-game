@@ -74,6 +74,9 @@ TextureImporter:
   - first:
       213: -345448923944416365
     second: Object_Cargo
+  - first:
+      213: 2754787239715854707
+    second: InnerWall_Shadow01
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -684,6 +687,27 @@ TextureImporter:
       bones: []
       spriteID: 39b8040b808b43bf0800000000000000
       internalID: -345448923944416365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InnerWall_Shadow01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 379da072668fa3620800000000000000
+      internalID: 2754787239715854707
       vertices: []
       indices: 
       edges: []

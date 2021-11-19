@@ -49,7 +49,9 @@ public class GameController : MonoBehaviour
     public void SwitchToGame()
     {
         GameController.instance.gameState = GameController.GameState.game;
+        
         CameraController.instance.target = player.gameObject;
+        CameraController.instance.JumpToTarget();
 
         ui_overworld.SetActive(false);
         ui_game.SetActive(true);
