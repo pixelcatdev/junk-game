@@ -34,6 +34,7 @@ public class InteractorProps : MonoBehaviour
             //Open Inventory & Crate UI
             case InteractorType.crate:
                 InventoryController.instance.targetInventory = gameObject;
+                InventoryController.instance.targetInventoryStatic = gameObject;
                 InventoryController.instance.OpenInventoryUI(true);
                 break;
 
