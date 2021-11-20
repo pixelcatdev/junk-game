@@ -473,49 +473,50 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    //public void DeductResources(GameObject buildObj)
-    //{
-    //    List<BuildRecipe> resourcesNeeded = new List<BuildRecipe>();
-    //    resourcesNeeded = buildObj.GetComponent<Buildable>().buildingRecipe;
+    public void DeductResources(GameObject buildingObject)
+    {
+        List<BuildingRecipe> resourcesNeeded = new List<BuildingRecipe>();
+        resourcesNeeded = buildingObject.GetComponent<BuildingProps>().buildingRecipe;
+        InventoryProps inventory = PlayerController.instance.GetComponent<InventoryProps>();
 
-    //    foreach (BuildRecipe resource in resourcesNeeded)
-    //    {
-    //        int itemTotal = resource.itemCost;
+        foreach (BuildingRecipe resource in resourcesNeeded)
+        {
+            int itemTotal = resource.itemCost;
 
-    //        if (itemTotal > 0)
-    //        {
-    //            for (int i = 0; i < GetComponent<Inventory>().Slots.Count; i++)
-    //            {
-    //                if (GetComponent<Inventory>().Slots[i].slotName == resource.itemName)
-    //                {
-    //                    //If the first slot found has more than what's needed, deduct the quantity from that slot
-    //                    if (GetComponent<Inventory>().Slots[i].slotQty >= resource.itemCost)
-    //                    {
-    //                        GetComponent<Inventory>().Slots[i].slotQty -= resource.itemCost;
-    //                        break;
-    //                    }
-    //                    else
-    //                    {
-    //                        int amountToSubstract = Mathf.Clamp(GetComponent<Inventory>().Slots[i].slotQty, 0, itemTotal);
-    //                        GetComponent<Inventory>().Slots[i].slotQty -= amountToSubstract;
-    //                        itemTotal -= amountToSubstract;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //        }
+            if (itemTotal > 0)
+            {
+                for (int i = 0; i < inventory.inventorySlots.Count; i++)
+                {
+                    if (inventory.inventorySlots[i].slotName == resource.lootObject.GetComponent<LootProps>().lootName)
+                    {
+                        //If the first slot found has more than what's needed, deduct the quantity from that slot
+                        if (inventory.inventorySlots[i].slotQty >= resource.itemCost)
+                        {
+                            inventory.inventorySlots[i].slotQty -= resource.itemCost;
+                            break;
+                        }
+                        else
+                        {
+                            int amountToSubstract = Mathf.Clamp(inventory.inventorySlots[i].slotQty, 0, itemTotal);
+                            inventory.inventorySlots[i].slotQty -= amountToSubstract;
+                            itemTotal -= amountToSubstract;
+                            break;
+                        }
+                    }
+                }
+            }
 
-    //    }
+        }
 
-    //    //Clean up each Slot and check if there's anything left, removing it if not
-    //    for (int i = 0; i < GetComponent<Inventory>().Slots.Count; i++)
-    //    {
-    //        if (GetComponent<Inventory>().Slots[i].slotQty <= 0)
-    //        {
-    //            GetComponent<Inventory>().ClearSlot(gameObject, i);
-    //        }
-    //    }
-    //}
+        //Clean up each Slot and check if there's anything left, removing it if not
+        for (int i = 0; i < inventory.inventorySlots.Count; i++)
+        {
+            if (inventory.inventorySlots[i].slotQty <= 0)
+            {
+                ClearInventorySlot(i, PlayerController.instance.gameObject);
+            }
+        }
+    }
 
     //Stops the shipwreck selector spamming through all available wrecks
     IEnumerator SwitchTargetReset()

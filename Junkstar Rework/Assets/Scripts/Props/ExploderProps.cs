@@ -20,7 +20,7 @@ public class ExploderProps : MonoBehaviour
         {
             if (collision.GetComponent<TileProps>().canDestroy == true)
             {
-                collision.GetComponent<TileProps>().DestroyTile(false, true);
+                collision.GetComponent<TileProps>().TakeDamage(500f, true);
             }
         }
         StartCoroutine("ClearUpEffect");

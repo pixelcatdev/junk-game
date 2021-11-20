@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool tileHit;
 
     public GameObject buildingObject;
+    public List<GameObject> playerBuildings;
 
     public static PlayerController instance;
 
@@ -60,6 +61,42 @@ public class PlayerController : MonoBehaviour
             Animator();
 
             DestroyMode();
+            BuildMode();
+
+            //work out if the player can afford it and color the blueprint accordingly
+            if (equipped == EquipType.build)
+            {
+                if (Input.GetKeyDown(KeyCode.B))
+                {
+                    if (InventoryController.instance.HasResources(buildingObject) == true)
+                    {
+                        Debug.Log("Enough loot, can build");
+                        //build object
+                    }
+                    else
+                    {
+                        Debug.Log("Not enough loot, cannot build");
+                        //don't build object
+                    }
+                }
+            }
+
+            //Debug tool toggling
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Debug.Log("Cutter equipped");
+                equipped = EquipType.destroy;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Debug.Log("Welder equipped");
+                equipped = EquipType.build;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Debug.Log("Gun equipped");
+                equipped = EquipType.shoot;
+            }
         }
     }
 
@@ -97,27 +134,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }        
-        else if (equipped == EquipType.build)
-        {
-            //work out if the player can afford it and color the blueprint accordingly
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                if (InventoryController.instance.HasResources(buildingObject) == true)
-                {
-                    Debug.Log("Enough loot, can build");
-                    //build object
-                }
-                else
-                {
-                    Debug.Log("Not enough loot, cannot build");
-                    //don't build object
-                }
-            }            
-        }
-        else if (equipped == EquipType.shoot)
-        {
-            FireWeapon();
-        }
 
         //Get interaction input
         if (Input.GetKeyDown(KeyCode.E))
@@ -159,6 +175,7 @@ public class PlayerController : MonoBehaviour
                     if (lastHit == null)
                     {
                         lastHit = hitObj;
+
                         hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
                     }
                     else
@@ -192,6 +209,87 @@ public class PlayerController : MonoBehaviour
                         isDestroying = false;
                     }
 
+                }
+                else
+                {
+                    //If the player goes out of range of the object, clear the highlight on that object
+                    if (lastHit != null)
+                    {
+                        lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                    }
+                }
+            }
+        }
+    }
+
+    void BuildMode()
+    {
+        if (equipped == EquipType.build)
+        {
+            Debug.Log("Build mode");
+            //get the sprite of the chosen blueprint
+
+            LayerMask hitLayer = LayerMask.GetMask("ShipTile");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
+
+            if (hit && hit.transform.gameObject.GetComponent<TileProps>() && hit.transform.tag == "ShipTileFloor" && !hit.transform.gameObject.GetComponent<TileProps>().isOccupied)
+            {
+                GameObject hitObj = hit.transform.gameObject;
+
+                float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+
+                //if the hit obj is within than the players range
+                if (objDistance < 2)
+                {
+                    //if there's no objects previously hit, set the current object to that last object and highlight it
+                    if (lastHit == null)
+                    {
+                        lastHit = hitObj;
+
+                        hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                    }
+                    else
+                    {
+                        //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
+                        if (hitObj != lastHit)
+                        {
+                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                            lastHit = hitObj;
+                            hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                            //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().sprite = buildObj.GetComponent<Buildable>().buildingBlueprint;
+                        }
+                    }
+
+                    //work out if the player can afford it and color the blueprint accordingly
+                    if (InventoryController.instance.HasResources(buildingObject) == true)
+                    {
+                        //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().color = Color.blue;
+                    }
+                    else
+                    {
+                        //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().color = Color.red;
+                    }
+
+                    //If mouse 0 is clicked, build the object
+                    if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
+                    {
+                        //deduct the building costs
+                        if (InventoryController.instance.HasResources(buildingObject) == true)
+                        {
+                            //Deduct the item costs
+                            InventoryController.instance.DeductResources(buildingObject);
+
+                            //instantiate the new building, and child it to the hitObj
+                            GameObject newBuild = Instantiate(buildingObject, hitObj.transform.position, hitObj.transform.rotation, hitObj.transform);
+
+                            //Add the building to the list of builtObjects
+                            playerBuildings.Add(newBuild.gameObject);
+
+                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                            //lastHit.GetComponent<TileProps>().canDestroy = false;
+                            lastHit.GetComponent<TileProps>().isOccupied = true;
+                        }
+                    }
                 }
                 else
                 {

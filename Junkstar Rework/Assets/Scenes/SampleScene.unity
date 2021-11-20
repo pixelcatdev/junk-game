@@ -35575,6 +35575,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392063807385251
@@ -35600,6 +35601,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392063843931787
@@ -35625,6 +35627,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392063873717998
@@ -35650,6 +35653,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392063933403139
@@ -35675,6 +35679,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392063991512851
@@ -35700,6 +35705,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064001712580
@@ -35725,6 +35731,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064018811108
@@ -35750,6 +35757,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064093626980
@@ -35775,6 +35783,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064159407687
@@ -35800,6 +35809,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064178330727
@@ -35825,6 +35835,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064182548852
@@ -35850,6 +35861,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064199028716
@@ -35875,6 +35887,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064262352171
@@ -35900,6 +35913,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064276915473
@@ -35925,6 +35939,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064291274536
@@ -35950,6 +35965,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064367608169
@@ -35975,6 +35991,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064431280554
@@ -36000,6 +36017,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064446949485
@@ -36025,6 +36043,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064607675486
@@ -36050,6 +36069,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064686454813
@@ -36075,6 +36095,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064740255274
@@ -36100,6 +36121,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064757486928
@@ -36125,6 +36147,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064796105161
@@ -36150,6 +36173,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064809466364
@@ -36175,6 +36199,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064817060801
@@ -36200,6 +36225,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064845440019
@@ -36225,6 +36251,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064849770407
@@ -36250,6 +36277,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064883328679
@@ -36275,6 +36303,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064886071752
@@ -36300,6 +36329,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064901228318
@@ -36325,6 +36355,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392064963051494
@@ -36350,6 +36381,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065048692843
@@ -36375,6 +36407,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065101665034
@@ -36400,6 +36433,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065134901250
@@ -36425,6 +36459,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065135377648
@@ -36450,6 +36485,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065139982138
@@ -36475,6 +36511,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065145336793
@@ -36500,6 +36537,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065244304565
@@ -36525,6 +36563,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065259893831
@@ -36550,6 +36589,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065374673622
@@ -36575,6 +36615,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065383491662
@@ -36600,6 +36641,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065383925409
@@ -36625,6 +36667,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065389738603
@@ -36650,6 +36693,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065441879129
@@ -36675,6 +36719,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065463292453
@@ -36700,6 +36745,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065481396950
@@ -36725,6 +36771,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065489196536
@@ -36750,6 +36797,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065491481573
@@ -36775,6 +36823,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065502726804
@@ -36800,6 +36849,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065546203391
@@ -36825,6 +36875,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065587263300
@@ -36850,6 +36901,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065645227654
@@ -36875,6 +36927,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065715789564
@@ -36900,6 +36953,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065857940105
@@ -36925,6 +36979,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065860280027
@@ -36950,6 +37005,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065868034708
@@ -36975,6 +37031,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &4988392065885167073
@@ -37000,6 +37057,7 @@ MonoBehaviour:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &5180881356839188671
@@ -43605,7 +43663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: cutterDamage
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: health
@@ -43622,6 +43680,10 @@ PrefabInstance:
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: cutterRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: equipped
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4105722031043149635, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_IsActive
@@ -43777,6 +43839,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487590860518444
@@ -43802,6 +43865,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487590926625507
@@ -43827,6 +43891,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591006689433
@@ -43852,6 +43917,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591010830384
@@ -43877,6 +43943,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591102231585
@@ -43902,6 +43969,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591114810334
@@ -43927,6 +43995,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591147546837
@@ -43952,6 +44021,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591152790696
@@ -43977,6 +44047,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591159677142
@@ -44002,6 +44073,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591165220231
@@ -44027,6 +44099,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591196760493
@@ -44052,6 +44125,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591288755574
@@ -44077,6 +44151,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591332644864
@@ -44102,6 +44177,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591406819058
@@ -44127,6 +44203,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591422737359
@@ -44152,6 +44229,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591465844233
@@ -44177,6 +44255,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591554389458
@@ -44202,6 +44281,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591634101998
@@ -44227,6 +44307,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591658921265
@@ -44252,6 +44333,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591709304179
@@ -44277,6 +44359,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591786744304
@@ -44302,6 +44385,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591790877484
@@ -44327,6 +44411,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591906999026
@@ -44352,6 +44437,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487591921160683
@@ -44377,6 +44463,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592085306986
@@ -44402,6 +44489,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592098571453
@@ -44427,6 +44515,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592121883809
@@ -44452,6 +44541,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592131823951
@@ -44477,6 +44567,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592137566007
@@ -44502,6 +44593,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592310371822
@@ -44527,6 +44619,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592377650406
@@ -44552,6 +44645,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592543347342
@@ -44577,6 +44671,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592570757119
@@ -44602,6 +44697,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592644851885
@@ -44627,6 +44723,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592659476243
@@ -44652,6 +44749,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592673301447
@@ -44677,6 +44775,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592765229144
@@ -44702,6 +44801,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592821486739
@@ -44727,6 +44827,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!114 &6905487592882245019
@@ -44752,6 +44853,7 @@ MonoBehaviour:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!224 &7085876827110800413

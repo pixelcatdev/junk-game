@@ -55,15 +55,6 @@ public class TargetShipController : MonoBehaviour
     {
         if (GameController.instance.gameState == GameController.GameState.game)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                MapClear();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                MapGen();
-            }
-
             MapHealth();
             CollapseMap();
         }
@@ -121,7 +112,7 @@ public class TargetShipController : MonoBehaviour
             int randomTile = Random.Range(0, shipTiles.Count - 1);
             GameObject tile = shipTiles[randomTile];
             //shipTiles.RemoveAt(randomTile);
-            tile.GetComponent<TileProps>().DestroyTile(false, false);
+            tile.GetComponent<TileProps>().DestroyObject(true, false);
         }
 
         //Spawn ship Objects on floor ShipTiles (clear after for optimization)
@@ -138,7 +129,7 @@ public class TargetShipController : MonoBehaviour
         mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
         mapCurHealth = shipTiles.Count;
 
-        Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
+        //Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
 
         //spawn x enemy based on ship size and enemy type
 
@@ -220,7 +211,7 @@ public class TargetShipController : MonoBehaviour
                     //select a random tile
                     int randomTile = Random.Range(0, shipTiles.Count - 1);
                     GameObject tile = shipTiles[randomTile];
-                    tile.GetComponent<TileProps>().DestroyTile(false, true);
+                    tile.GetComponent<TileProps>().TakeDamage(500f, true);
                     collapseTimer = 0;
                 }
                 //if there are no ship tiles left, if the player is boarded, kill them, otherwise destroy the map
