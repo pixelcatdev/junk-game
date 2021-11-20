@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4008477134792116832
+--- !u!1 &3035113217705434309
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 765067836927239732}
-  - component: {fileID: 697562080501445639}
-  - component: {fileID: 1953427353608913625}
+  - component: {fileID: 3035113217705434305}
+  - component: {fileID: 3035113217705434310}
+  - component: {fileID: 3035113217705434311}
+  - component: {fileID: 3035113217705434308}
+  - component: {fileID: 5407241218050314891}
+  - component: {fileID: 3774928951786541877}
+  - component: {fileID: 3155259284087250101}
   m_Layer: 0
-  m_Name: Sprite
-  m_TagString: Untagged
+  m_Name: Npc_Trader
+  m_TagString: NpcTrader
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &765067836927239732
+--- !u!4 &3035113217705434305
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4008477134792116832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 3035113217705434309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6964051784266774280}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &697562080501445639
+--- !u!212 &3035113217705434310
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4008477134792116832}
+  m_GameObject: {fileID: 3035113217705434309}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 741949445
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5371865125751988998, guid: 7e5194e434efc6945bbee2f33cae7e4d, type: 3}
+  m_Sprite: {fileID: -4230679449944311049, guid: ffa99426945ce2a4d9f39029c46aa3ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,17 +87,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1953427353608913625
+--- !u!95 &3035113217705434311
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4008477134792116832}
+  m_GameObject: {fileID: 3035113217705434309}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 45e5cc66ac2e30643938d8fdcbe691c1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 07abf0e69ebfafb4faa926c01dd48683, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -102,54 +106,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &7174525439547467649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6964051784266774280}
-  - component: {fileID: 7312792259469654541}
-  - component: {fileID: 8595410658586726988}
-  - component: {fileID: -7583019843661389530}
-  m_Layer: 0
-  m_Name: Loot_HazardousMaterial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6964051784266774280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174525439547467649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 765067836927239732}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7312792259469654541
+--- !u!61 &3035113217705434308
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174525439547467649}
+  m_GameObject: {fileID: 3035113217705434309}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0040352345}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -160,41 +130,69 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5399747}
   m_EdgeRadius: 0
---- !u!114 &8595410658586726988
+--- !u!114 &5407241218050314891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174525439547467649}
+  m_GameObject: {fileID: 3035113217705434309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb53c3b6cad2fd942b8a02bf5741a49d, type: 3}
+  m_Script: {fileID: 11500000, guid: 18dfb4e5ac84b4c43b49ff4586305bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 5
-  lootSprite: {fileID: 5371865125751988998, guid: 7e5194e434efc6945bbee2f33cae7e4d, type: 3}
-  lootName: Hazardous Material
-  lootTxt: Volatile chemicals, utilised in ship maintenance systems
-  lootQty: 0
-  lootStack: 25
-  lootValue: 0
-  vacuumLoot: 0
---- !u!58 &-7583019843661389530
-CircleCollider2D:
+  lootRefs: []
+--- !u!114 &3774928951786541877
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174525439547467649}
+  m_GameObject: {fileID: 3035113217705434309}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf1196b165fd8f45a290e21ce7dbab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySlots:
+  - slotSprite: {fileID: 0}
+    slotName: 
+    slotTxt: 
+    slotQty: 0
+    slotStack: 0
+  - slotSprite: {fileID: 0}
+    slotName: 
+    slotTxt: 
+    slotQty: 0
+    slotStack: 0
+  - slotSprite: {fileID: 0}
+    slotName: 
+    slotTxt: 
+    slotQty: 0
+    slotStack: 0
+  - slotSprite: {fileID: 0}
+    slotName: 
+    slotTxt: 
+    slotQty: 0
+    slotStack: 0
+  - slotSprite: {fileID: 0}
+    slotName: 
+    slotTxt: 
+    slotQty: 0
+    slotStack: 0
+--- !u!114 &3155259284087250101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035113217705434309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407e09f83eb3bcf4fb009bf0be2d60fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactorType: 6

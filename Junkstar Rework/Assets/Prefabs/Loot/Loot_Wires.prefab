@@ -73,11 +73,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTimer: 5
-  lootSprite: {fileID: 0}
+  lootSprite: {fileID: -2611215176068892474, guid: 7e5194e434efc6945bbee2f33cae7e4d, type: 3}
   lootName: Wiring
   lootTxt: Thick cabling used for conducting power across ships
   lootQty: 0
   lootStack: 75
+  lootValue: 1
   vacuumLoot: 0
 --- !u!58 &9055172449958643462
 CircleCollider2D:

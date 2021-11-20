@@ -10,6 +10,7 @@ public class LootProps : MonoBehaviour
     public string lootTxt;
     public int lootQty;
     public int lootStack;
+    public int lootValue;
 
     private bool playerNearby;
     public bool vacuumLoot;

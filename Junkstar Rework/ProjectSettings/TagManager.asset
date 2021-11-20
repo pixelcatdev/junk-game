@@ -10,6 +10,7 @@ TagManager:
   - PlayerShipAirlock
   - ShipTileFloor
   - ShipTileWall
+  - NpcTrader
   layers:
   - Default
   - TransparentFX

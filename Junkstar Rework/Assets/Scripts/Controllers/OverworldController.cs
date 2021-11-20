@@ -12,6 +12,7 @@ public class OverworldController : MonoBehaviour
     public GameObject ui_Selector;
 
     public List<GameObject> shipwrecks;
+    public GameObject spaceStation;
     private int curTarget;
     private bool canSwitchTarget;
 
@@ -81,6 +82,9 @@ public class OverworldController : MonoBehaviour
         //Reset playerShip Position
         playerShip.position = transform.position;
 
+        //Add space station to list
+        shipwrecks.Add(spaceStation);
+
         //Randomise shipwrecks
         int randomWreckTotal = Random.Range(2, 5);
 
@@ -115,7 +119,11 @@ public class OverworldController : MonoBehaviour
     {
         for (int i = 0; i < shipwrecks.Count; i++)
         {
-            Destroy(shipwrecks[i]);            
+            //If not a station
+            if (!shipwrecks[i].GetComponent<ShipProps>().isStation)
+            {
+                Destroy(shipwrecks[i]);
+            }
         }
         shipwrecks.Clear();
     }   
@@ -177,11 +185,23 @@ public class OverworldController : MonoBehaviour
         txt_shipQuality.text = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString().ToUpper();
         txt_shipEnemy.text = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString().ToUpper();
 
-        //Get the ships stats and pass them into TargetShipMap so it can create the appropriate map (quality, size, enemy etc)                
-        TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<ShipProps>().shipName.ToUpper();
-        TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<ShipProps>().size.ToString();
-        TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString();
-        TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString();
+        //If the target isnt the trading station, get the ships stats and pass them into TargetShipMap so it can create the appropriate map (quality, size, enemy etc)
+        if (!shipwrecks[curTarget].gameObject.GetComponent<ShipProps>().isStation)
+        {
+            TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<ShipProps>().shipName.ToUpper();
+            TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<ShipProps>().size.ToString();
+            TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString();
+            TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString();
+            TargetShipController.instance.isStation = false;
+        }
+        else
+        {
+            TargetShipController.instance.isStation = true;
+            TargetShipController.instance.size = "Trading Station";
+            TargetShipController.instance.quality = null;
+            TargetShipController.instance.enemy = null;
+
+        }        
 
         //Calculate Distance
         float distance = Vector2.Distance(playerShip.position, shipwrecks[curTarget].transform.position);

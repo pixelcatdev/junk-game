@@ -73,11 +73,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTimer: 5
-  lootSprite: {fileID: 0}
+  lootSprite: {fileID: 470751668244333731, guid: 7e5194e434efc6945bbee2f33cae7e4d, type: 3}
   lootName: Alloy
   lootTxt: Refined metals bonded to form spacefaring materials
   lootQty: 0
   lootStack: 5
+  lootValue: 2
   vacuumLoot: 0
 --- !u!58 &-7553819163183234976
 CircleCollider2D:

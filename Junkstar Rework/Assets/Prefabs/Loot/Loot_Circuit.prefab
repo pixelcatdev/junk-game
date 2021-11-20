@@ -73,11 +73,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTimer: 5
-  lootSprite: {fileID: 0}
+  lootSprite: {fileID: 5966795839610056117, guid: 7e5194e434efc6945bbee2f33cae7e4d, type: 3}
   lootName: Circuit
   lootTxt: Computer circuitry, printed on thin plastic
   lootQty: 0
   lootStack: 25
+  lootValue: 5
   vacuumLoot: 0
 --- !u!58 &-4852203942145554398
 CircleCollider2D:

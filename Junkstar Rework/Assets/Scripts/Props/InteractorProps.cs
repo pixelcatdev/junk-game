@@ -44,6 +44,10 @@ public class InteractorProps : MonoBehaviour
 
             //Trigger npc dialogue
             case InteractorType.npc:
+                if(tag == "NpcTrader")
+                {
+                    GetComponent<TradeController>().StartTrade();
+                }
                 break;
 
             default:

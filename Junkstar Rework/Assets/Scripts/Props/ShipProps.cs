@@ -17,6 +17,9 @@ public class ShipProps : MonoBehaviour
     public shipQuality quality;
     public shipEnemy enemy;
 
+    public bool isStation;
+    public bool isBoss;
+
     private void Start()
     {
         GenShip();
@@ -25,17 +28,21 @@ public class ShipProps : MonoBehaviour
     //Generate the ships stats
     void GenShip()
     {
-        //Generate the name
-        shipName = shipNameA[Random.Range(0, shipNameA.Length)] + shipNameB[Random.Range(0, shipNameB.Length)];
+        if (!isStation)
+        {
+            //Generate the name
+            shipName = shipNameA[Random.Range(0, shipNameA.Length)] + shipNameB[Random.Range(0, shipNameB.Length)];
 
-        //Generate the size
-        size = (shipSize)Random.Range(0, 3);
+            //Generate the size
+            size = (shipSize)Random.Range(0, 3);
 
-        //Generate the loot
-        quality = (shipQuality)Random.Range(0, 3);
+            //Generate the loot
+            quality = (shipQuality)Random.Range(0, 3);
 
-        //Generate the enemyType
-        enemy = (shipEnemy)Random.Range(0, 3);
+            //Generate the enemyType
+            enemy = (shipEnemy)Random.Range(0, 3);
+        }
+       
     }
 
 }

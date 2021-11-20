@@ -28,7 +28,9 @@ public class TargetShipController : MonoBehaviour
     public float collapseInterval;
     private float collapseTimer;
 
-    public GameObject generatedMap;
+    public bool isStation;
+    public GameObject stationMap;
+    public GameObject generatedMap;    
     public List<GameObject> shipsSmall;
     public List<GameObject> shipsMedium;
     public List<GameObject> shipsLarge;
@@ -63,75 +65,84 @@ public class TargetShipController : MonoBehaviour
     //Generate a map, place it inside the targetShipMap reference
     public void MapGen()
     {
-        //Instantiate right size ship       
-        if (size == "small")
+        //If its the spacestation, spawn that
+        if (isStation)
         {
-            generatedMap = Instantiate(shipsSmall[Random.Range(0, shipsSmall.Count - 1)], transform.position, transform.rotation, transform);
+            generatedMap = Instantiate(stationMap, transform.position, transform.rotation, transform);
         }
-        else if (size == "medium")
+        else
         {
-            generatedMap = Instantiate(shipsMedium[Random.Range(0, shipsMedium.Count - 1)], transform.position, transform.rotation, transform);
-        }
-        else if (size == "large")
-        {
-            generatedMap = Instantiate(shipsLarge[Random.Range(0, shipsLarge.Count - 1)], transform.position, transform.rotation, transform);
+            //Instantiate right size ship       
+            if (size == "small")
+            {
+                generatedMap = Instantiate(shipsSmall[Random.Range(0, shipsSmall.Count - 1)], transform.position, transform.rotation, transform);
+            }
+            else if (size == "medium")
+            {
+                generatedMap = Instantiate(shipsMedium[Random.Range(0, shipsMedium.Count - 1)], transform.position, transform.rotation, transform);
+            }
+            else if (size == "large")
+            {
+                generatedMap = Instantiate(shipsLarge[Random.Range(0, shipsLarge.Count - 1)], transform.position, transform.rotation, transform);
+            }
+
+            //Get the map health by adding all ShipTile tagged objects to the shipTiles list
+            //Floors
+            foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileFloor"))
+            {
+                shipTiles.Add(tile);
+                shipFloorTiles.Add(tile);
+            }
+            //Walls
+            foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileWall"))
+            {
+                shipTiles.Add(tile);
+            }
+
+            mapMaxHealth = shipTiles.Count;
+
+            //Quality - poor, damage 75% of tiles / average - 50%, good - 25% (testing at 50%)
+            if (quality == "poor")
+            {
+                qualityPer = 0.5f;
+            }
+            else if (quality == "average")
+            {
+                qualityPer = 0.25f;
+            }
+            else if (quality == "good")
+            {
+                qualityPer = 0.05f;
+            }
+
+            for (int i = 0; i < mapMaxHealth * qualityPer; i++)
+            {
+                //select a random tile
+                int randomTile = Random.Range(0, shipTiles.Count - 1);
+                GameObject tile = shipTiles[randomTile];
+                //shipTiles.RemoveAt(randomTile);
+                tile.GetComponent<TileProps>().DestroyObject(true, false);
+            }
+
+            //Spawn ship Objects on floor ShipTiles (clear after for optimization)
+            for (int i = 0; i < mapMaxHealth * (qualityPer / 8); i++)
+            {
+                //select a random tile
+                int randomTile = Random.Range(0, shipFloorTiles.Count - 1);
+                GameObject tile = shipFloorTiles[randomTile];
+                Instantiate(shipObjects[Random.Range(0, shipObjects.Count - 1)], tile.transform.position, tile.transform.rotation);
+                shipFloorTiles.RemoveAt(randomTile);
+            }
+            shipFloorTiles.Clear();
+
+            mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
+            mapCurHealth = shipTiles.Count;
+
+            //Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
+
+            //spawn x enemy based on ship size and enemy type
         }
 
-        //Get the map health by adding all ShipTile tagged objects to the shipTiles list
-        //Floors
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileFloor"))
-        {
-            shipTiles.Add(tile);
-            shipFloorTiles.Add(tile);
-        }
-        //Walls
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTileWall"))
-        {
-            shipTiles.Add(tile);
-        }
-
-        mapMaxHealth = shipTiles.Count;
-
-        //Quality - poor, damage 75% of tiles / average - 50%, good - 25% (testing at 50%)
-        if (quality == "poor")
-        {
-            qualityPer = 0.5f;
-        }
-        else if (quality == "average")
-        {
-            qualityPer = 0.25f;
-        }
-        else if (quality == "good")
-        {
-            qualityPer = 0.05f;
-        }
-
-        for (int i = 0; i < mapMaxHealth * qualityPer; i++)
-        {
-            //select a random tile
-            int randomTile = Random.Range(0, shipTiles.Count - 1);
-            GameObject tile = shipTiles[randomTile];
-            //shipTiles.RemoveAt(randomTile);
-            tile.GetComponent<TileProps>().DestroyObject(true, false);
-        }
-
-        //Spawn ship Objects on floor ShipTiles (clear after for optimization)
-        for (int i = 0; i < mapMaxHealth * (qualityPer / 8); i++)
-        {
-            //select a random tile
-            int randomTile = Random.Range(0, shipFloorTiles.Count -1);
-            GameObject tile = shipFloorTiles[randomTile];
-            Instantiate(shipObjects[Random.Range(0, shipObjects.Count -1)], tile.transform.position,tile.transform.rotation);
-            shipFloorTiles.RemoveAt(randomTile);
-        }
-        shipFloorTiles.Clear();
-
-        mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
-        mapCurHealth = shipTiles.Count;
-
-        //Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
-
-        //spawn x enemy based on ship size and enemy type
 
         playerShipIsDocked = true;
         Debug.Log("Map generated");
@@ -168,8 +179,12 @@ public class TargetShipController : MonoBehaviour
         {            
             PlayerController.instance.transform.position = GameObject.FindGameObjectWithTag("ShipAirlock").transform.position;
             CameraController.instance.JumpToTarget();
-            PlayerController.instance.helmet.SetActive(true);
-            PlayerController.instance.hair.SetActive(false);
+            //Enable helmet if not a station
+            if (!isStation)
+            {
+                PlayerController.instance.helmet.SetActive(true);
+                PlayerController.instance.hair.SetActive(false);
+            }                     
             playerIsBoarded = true;
         }
         else

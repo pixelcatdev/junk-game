@@ -168,7 +168,7 @@ public class InventoryController : MonoBehaviour
     }
 
     //Get the next available slot in inventoryinventorySlots
-    int GetEmptySlot(GameObject refInventory)
+    public int GetEmptySlot(GameObject refInventory)
     {
         int slot = -1;
 
