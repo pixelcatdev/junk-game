@@ -36,7 +36,7 @@ public class LootProps : MonoBehaviour
             float distance = Vector2.Distance(transform.position, PlayerController.instance.transform.position);
             if (distance < 0.25f)
             {
-                InventoryController.instance.AddItem(gameObject, lootSprite, lootName, lootTxt, lootStack);
+                InventoryController.instance.AddItem(gameObject, lootSprite, lootName, lootTxt, lootStack, lootValue);
                 vacuumLoot = false;
             }
         }

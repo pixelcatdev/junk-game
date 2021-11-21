@@ -73,7 +73,7 @@ public class InventoryController : MonoBehaviour
             //Trash slot contents
             if (Input.GetKeyDown(KeyCode.Delete))
             {
-                ClearInventorySlot(curTarget,sourceInventory);
+                ClearInventorySlot(curTarget, sourceInventory);
             }
 
             //Transfer contents to other inventory if open
@@ -90,7 +90,7 @@ public class InventoryController : MonoBehaviour
     }
 
     //Add item to next slot, or stack if space exists
-    public void AddItem(GameObject loot, Sprite lootSprite, string lootName, string lootTxt, int lootStack)
+    public void AddItem(GameObject loot, Sprite lootSprite, string lootName, string lootTxt, int lootStack, int lootValue)
     {
         int lootQty = 1;
 
@@ -130,6 +130,7 @@ public class InventoryController : MonoBehaviour
                         sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
                         sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = amountRemaining;
                         sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
+                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
                         Destroy(loot);
                     }
 
@@ -157,6 +158,7 @@ public class InventoryController : MonoBehaviour
                 sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
                 sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = lootQty;
                 sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
+                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
                 Destroy(loot);
             }
 
@@ -198,7 +200,8 @@ public class InventoryController : MonoBehaviour
     //Transfer selected slot to the other inventory
     void TransferSlot()
     {
-        if(sourceInventory.GetComponent<InventoryProps>().inventorySlots[curTarget].slotSprite != null)
+        Debug.Log(curTarget);
+        if (sourceInventory.GetComponent<InventoryProps>().inventorySlots[curTarget].slotSprite != null)
         {
             int lootQty = sourceInventory.GetComponent<InventoryProps>().inventorySlots[curTarget].slotQty;
             List<InventorySlot> sourceSlots = sourceInventory.GetComponent<InventoryProps>().inventorySlots;
@@ -239,6 +242,7 @@ public class InventoryController : MonoBehaviour
                             targetSlots[emptySlot].slotTxt = sourceSlots[curTarget].slotTxt;
                             targetSlots[emptySlot].slotQty = amountRemaining;
                             targetSlots[emptySlot].slotStack = sourceSlots[curTarget].slotStack;
+                            targetSlots[emptySlot].slotValue = sourceSlots[curTarget].slotValue;
                             ClearInventorySlot(curTarget, sourceInventory);
                         }
                         //Else if there's no slots left, add only what it can, leave the remaining qty on the player
@@ -266,6 +270,7 @@ public class InventoryController : MonoBehaviour
                     targetSlots[emptySlot].slotTxt = sourceSlots[curTarget].slotTxt;
                     targetSlots[emptySlot].slotQty = sourceSlots[curTarget].slotQty;
                     targetSlots[emptySlot].slotStack = sourceSlots[curTarget].slotStack;
+                    targetSlots[emptySlot].slotValue = sourceSlots[curTarget].slotValue;
                     ClearInventorySlot(curTarget, sourceInventory);
                 }
 
@@ -279,15 +284,13 @@ public class InventoryController : MonoBehaviour
         {
             Debug.Log("Nothing to transfer");
         }
-        
+
     }
 
     //Update Slot UI based on index and reference object, setting sprite and text (or I could try looping through all 36 objects)
     void UpdateSlotUI()
     {
         List<InventorySlot> sourceSlots = sourceInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
-
-        Debug.Log("source: " + sourceInventory);
 
         for (int i = 0; i < sourceInventorySlotsUI.Count; i++)
         {
@@ -524,6 +527,22 @@ public class InventoryController : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         canSwitchTarget = true;
     }
+
+    public void TransferSlotToStorage(GameObject slotClicked)
+    {
+        //Check if the clicked slot is in the players inventory
+        curTarget = sourceInventorySlotsUI.IndexOf(slotClicked);
+        Debug.Log(slotClicked.name + " is " + curTarget);
+        TransferSlot();
+    }
+
+    public void TransferSlotToPlayer(GameObject slotClicked)
+    {
+        //Check if the clicked slot is in the players inventory
+        curTarget = sourceInventorySlotsUI.IndexOf(slotClicked);
+        Debug.Log(slotClicked.name + " is " + curTarget);
+        TransferSlot();
+    }
 }
 
 [System.Serializable]
@@ -534,14 +553,16 @@ public class InventorySlot
     public string slotTxt;
     public int slotQty;
     public int slotStack;
+    public int slotValue;
 
-    public InventorySlot(Sprite _lootsprite, string _lootName, string _lootTxt, int _lootQty, int _lootStack)
+    public InventorySlot(Sprite _lootsprite, string _lootName, string _lootTxt, int _lootQty, int _lootStack, int _lootValue)
     {
         slotSprite = _lootsprite;
         slotName = _lootName;
         slotTxt = _lootTxt;
         slotQty = _lootQty;
         slotStack = _lootStack;
+        slotValue = _lootValue;
     }
 
     public void addAmount(int value)

@@ -8,5 +8,6 @@ public class InventorySlotProps : MonoBehaviour
 {
     public GameObject slotContents;
     public Image slotSprite;
+    public TextMeshProUGUI slotValue;
     public TextMeshProUGUI slotQty;
 }

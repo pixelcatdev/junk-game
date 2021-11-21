@@ -180,7 +180,7 @@ MonoBehaviour:
   lootTxt: Volatile chemicals, utilised in ship maintenance systems
   lootQty: 0
   lootStack: 25
-  lootValue: 0
+  lootValue: 3
   vacuumLoot: 0
 --- !u!58 &-7583019843661389530
 CircleCollider2D:
