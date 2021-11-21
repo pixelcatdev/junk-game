@@ -22,6 +22,7 @@ public class TradeController : MonoBehaviour
     public List<GameObject> buySlotsUI;
     public List<GameObject> sellSlotsUI;
 
+    private int slotIndex;
     private int buyTotal;
     private int sellTotal;
 
@@ -31,7 +32,7 @@ public class TradeController : MonoBehaviour
     void Start()
     {
         tradeInventory = GetComponent<InventoryProps>();
-        playerInventory = GetComponent<InventoryProps>();
+        playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
         RandomiseStock();
         UpdateTradeUI();
     }
@@ -70,15 +71,8 @@ public class TradeController : MonoBehaviour
     public void BuyLoot()
     {
         //Get the slotindex of the button pressed
-        int slotIndex = traderSlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        slotIndex = traderSlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
         //Debug.Log(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject + ": " + slotIndex);
-
-        //Is the item in the buy inventory already
-        //Is there enough space on the existing stack
-        //If not, is there an empty slot
-        //If not, don't do anything
-
-        //Get loot details
 
         Sprite lootSprite = tradeInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotSprite;
         string lootName = tradeInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotName;
@@ -165,13 +159,93 @@ public class TradeController : MonoBehaviour
     }
 
     //Sell 1 from the clicked slot from the Player Inventory
-    public void SellLoot(int slotIndex)
+    public void SellLoot()
     {
-        //If there's qty available
-        Debug.Log("Adding item to sell");
-        //Deduct quantity from player inventory
-        playerInventory.inventorySlots[slotIndex].slotQty -= 1;
-        //Add quantity to sellinventory
+        //Get the slotindex of the button pressed
+        slotIndex = playerSlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject + ": " + slotIndex);
+
+        Sprite lootSprite = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotSprite;
+        string lootName = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotName;
+        string lootTxt = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotTxt;
+        int lootStack = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotStack;
+        int lootValue = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotValue;
+
+        int lootQty = playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotQty;
+
+        bool hasItem = false;
+
+        if (playerInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotSprite != null)
+        {
+            //loop through buy basket to see if it exists
+            for (int i = 0; i < sellInventory.Count; i++)
+            {
+                //If the item already exists in the buy list and there's enough room in the stack
+                if (lootName == sellInventory[i].slotName && sellInventory[i].slotQty < sellInventory[i].slotStack)
+                {
+                    if (1 + sellInventory[i].slotQty <= sellInventory[i].slotStack)
+                    {
+                        //Debug.Log((i + ": " + buyInventory[i].slotQty + 1) + " - " + buyInventory[i].slotStack);
+                        sellInventory[i].slotQty += 1;
+                        RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
+                        sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                        hasItem = true;
+                        break;
+                    }
+                    //Otherwise, see if there's any spare slots in the BuyInventory
+                    else
+                    {
+                        int emptySlot = GetEmptySlot(sellInventory);
+
+                        if (emptySlot >= 0)
+                        {
+                            sellInventory[emptySlot].slotSprite = lootSprite;
+                            sellInventory[emptySlot].slotName = lootName;
+                            sellInventory[emptySlot].slotTxt = lootTxt;
+                            sellInventory[emptySlot].slotQty = 1;
+                            sellInventory[emptySlot].slotStack = lootStack;
+                            sellInventory[emptySlot].slotValue = lootValue;
+                            RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
+                            sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                        }
+                        else
+                        {
+                            Debug.Log("No buy space left");
+                            //Indicate to the player no room left
+                        }
+
+                        hasItem = true;
+                        break;
+                    }
+                }
+            }
+
+            //if the item doesn't exist in the invetory, find an empty slot and assign it there
+            if (!hasItem)
+            {
+                int emptySlot = GetEmptySlot(sellInventory);
+
+                if (emptySlot >= 0)
+                {
+                    sellInventory[emptySlot].slotSprite = lootSprite;
+                    sellInventory[emptySlot].slotName = lootName;
+                    sellInventory[emptySlot].slotTxt = lootTxt;
+                    sellInventory[emptySlot].slotStack = lootStack;
+                    sellInventory[emptySlot].slotQty = 1;
+                    sellInventory[emptySlot].slotValue = lootValue;
+                    RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
+                    sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                }
+                else
+                {
+                    Debug.Log("No buy space left");
+                }
+
+                hasItem = true;
+            }
+        }
+
+        //Update the buyTotal and add it to the inventory
         UpdateTradeUI();
     }
 
@@ -185,8 +259,7 @@ public class TradeController : MonoBehaviour
         else
         {
             refSlots[slotIndex].slotQty -= 1;
-        }
-        
+        }        
     }
 
     //Get the next available slot in inventoryinventorySlots
@@ -245,6 +318,7 @@ public class TradeController : MonoBehaviour
         //return buyinventory to trader inventory
         //clear sellinventory
         //clear buyinventory
+
         UpdateTradeUI();
     }
 
