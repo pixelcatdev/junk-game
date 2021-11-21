@@ -62,7 +62,6 @@ public class TradeController : MonoBehaviour
     public void StartTrade()
     {
         Debug.Log("Starting Trade");
-        RandomiseStock();
         UpdateTradeUI();
         ui_trade.SetActive(true);
     }
@@ -104,7 +103,7 @@ public class TradeController : MonoBehaviour
                     //Otherwise, see if there's any spare slots in the BuyInventory
                     else
                     {
-                        int emptySlot = GetEmptySlot(buyInventory);
+                        int emptySlot = InventoryController.instance.GetEmptySlot(buyInventory);
 
                         if (emptySlot >= 0)
                         {
@@ -132,7 +131,7 @@ public class TradeController : MonoBehaviour
             //if the item doesn't exist in the invetory, find an empty slot and assign it there
             if (!hasItem)
             {
-                int emptySlot = GetEmptySlot(buyInventory);
+                int emptySlot = InventoryController.instance.GetEmptySlot(buyInventory);
 
                 if (emptySlot >= 0)
                 {
@@ -195,7 +194,7 @@ public class TradeController : MonoBehaviour
                     //Otherwise, see if there's any spare slots in the BuyInventory
                     else
                     {
-                        int emptySlot = GetEmptySlot(sellInventory);
+                        int emptySlot = InventoryController.instance.GetEmptySlot(sellInventory);
 
                         if (emptySlot >= 0)
                         {
@@ -223,7 +222,7 @@ public class TradeController : MonoBehaviour
             //if the item doesn't exist in the invetory, find an empty slot and assign it there
             if (!hasItem)
             {
-                int emptySlot = GetEmptySlot(sellInventory);
+                int emptySlot = InventoryController.instance.GetEmptySlot(sellInventory);
 
                 if (emptySlot >= 0)
                 {
@@ -262,23 +261,6 @@ public class TradeController : MonoBehaviour
         }        
     }
 
-    //Get the next available slot in inventoryinventorySlots
-    public int GetEmptySlot(List<InventorySlot> refSlots)
-    {
-        int slot = -1;
-
-        for (int i = 0; i < refSlots.Count; i++)
-        {
-            if (String.IsNullOrEmpty(refSlots[i].slotName))
-            {
-                slot = i;
-                break;
-            }
-        }
-
-        return slot;
-    }
-
     //Clear target slot out completely
     private void ClearInventorySlot(int slotIndex, List<InventorySlot> refSlots)
     {
@@ -287,6 +269,7 @@ public class TradeController : MonoBehaviour
         refSlots[slotIndex].slotTxt = null;
         refSlots[slotIndex].slotQty = 0;
         refSlots[slotIndex].slotStack = 0;
+        refSlots[slotIndex].slotValue = 0;
         UpdateTradeUI();
     }
 
@@ -294,14 +277,34 @@ public class TradeController : MonoBehaviour
     public void CompleteTrade()
     {
         //Is the player trading enough value against what's being bought?
-        if (buyTotal <= sellTotal)
+        if (buyTotal - sellTotal >= 0)
         {
-            //Complete Trade
             Debug.Log("Value accepted");
-            //Add buy items to Players Inventory
-            //Remove buy items from buyinventory
-            //Add sell items to Trader Inventory
-            //Remove sell items from buyinventory
+
+            //transfer buy to player
+            for (int i = 0; i < buyInventory.Count; i++)
+            {
+                InventoryController.instance.TransferSlot(i, buyInventory, playerInventory.inventorySlots);
+            }
+            //transfer sell to trader
+            for (int i = 0; i < sellInventory.Count; i++)
+            {
+                InventoryController.instance.TransferSlot(i, sellInventory, tradeInventory.inventorySlots);
+            }
+
+            //Clear slots
+            for (int i = 0; i < buyInventory.Count; i++)
+            {
+                InventoryController.instance.ClearInventorySlot(i, buyInventory);
+            }
+            for (int i = 0; i < sellInventory.Count; i++)
+            {
+                InventoryController.instance.ClearInventorySlot(i, sellInventory);
+            }
+
+            buyTotal = 0;
+            sellTotal = 0;
+
             UpdateTradeUI();
         }
         else
@@ -314,16 +317,29 @@ public class TradeController : MonoBehaviour
     //Clear out the buy and sell slots
     public void ClearTrade()
     {
+        Debug.Log("Clearing Trade");
         //return sellinventory to player inventory
         //return buyinventory to trader inventory
         //clear sellinventory
+        for (int i = 0; i < sellInventory.Count; i++)
+        {
+            InventoryController.instance.TransferSlot(i, sellInventory, playerInventory.inventorySlots);
+        }
         //clear buyinventory
+        for (int i = 0; i < buyInventory.Count; i++)
+        {
+            InventoryController.instance.TransferSlot(i, buyInventory, tradeInventory.inventorySlots);
+        }
+
+        buyTotal = 0;
+        sellTotal = 0;
 
         UpdateTradeUI();
     }
 
     public void CancelTrade()
     {
+        ClearTrade();
         ui_trade.SetActive(false);
     }
 
@@ -411,6 +427,14 @@ public class TradeController : MonoBehaviour
         }
 
         //update txt_total value
+        if((buyTotal - sellTotal) < 0)
+        {
+            txt_total.color = Color.red;
+        }
+        else
+        {
+            txt_total.color = Color.white;
+        }
         txt_total.text = "TOTAL: " + (buyTotal - sellTotal);
     }
 

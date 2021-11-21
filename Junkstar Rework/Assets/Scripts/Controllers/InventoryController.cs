@@ -10,7 +10,7 @@ public class InventoryController : MonoBehaviour
     //public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     public GameObject sourceInventoryStatic;
     public GameObject targetInventoryStatic;
-    public GameObject sourceInventory;
+    public InventoryProps playerInventory;
     public GameObject targetInventory;
     public List<GameObject> lootRefs;
 
@@ -22,8 +22,6 @@ public class InventoryController : MonoBehaviour
     public GameObject ui_SourceInventory;
     public GameObject ui_TargetInventory;
     public int curTarget;
-    private bool canSwitchTarget;
-    public bool targetInventoryEnabled;
 
     public static InventoryController instance;
 
@@ -42,8 +40,8 @@ public class InventoryController : MonoBehaviour
 
     private void Start()
     {
-        canSwitchTarget = true;
         curinventorySlotsUI = sourceInventorySlotsUI;
+        playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
     }
 
     private void Update()
@@ -66,26 +64,7 @@ public class InventoryController : MonoBehaviour
                 GameController.instance.gameState = GameController.GameState.game;
                 ui_TargetInventory.SetActive(false);
                 ui_Selector.SetActive(false);
-                sourceInventory = PlayerController.instance.gameObject;
-                targetInventory = null;
             }
-
-            //Trash slot contents
-            if (Input.GetKeyDown(KeyCode.Delete))
-            {
-                ClearInventorySlot(curTarget, sourceInventory);
-            }
-
-            //Transfer contents to other inventory if open
-            if (targetInventory != null && targetInventory.activeInHierarchy)
-            {
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    TransferSlot();
-                }
-            }
-
-            NavigateInventory();
         }
     }
 
@@ -97,15 +76,15 @@ public class InventoryController : MonoBehaviour
         bool hasItem = false;
 
         //Loop through each items in the inventorySlots
-        for (int i = 0; i < sourceInventory.GetComponent<InventoryProps>().inventorySlots.Count; i++)
+        for (int i = 0; i < playerInventory.GetComponent<InventoryProps>().inventorySlots.Count; i++)
         {
             //If item already exists in the inventorySlots
-            if (sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotName == lootName && sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty < sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack)
+            if (playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotName == lootName && playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty < playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack)
             {
                 //If the existing slot amount + the item amount is less than the stack maximum, add it to the existing stack
-                if (sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty + lootQty <= sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack)
+                if (playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty + lootQty <= playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack)
                 {
-                    sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].addAmount(lootQty);
+                    playerInventory.GetComponent<InventoryProps>().inventorySlots[i].addAmount(lootQty);
                     Destroy(loot);
                     hasItem = true;
                     break;
@@ -115,22 +94,22 @@ public class InventoryController : MonoBehaviour
                 else
                 {
 
-                    int diff = sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack - sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty;
+                    int diff = playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotStack - playerInventory.GetComponent<InventoryProps>().inventorySlots[i].slotQty;
                     int amountRemaining = lootQty - diff;
 
-                    sourceInventory.GetComponent<InventoryProps>().inventorySlots[i].addAmount(diff);
+                    playerInventory.GetComponent<InventoryProps>().inventorySlots[i].addAmount(diff);
 
                     //Get the next available null slot
-                    int emptySlot = GetEmptySlot(sourceInventory);
+                    int emptySlot = GetEmptySlot(playerInventory.inventorySlots);
 
                     if (emptySlot >= 0)
                     {
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotSprite = lootSprite;
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotName = lootName;
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = amountRemaining;
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
-                        sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotSprite = lootSprite;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotName = lootName;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = amountRemaining;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
+                        playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
                         Destroy(loot);
                     }
 
@@ -150,15 +129,15 @@ public class InventoryController : MonoBehaviour
         if (hasItem == false)
         {
             //Get the next available null slot
-            int emptySlot = GetEmptySlot(sourceInventory);
+            int emptySlot = GetEmptySlot(playerInventory.inventorySlots);
             if (emptySlot >= 0)
             {
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotSprite = lootSprite;
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotName = lootName;
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = lootQty;
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
-                sourceInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotSprite = lootSprite;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotName = lootName;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotTxt = lootTxt;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotQty = lootQty;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotStack = lootStack;
+                playerInventory.GetComponent<InventoryProps>().inventorySlots[emptySlot].slotValue = lootValue;
                 Destroy(loot);
             }
 
@@ -169,43 +148,12 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    //Get the next available slot in inventoryinventorySlots
-    public int GetEmptySlot(GameObject refInventory)
-    {
-        int slot = -1;
-
-        for (int i = 0; i < refInventory.GetComponent<InventoryProps>().inventorySlots.Count; i++)
-        {
-            if (String.IsNullOrEmpty(refInventory.GetComponent<InventoryProps>().inventorySlots[i].slotName))
-            {
-                slot = i;
-                break;
-            }
-        }
-
-        return slot;
-    }
-
-    //Clear target slot out completely
-    private void ClearInventorySlot(int slotIndex, GameObject refInventory)
-    {
-        refInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotSprite = null;
-        refInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotName = null;
-        refInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotTxt = null;
-        refInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotQty = 0;
-        refInventory.GetComponent<InventoryProps>().inventorySlots[slotIndex].slotStack = 0;
-        UpdateSlotUI();
-    }
-
     //Transfer selected slot to the other inventory
-    void TransferSlot()
+    public void TransferSlot(int slotIndex, List<InventorySlot> sourceSlots, List<InventorySlot> targetSlots)
     {
-        Debug.Log(curTarget);
-        if (sourceInventory.GetComponent<InventoryProps>().inventorySlots[curTarget].slotSprite != null)
+        if (sourceSlots[slotIndex].slotSprite != null)
         {
-            int lootQty = sourceInventory.GetComponent<InventoryProps>().inventorySlots[curTarget].slotQty;
-            List<InventorySlot> sourceSlots = sourceInventory.GetComponent<InventoryProps>().inventorySlots;
-            List<InventorySlot> targetSlots = targetInventory.GetComponent<InventoryProps>().inventorySlots;
+            int lootQty = sourceSlots[slotIndex].slotQty;
 
             bool hasItem = false;
 
@@ -213,13 +161,13 @@ public class InventoryController : MonoBehaviour
             for (int i = 0; i < targetSlots.Count; i++)
             {
                 //If item already exists in the inventorySlots
-                if (targetSlots[i].slotName == sourceSlots[curTarget].slotName && targetSlots[i].slotQty < targetSlots[i].slotStack)
+                if (targetSlots[i].slotName == sourceSlots[slotIndex].slotName && targetSlots[i].slotQty < targetSlots[i].slotStack)
                 {
                     //If the existing slot amount + the item amount is less than the stack maximum, add it to the existing stack
                     if (lootQty + targetSlots[i].slotQty <= targetSlots[i].slotStack)
                     {
                         targetSlots[i].addAmount(lootQty);
-                        ClearInventorySlot(curTarget, sourceInventory);
+                        ClearInventorySlot(slotIndex, sourceSlots);
                         hasItem = true;
                         break;
                     }
@@ -233,23 +181,23 @@ public class InventoryController : MonoBehaviour
                         targetSlots[i].addAmount(diff);
 
                         //Get the next available null slot
-                        int emptySlot = GetEmptySlot(targetInventory);
+                        int emptySlot = GetEmptySlot(targetSlots);
 
                         if (emptySlot >= 0)
                         {
-                            targetSlots[emptySlot].slotSprite = sourceSlots[curTarget].slotSprite;
-                            targetSlots[emptySlot].slotName = sourceSlots[curTarget].slotName;
-                            targetSlots[emptySlot].slotTxt = sourceSlots[curTarget].slotTxt;
+                            targetSlots[emptySlot].slotSprite = sourceSlots[slotIndex].slotSprite;
+                            targetSlots[emptySlot].slotName = sourceSlots[slotIndex].slotName;
+                            targetSlots[emptySlot].slotTxt = sourceSlots[slotIndex].slotTxt;
                             targetSlots[emptySlot].slotQty = amountRemaining;
-                            targetSlots[emptySlot].slotStack = sourceSlots[curTarget].slotStack;
-                            targetSlots[emptySlot].slotValue = sourceSlots[curTarget].slotValue;
-                            ClearInventorySlot(curTarget, sourceInventory);
+                            targetSlots[emptySlot].slotStack = sourceSlots[slotIndex].slotStack;
+                            targetSlots[emptySlot].slotValue = sourceSlots[slotIndex].slotValue;
+                            ClearInventorySlot(slotIndex, sourceSlots);
                         }
                         //Else if there's no slots left, add only what it can, leave the remaining qty on the player
                         else
                         {
                             Debug.Log("No space left");
-                            sourceSlots[curTarget].slotQty = amountRemaining;
+                            sourceSlots[slotIndex].slotQty = amountRemaining;
                         }
 
                         hasItem = true;
@@ -262,16 +210,16 @@ public class InventoryController : MonoBehaviour
             if (hasItem == false)
             {
                 //Get the next available null slot
-                int emptySlot = GetEmptySlot(targetInventory);
+                int emptySlot = GetEmptySlot(targetSlots);
                 if (emptySlot >= 0)
                 {
-                    targetSlots[emptySlot].slotSprite = sourceSlots[curTarget].slotSprite;
-                    targetSlots[emptySlot].slotName = sourceSlots[curTarget].slotName;
-                    targetSlots[emptySlot].slotTxt = sourceSlots[curTarget].slotTxt;
-                    targetSlots[emptySlot].slotQty = sourceSlots[curTarget].slotQty;
-                    targetSlots[emptySlot].slotStack = sourceSlots[curTarget].slotStack;
-                    targetSlots[emptySlot].slotValue = sourceSlots[curTarget].slotValue;
-                    ClearInventorySlot(curTarget, sourceInventory);
+                    targetSlots[emptySlot].slotSprite = sourceSlots[slotIndex].slotSprite;
+                    targetSlots[emptySlot].slotName = sourceSlots[slotIndex].slotName;
+                    targetSlots[emptySlot].slotTxt = sourceSlots[slotIndex].slotTxt;
+                    targetSlots[emptySlot].slotQty = sourceSlots[slotIndex].slotQty;
+                    targetSlots[emptySlot].slotStack = sourceSlots[slotIndex].slotStack;
+                    targetSlots[emptySlot].slotValue = sourceSlots[slotIndex].slotValue;
+                    ClearInventorySlot(slotIndex, sourceSlots);
                 }
 
                 hasItem = true;
@@ -285,6 +233,34 @@ public class InventoryController : MonoBehaviour
             Debug.Log("Nothing to transfer");
         }
 
+    }
+
+    //Get the next available slot in inventoryinventorySlots
+    public int GetEmptySlot(List<InventorySlot> refSlots)
+    {
+        int slot = -1;
+
+        for (int i = 0; i < refSlots.Count; i++)
+        {
+            if (String.IsNullOrEmpty(refSlots[i].slotName))
+            {
+                slot = i;
+                break;
+            }
+        }
+
+        return slot;
+    }
+
+    //Clear target slot out completely
+    public void ClearInventorySlot(int slotIndex, List<InventorySlot> refSlots)
+    {
+        refSlots[slotIndex].slotSprite = null;
+        refSlots[slotIndex].slotName = null;
+        refSlots[slotIndex].slotTxt = null;
+        refSlots[slotIndex].slotQty = 0;
+        refSlots[slotIndex].slotStack = 0;
+        refSlots[slotIndex].slotValue = 0;
     }
 
     //Update Slot UI based on index and reference object, setting sprite and text (or I could try looping through all 36 objects)
@@ -343,93 +319,7 @@ public class InventoryController : MonoBehaviour
         curinventorySlotsUI = sourceInventorySlotsUI;
         GameController.instance.gameState = GameController.GameState.inventory;
         curTarget = 0;
-        SwitchSlotTarget();
         ui_Selector.SetActive(true);
-    }
-
-    //Navigate through the Inventory Slots
-    private void NavigateInventory()
-    {
-        if (canSwitchTarget)
-        {
-            float dirX = Input.GetAxisRaw("Horizontal");
-            float dirY = Input.GetAxisRaw("Vertical");
-
-            //Navigate right
-            if (dirX > 0)
-            {
-                if (curTarget + 1 > sourceInventory.GetComponent<InventoryProps>().inventorySlots.Count - 1)
-                {
-                    curTarget = 0;
-                }
-                else
-                {
-                    curTarget += 1;
-                }
-
-                SwitchSlotTarget();
-
-            }
-
-            //Navigate right
-            else if (dirX < 0)
-            {
-                if (curTarget - 1 < 0)
-                {
-                    curTarget = sourceInventory.GetComponent<InventoryProps>().inventorySlots.Count - 1;
-                }
-                else
-                {
-                    curTarget -= 1;
-                }
-
-                SwitchSlotTarget();
-            }
-
-            //Swap to target inventory if one is open
-            if (targetInventory != null && targetInventory.activeInHierarchy)
-            {
-                //Navigate right
-                if (dirY > 0)
-                {
-                    SwapInventories();
-                }
-
-                //Navigate right
-                else if (dirY < 0)
-                {
-                    SwapInventories();
-                }
-            }
-        }
-    }
-
-    void SwitchSlotTarget()
-    {
-        ui_Selector.transform.position = curinventorySlotsUI[curTarget].transform.position;
-        canSwitchTarget = false;
-        StartCoroutine("SwitchTargetReset");
-    }
-
-    //Swap target and source inventories around
-    void SwapInventories()
-    {
-        GameObject source = sourceInventory;
-        GameObject target = targetInventory;
-        sourceInventory = target;
-        targetInventory = source;
-        Debug.Log("Current slots UI: " + curinventorySlotsUI);
-
-        if (curinventorySlotsUI == sourceInventorySlotsUI)
-        {
-            curinventorySlotsUI = targetInventorySlotsUI;
-        }
-        else
-        {
-            curinventorySlotsUI = sourceInventorySlotsUI;
-        }
-
-        SwitchSlotTarget();
     }
 
     //Checks the player inventory to see if they've got enough of the loot required to build the target object
@@ -516,33 +406,11 @@ public class InventoryController : MonoBehaviour
         {
             if (inventory.inventorySlots[i].slotQty <= 0)
             {
-                ClearInventorySlot(i, PlayerController.instance.gameObject);
+                ClearInventorySlot(i, inventory.inventorySlots);
             }
         }
     }
 
-    //Stops the shipwreck selector spamming through all available wrecks
-    IEnumerator SwitchTargetReset()
-    {
-        yield return new WaitForSeconds(0.25f);
-        canSwitchTarget = true;
-    }
-
-    public void TransferSlotToStorage(GameObject slotClicked)
-    {
-        //Check if the clicked slot is in the players inventory
-        curTarget = sourceInventorySlotsUI.IndexOf(slotClicked);
-        Debug.Log(slotClicked.name + " is " + curTarget);
-        TransferSlot();
-    }
-
-    public void TransferSlotToPlayer(GameObject slotClicked)
-    {
-        //Check if the clicked slot is in the players inventory
-        curTarget = sourceInventorySlotsUI.IndexOf(slotClicked);
-        Debug.Log(slotClicked.name + " is " + curTarget);
-        TransferSlot();
-    }
 }
 
 [System.Serializable]
