@@ -110,7 +110,9 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(dirX * speed, dirY * speed);
 
         //Flip the Player
-        if (dirX < 0)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (mousePos.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
 
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if (dirX > 0)
+        else if (mousePos.x > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
 

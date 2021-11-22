@@ -22,6 +22,7 @@ public class InventoryController : MonoBehaviour
     public GameObject ui_SourceInventory;
     public GameObject ui_TargetInventory;
     public int curTarget;
+    public int lootQty;
 
     public static InventoryController instance;
 
@@ -149,11 +150,22 @@ public class InventoryController : MonoBehaviour
     }
 
     //Transfer selected slot to the other inventory
-    public void TransferSlot(int slotIndex, List<InventorySlot> sourceSlots, List<InventorySlot> targetSlots)
+    public void TransferSlot(int slotIndex, List<InventorySlot> sourceSlots, List<InventorySlot> targetSlots, bool transferAll)
     {
         if (sourceSlots[slotIndex].slotSprite != null)
         {
-            int lootQty = sourceSlots[slotIndex].slotQty;
+            //If single qty is true, transfer only one item rather than the whole stack
+            if (transferAll)
+            {
+                lootQty = sourceSlots[slotIndex].slotQty;
+            }
+            else
+            {
+                lootQty = 1;
+            }
+
+            Debug.Log(lootQty);
+            
 
             bool hasItem = false;
 
@@ -167,7 +179,21 @@ public class InventoryController : MonoBehaviour
                     if (lootQty + targetSlots[i].slotQty <= targetSlots[i].slotStack)
                     {
                         targetSlots[i].addAmount(lootQty);
-                        ClearInventorySlot(slotIndex, sourceSlots);
+                        if (transferAll)
+                        {
+                            ClearInventorySlot(slotIndex, sourceSlots);
+                        }
+                        else
+                        {
+                            if (sourceSlots[slotIndex].slotQty > 1)
+                            {
+                                sourceSlots[slotIndex].slotQty -= 1;
+                            }
+                            else
+                            {
+                                ClearInventorySlot(slotIndex, sourceSlots);
+                            }
+                        }
                         hasItem = true;
                         break;
                     }
@@ -191,7 +217,21 @@ public class InventoryController : MonoBehaviour
                             targetSlots[emptySlot].slotQty = amountRemaining;
                             targetSlots[emptySlot].slotStack = sourceSlots[slotIndex].slotStack;
                             targetSlots[emptySlot].slotValue = sourceSlots[slotIndex].slotValue;
-                            ClearInventorySlot(slotIndex, sourceSlots);
+                            if (transferAll)
+                            {
+                                ClearInventorySlot(slotIndex, sourceSlots);
+                            }
+                            else
+                            {
+                                if (sourceSlots[slotIndex].slotQty > 1)
+                                {
+                                    sourceSlots[slotIndex].slotQty -= 1;
+                                }
+                                else
+                                {
+                                    ClearInventorySlot(slotIndex, sourceSlots);
+                                }
+                            }
                         }
                         //Else if there's no slots left, add only what it can, leave the remaining qty on the player
                         else
@@ -219,7 +259,21 @@ public class InventoryController : MonoBehaviour
                     targetSlots[emptySlot].slotQty = sourceSlots[slotIndex].slotQty;
                     targetSlots[emptySlot].slotStack = sourceSlots[slotIndex].slotStack;
                     targetSlots[emptySlot].slotValue = sourceSlots[slotIndex].slotValue;
-                    ClearInventorySlot(slotIndex, sourceSlots);
+                    if (transferAll)
+                    {
+                        ClearInventorySlot(slotIndex, sourceSlots);
+                    }
+                    else
+                    {
+                        if(sourceSlots[slotIndex].slotQty > 1)
+                        {
+                            sourceSlots[slotIndex].slotQty -= 1;
+                        }
+                        else
+                        {
+                            ClearInventorySlot(slotIndex, sourceSlots);
+                        }
+                    }
                 }
 
                 hasItem = true;

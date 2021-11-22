@@ -23,8 +23,8 @@ public class TradeController : MonoBehaviour
     public List<GameObject> sellSlotsUI;
 
     private int slotIndex;
-    private int buyTotal;
-    private int sellTotal;
+    public int buyTotal;
+    public int sellTotal;
 
     public TextMeshProUGUI txt_total;
 
@@ -277,19 +277,19 @@ public class TradeController : MonoBehaviour
     public void CompleteTrade()
     {
         //Is the player trading enough value against what's being bought?
-        if (buyTotal - sellTotal >= 0)
+        if (buyTotal - sellTotal <= 0)
         {
             Debug.Log("Value accepted");
 
             //transfer buy to player
             for (int i = 0; i < buyInventory.Count; i++)
             {
-                InventoryController.instance.TransferSlot(i, buyInventory, playerInventory.inventorySlots);
+                InventoryController.instance.TransferSlot(i, buyInventory, playerInventory.inventorySlots, true);
             }
             //transfer sell to trader
             for (int i = 0; i < sellInventory.Count; i++)
             {
-                InventoryController.instance.TransferSlot(i, sellInventory, tradeInventory.inventorySlots);
+                InventoryController.instance.TransferSlot(i, sellInventory, tradeInventory.inventorySlots, true);
             }
 
             //Clear slots
@@ -323,17 +323,37 @@ public class TradeController : MonoBehaviour
         //clear sellinventory
         for (int i = 0; i < sellInventory.Count; i++)
         {
-            InventoryController.instance.TransferSlot(i, sellInventory, playerInventory.inventorySlots);
+            InventoryController.instance.TransferSlot(i, sellInventory, playerInventory.inventorySlots, true);
         }
         //clear buyinventory
         for (int i = 0; i < buyInventory.Count; i++)
         {
-            InventoryController.instance.TransferSlot(i, buyInventory, tradeInventory.inventorySlots);
+            InventoryController.instance.TransferSlot(i, buyInventory, tradeInventory.inventorySlots, true);
         }
 
         buyTotal = 0;
         sellTotal = 0;
 
+        UpdateTradeUI();
+    }
+
+    //Return a single qty to the player inventory
+    public void ReturnSellLoot()
+    {
+        //Get the slotindex of the button pressed
+        slotIndex = sellSlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        sellTotal -= sellInventory[slotIndex].slotValue;
+        InventoryController.instance.TransferSlot(slotIndex, sellInventory, playerInventory.inventorySlots, false);
+        UpdateTradeUI();
+    }
+
+    //Return a single qty to the player inventory
+    public void ReturnBuyLoot()
+    {
+        //Get the slotindex of the button pressed
+        slotIndex = buySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        buyTotal -= buyInventory[slotIndex].slotValue;
+        InventoryController.instance.TransferSlot(slotIndex, buyInventory, tradeInventory.inventorySlots, false);
         UpdateTradeUI();
     }
 
@@ -427,7 +447,7 @@ public class TradeController : MonoBehaviour
         }
 
         //update txt_total value
-        if((buyTotal - sellTotal) < 0)
+        if((sellTotal - buyTotal) < 0)
         {
             txt_total.color = Color.red;
         }
@@ -435,7 +455,7 @@ public class TradeController : MonoBehaviour
         {
             txt_total.color = Color.white;
         }
-        txt_total.text = "TOTAL: " + (buyTotal - sellTotal);
+        txt_total.text = "TOTAL: " + (sellTotal - buyTotal);
     }
 
 }
