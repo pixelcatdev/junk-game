@@ -334,14 +334,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Turret
-  buildingInfo: Weak turret
-  buildingBlueprint: {fileID: 0}
+  buildingInfo: Weak turret, slow fire rate
+  buildingBlueprint: {fileID: 3916325095958849906, guid: 4607fbf833101e541bc86732c840527c, type: 3}
   buildingRecipe:
-  - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
-    itemCost: 5
-    canAfford: 0
-  - lootObject: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
-    itemCost: 10
+  - lootObject: {fileID: 2335509057318779265, guid: a0ccce794ee424c4ab3f8f260d6efee5, type: 3}
+    itemCost: 1
     canAfford: 0
 --- !u!1 &4226455308522488096
 GameObject:

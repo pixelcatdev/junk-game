@@ -63,6 +63,7 @@ public class TradeController : MonoBehaviour
     {
         Debug.Log("Starting Trade");
         UpdateTradeUI();
+        InventoryController.instance.ui_playerInventoryBar.SetActive(false);
         ui_trade.SetActive(true);
     }
 
@@ -361,6 +362,7 @@ public class TradeController : MonoBehaviour
     public void CancelTrade()
     {
         ClearTrade();
+        InventoryController.instance.ui_playerInventoryBar.SetActive(false);
         ui_trade.SetActive(false);
     }
 

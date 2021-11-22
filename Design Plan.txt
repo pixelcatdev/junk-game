@@ -5,7 +5,10 @@ Junkstar Game plan
 	- tile destroy				DONE
 		- spawn loot			DONE
 	- explodables				DONE
-- crafting					DONE
+- crafting					
+	- building on tiles			DONE
+	- building recipes			DONE
+	- crafting UI
 - repairing
 	- tile repair
 - shooting

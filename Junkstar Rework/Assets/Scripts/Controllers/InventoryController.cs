@@ -18,6 +18,12 @@ public class InventoryController : MonoBehaviour
     public List<GameObject> targetInventorySlotsUI;
 
     public GameObject ui_Transfer;
+    public GameObject ui_playerInventoryBar;
+    public GameObject ui_crafting;
+
+    public Image craftingSprite;
+    public TextMeshProUGUI txt_craftingName;
+    public TextMeshProUGUI txt_craftingInfo;
 
     public int curTarget;
     public int lootQty;
@@ -42,6 +48,24 @@ public class InventoryController : MonoBehaviour
     {
         curinventorySlotsUI = sourceInventorySlotsUI;
         playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
+    }
+
+    private void Update()
+    {
+        DisplayCraftingInfo();
+    }
+
+    //Toggles the Inventory Bar
+    public void ToggleInventory()
+    {
+        if (ui_playerInventoryBar.activeInHierarchy)
+        {
+            ui_playerInventoryBar.SetActive(false);
+        }
+        else
+        {
+            ui_playerInventoryBar.SetActive(true);
+        }
     }
 
     //Add item to next slot, or stack if space exists
@@ -128,6 +152,7 @@ public class InventoryController : MonoBehaviour
     public void StartTransfer(GameObject inventoryParentObj)
     {
         targetInventory = inventoryParentObj.GetComponent<InventoryProps>();
+        ui_playerInventoryBar.SetActive(true);
         ui_Transfer.SetActive(true);
     }
 
@@ -135,13 +160,13 @@ public class InventoryController : MonoBehaviour
     public void CancelTransfer()
     {
         targetInventory = null;
+        ui_playerInventoryBar.SetActive(false);
         ui_Transfer.SetActive(false);
     }
 
     //Transfer selected slot to the other inventory
     public void TransferSlot(int slotIndex, List<InventorySlot> sourceSlots, List<InventorySlot> targetSlots, bool transferAll)
     {
-        Debug.Log("a");
         if (sourceSlots[slotIndex].slotSprite != null)
         {
             //If single qty is true, transfer only one item rather than the whole stack
@@ -153,9 +178,6 @@ public class InventoryController : MonoBehaviour
             {
                 lootQty = 1;
             }
-
-            Debug.Log(lootQty);
-
 
             bool hasItem = false;
 
@@ -184,7 +206,6 @@ public class InventoryController : MonoBehaviour
                                 ClearInventorySlot(slotIndex, sourceSlots);
                             }
                         }
-                        Debug.Log("b");
                         hasItem = true;
                         break;
                     }
@@ -227,11 +248,9 @@ public class InventoryController : MonoBehaviour
                         //Else if there's no slots left, add only what it can, leave the remaining qty on the player
                         else
                         {
-                            Debug.Log("No space left");
                             sourceSlots[slotIndex].slotQty = amountRemaining;
                         }
 
-                        Debug.Log("c");
                         hasItem = true;
                         break;
                     }
@@ -267,13 +286,9 @@ public class InventoryController : MonoBehaviour
                         }
                     }
                 }
-                Debug.Log("d");
                 hasItem = true;
             }
-
-            Debug.Log("end");
             UpdateSlotUI();
-
         }
         else
         {
@@ -351,51 +366,6 @@ public class InventoryController : MonoBehaviour
         refSlots[slotIndex].slotValue = 0;
     }
 
-    //Update Slot UI based on index and reference object, setting sprite and text (or I could try looping through all 36 objects)
-    //void UpdateSlotUI()
-    //{
-    //    List<InventorySlot> sourceSlots = sourceInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
-
-    //    for (int i = 0; i < sourceInventorySlotsUI.Count; i++)
-    //    {
-    //        //Loop through all Source Inventory slots
-    //        if (sourceSlots[i].slotSprite != null)
-    //        {
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = sourceSlots[i].slotSprite;
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + sourceSlots[i].slotQty.ToString();
-    //        }
-    //        else
-    //        {
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
-    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
-    //        }
-    //    }
-
-    //    //Loop through all Target Inventory slots (only if it's open)
-    //    if (targetInventory != null)
-    //    {
-    //        List<InventorySlot> targetSlots = targetInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
-
-    //        for (int i = 0; i < targetInventorySlotsUI.Count; i++)
-    //        {
-    //            if (targetSlots[i].slotSprite != null)
-    //            {
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = targetSlots[i].slotSprite;
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + targetSlots[i].slotQty.ToString();
-    //            }
-    //            else
-    //            {
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
-    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
-    //            }
-    //        }
-    //    }
-    //}
-
     void UpdateSlotUI()
     {
         //loop through all player inventory slots, set the sprite, qty
@@ -433,6 +403,56 @@ public class InventoryController : MonoBehaviour
                     targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
                     targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
                     targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
+                }
+            }
+        }
+    }
+
+    public void ToggleCrafting()
+    {
+        if (ui_crafting.activeInHierarchy)
+        {
+            ui_crafting.SetActive(false);
+        }
+        else
+        {
+            ui_crafting.SetActive(true);
+        }
+    }
+
+    public void CraftBuilding()
+    {
+        CraftingSlotProps craftingSlot = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>();
+        if (craftingSlot.buildingUnlocked)
+        {
+            GameObject buildingObj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingObj;
+            PlayerController.instance.buildingObject = buildingObj;
+            ToggleCrafting();
+            PlayerController.instance.equipped = PlayerController.EquipType.build;
+        }
+    }
+
+    //On mousing over the crafting slot, if unlocked, display the building info
+    public void DisplayCraftingInfo()
+    {
+        LayerMask hitLayer = LayerMask.GetMask("UI");
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
+
+        if (hit)
+        {
+            if (hit.transform.parent.gameObject.GetComponent<CraftingSlotProps>())
+            {
+                if (hit.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingUnlocked)
+                {
+                    CraftingSlotProps craftingSlot = hit.transform.parent.gameObject.GetComponent<CraftingSlotProps>();
+                    GameObject buildingObj = craftingSlot.buildingObj;
+
+                    craftingSprite.sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
+                    txt_craftingName.text = buildingObj.GetComponent<BuildingProps>().buildingName.ToUpper();
+                    txt_craftingInfo.text = buildingObj.GetComponent<BuildingProps>().buildingInfo.ToUpper();
+
+                    //Return the ingredient and quantity to each reciple slot
+                    //Highlight the slot red if there isn't enough so that the player knows
                 }
             }
         }
@@ -501,14 +521,32 @@ public class InventoryController : MonoBehaviour
                         //If the first slot found has more than what's needed, deduct the quantity from that slot
                         if (inventory.inventorySlots[i].slotQty >= resource.itemCost)
                         {
-                            inventory.inventorySlots[i].slotQty -= resource.itemCost;
+                            if (inventory.inventorySlots[i].slotQty > 1)
+                            {
+                                inventory.inventorySlots[i].slotQty -= 1;
+                            }
+                            else
+                            {
+                                ClearInventorySlot(i, inventory.inventorySlots);
+                            }
+                            UpdateSlotUI();
                             break;
                         }
                         else
                         {
                             int amountToSubstract = Mathf.Clamp(inventory.inventorySlots[i].slotQty, 0, itemTotal);
-                            inventory.inventorySlots[i].slotQty -= amountToSubstract;
-                            itemTotal -= amountToSubstract;
+                            //inventory.inventorySlots[i].slotQty -= amountToSubstract;
+                            //itemTotal -= amountToSubstract;
+
+                            if (inventory.inventorySlots[i].slotQty > amountToSubstract)
+                            {
+                                inventory.inventorySlots[i].slotQty -= amountToSubstract;
+                            }
+                            else
+                            {
+                                ClearInventorySlot(i, inventory.inventorySlots);
+                            }
+                            UpdateSlotUI();
                             break;
                         }
                     }
