@@ -5,7 +5,7 @@ Junkstar Game plan
 	- tile destroy				DONE
 		- spawn loot			DONE
 	- explodables				DONE
-- crafting
+- crafting					DONE
 - repairing
 	- tile repair
 - shooting
@@ -18,11 +18,11 @@ Junkstar Game plan
 	- damage based on quality		DONE
 	- loot based on quality			DONE
 	- enemy type based on enemy
-- trading
+- trading					DONE
 - inventory
 	- add item				DONE
-	- trash item
-	- store item
+	- trash item				DONE
+	- store item				DONE
 - ship events
 	- boarding party
 	- debris field

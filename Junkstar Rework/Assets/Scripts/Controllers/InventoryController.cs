@@ -286,18 +286,40 @@ public class InventoryController : MonoBehaviour
     public void TransferToPlayer()
     {
         //Get the slotindex of the button pressed
-        slotIndex = targetInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
-        TransferSlot(slotIndex, targetInventory.GetComponent<InventoryProps>().inventorySlots, playerInventory.inventorySlots, true);
-        UpdateSlotUI();
+        if (targetInventory != null)
+        {
+            slotIndex = targetInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+            TransferSlot(slotIndex, targetInventory.GetComponent<InventoryProps>().inventorySlots, playerInventory.inventorySlots, true);
+            UpdateSlotUI();
+        }
     }
 
     //Transfer to current storage from player inventory
     public void TransferToStorage()
     {
         //Get the slotindex of the button pressed
+        if (targetInventory != null)
+        {
+            slotIndex = sourceInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+            TransferSlot(slotIndex, playerInventory.inventorySlots, targetInventory.GetComponent<InventoryProps>().inventorySlots, true);
+            Debug.Log(slotIndex);
+            UpdateSlotUI();
+        }
+    }
+
+    //Trash the complete contents of the target slot
+    public void TrashPlayerSlot()
+    {
         slotIndex = sourceInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
-        TransferSlot(slotIndex, playerInventory.inventorySlots, targetInventory.GetComponent<InventoryProps>().inventorySlots, true);
-        Debug.Log(slotIndex);
+        ClearInventorySlot(slotIndex, playerInventory.inventorySlots);
+        UpdateSlotUI();
+    }
+
+    //Trash the complete contents of the target slot
+    public void TrashStorageSlot()
+    {
+        slotIndex = targetInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        ClearInventorySlot(slotIndex, targetInventory.inventorySlots);
         UpdateSlotUI();
     }
 
@@ -396,7 +418,7 @@ public class InventoryController : MonoBehaviour
         }
 
         //loop through all target inventory slots if target inventory is not null, set the sprite, qty
-        if(targetInventory != null)
+        if (targetInventory != null)
         {
             for (int i = 0; i < targetInventorySlotsUI.Count; i++)
             {
