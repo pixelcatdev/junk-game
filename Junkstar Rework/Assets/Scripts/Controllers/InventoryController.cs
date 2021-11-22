@@ -3,26 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class InventoryController : MonoBehaviour
 {
     //public List<InventorySlot> inventorySlots = new List<InventorySlot>();
-    public GameObject sourceInventoryStatic;
-    public GameObject targetInventoryStatic;
     public InventoryProps playerInventory;
-    public GameObject targetInventory;
+    public InventoryProps targetInventory;
     public List<GameObject> lootRefs;
 
     [SerializeField] List<GameObject> curinventorySlotsUI;
     public List<GameObject> sourceInventorySlotsUI;
     public List<GameObject> targetInventorySlotsUI;
 
-    public GameObject ui_Selector;
-    public GameObject ui_SourceInventory;
-    public GameObject ui_TargetInventory;
+    public GameObject ui_Transfer;
+
     public int curTarget;
     public int lootQty;
+    private int slotIndex;
 
     public static InventoryController instance;
 
@@ -43,30 +42,6 @@ public class InventoryController : MonoBehaviour
     {
         curinventorySlotsUI = sourceInventorySlotsUI;
         playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
-    }
-
-    private void Update()
-    {
-        //Switching to Inventory Input
-        if (GameController.instance.gameState == GameController.GameState.game)
-        {
-            if (Input.GetKey(KeyCode.I))
-            {
-                OpenInventoryUI(false);
-            }
-        }
-
-        //Inventory Input
-        else if (GameController.instance.gameState == GameController.GameState.inventory)
-        {
-            //Quit Inventory and close the target inventory if it's open and reset the source inventory back to the player
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                GameController.instance.gameState = GameController.GameState.game;
-                ui_TargetInventory.SetActive(false);
-                ui_Selector.SetActive(false);
-            }
-        }
     }
 
     //Add item to next slot, or stack if space exists
@@ -149,9 +124,24 @@ public class InventoryController : MonoBehaviour
 
     }
 
+    //Open and initialise the Transfer UI
+    public void StartTransfer(GameObject inventoryParentObj)
+    {
+        targetInventory = inventoryParentObj.GetComponent<InventoryProps>();
+        ui_Transfer.SetActive(true);
+    }
+
+    //Close and clear the Transfer UI
+    public void CancelTransfer()
+    {
+        targetInventory = null;
+        ui_Transfer.SetActive(false);
+    }
+
     //Transfer selected slot to the other inventory
     public void TransferSlot(int slotIndex, List<InventorySlot> sourceSlots, List<InventorySlot> targetSlots, bool transferAll)
     {
+        Debug.Log("a");
         if (sourceSlots[slotIndex].slotSprite != null)
         {
             //If single qty is true, transfer only one item rather than the whole stack
@@ -165,7 +155,7 @@ public class InventoryController : MonoBehaviour
             }
 
             Debug.Log(lootQty);
-            
+
 
             bool hasItem = false;
 
@@ -194,6 +184,7 @@ public class InventoryController : MonoBehaviour
                                 ClearInventorySlot(slotIndex, sourceSlots);
                             }
                         }
+                        Debug.Log("b");
                         hasItem = true;
                         break;
                     }
@@ -240,6 +231,7 @@ public class InventoryController : MonoBehaviour
                             sourceSlots[slotIndex].slotQty = amountRemaining;
                         }
 
+                        Debug.Log("c");
                         hasItem = true;
                         break;
                     }
@@ -265,7 +257,7 @@ public class InventoryController : MonoBehaviour
                     }
                     else
                     {
-                        if(sourceSlots[slotIndex].slotQty > 1)
+                        if (sourceSlots[slotIndex].slotQty > 1)
                         {
                             sourceSlots[slotIndex].slotQty -= 1;
                         }
@@ -275,10 +267,11 @@ public class InventoryController : MonoBehaviour
                         }
                     }
                 }
-
+                Debug.Log("d");
                 hasItem = true;
             }
 
+            Debug.Log("end");
             UpdateSlotUI();
 
         }
@@ -287,6 +280,25 @@ public class InventoryController : MonoBehaviour
             Debug.Log("Nothing to transfer");
         }
 
+    }
+
+    //Transfer to player inventory from current storage
+    public void TransferToPlayer()
+    {
+        //Get the slotindex of the button pressed
+        slotIndex = targetInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        TransferSlot(slotIndex, targetInventory.GetComponent<InventoryProps>().inventorySlots, playerInventory.inventorySlots, true);
+        UpdateSlotUI();
+    }
+
+    //Transfer to current storage from player inventory
+    public void TransferToStorage()
+    {
+        //Get the slotindex of the button pressed
+        slotIndex = sourceInventorySlotsUI.IndexOf(EventSystem.current.currentSelectedGameObject.transform.parent.gameObject);
+        TransferSlot(slotIndex, playerInventory.inventorySlots, targetInventory.GetComponent<InventoryProps>().inventorySlots, true);
+        Debug.Log(slotIndex);
+        UpdateSlotUI();
     }
 
     //Get the next available slot in inventoryinventorySlots
@@ -318,18 +330,62 @@ public class InventoryController : MonoBehaviour
     }
 
     //Update Slot UI based on index and reference object, setting sprite and text (or I could try looping through all 36 objects)
+    //void UpdateSlotUI()
+    //{
+    //    List<InventorySlot> sourceSlots = sourceInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
+
+    //    for (int i = 0; i < sourceInventorySlotsUI.Count; i++)
+    //    {
+    //        //Loop through all Source Inventory slots
+    //        if (sourceSlots[i].slotSprite != null)
+    //        {
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = sourceSlots[i].slotSprite;
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + sourceSlots[i].slotQty.ToString();
+    //        }
+    //        else
+    //        {
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
+    //            sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
+    //        }
+    //    }
+
+    //    //Loop through all Target Inventory slots (only if it's open)
+    //    if (targetInventory != null)
+    //    {
+    //        List<InventorySlot> targetSlots = targetInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
+
+    //        for (int i = 0; i < targetInventorySlotsUI.Count; i++)
+    //        {
+    //            if (targetSlots[i].slotSprite != null)
+    //            {
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = targetSlots[i].slotSprite;
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + targetSlots[i].slotQty.ToString();
+    //            }
+    //            else
+    //            {
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
+    //                targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
+    //            }
+    //        }
+    //    }
+    //}
+
     void UpdateSlotUI()
     {
-        List<InventorySlot> sourceSlots = sourceInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
+        //loop through all player inventory slots, set the sprite, qty
+        List<InventorySlot> playerSlots = PlayerController.instance.GetComponent<InventoryProps>().inventorySlots;
 
         for (int i = 0; i < sourceInventorySlotsUI.Count; i++)
         {
-            //Loop through all Source Inventory slots
-            if (sourceSlots[i].slotSprite != null)
+            if (playerSlots[i].slotSprite != null)
             {
                 sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-                sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = sourceSlots[i].slotSprite;
-                sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + sourceSlots[i].slotQty.ToString();
+                sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = playerSlots[i].slotSprite;
+                sourceInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + playerSlots[i].slotQty.ToString();
             }
             else
             {
@@ -339,18 +395,16 @@ public class InventoryController : MonoBehaviour
             }
         }
 
-        //Loop through all Target Inventory slots (only if it's open)
-        if (targetInventory != null)
+        //loop through all target inventory slots if target inventory is not null, set the sprite, qty
+        if(targetInventory != null)
         {
-            List<InventorySlot> targetSlots = targetInventoryStatic.GetComponent<InventoryProps>().inventorySlots;
-
             for (int i = 0; i < targetInventorySlotsUI.Count; i++)
             {
-                if (targetSlots[i].slotSprite != null)
+                if (targetInventory.inventorySlots[i].slotSprite != null)
                 {
                     targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-                    targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = targetSlots[i].slotSprite;
-                    targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + targetSlots[i].slotQty.ToString();
+                    targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = targetInventory.inventorySlots[i].slotSprite;
+                    targetInventorySlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + targetInventory.inventorySlots[i].slotQty.ToString();
                 }
                 else
                 {
@@ -360,20 +414,6 @@ public class InventoryController : MonoBehaviour
                 }
             }
         }
-    }
-
-    //Open the Inventory UI
-    public void OpenInventoryUI(bool showTargetInventory)
-    {
-        if (showTargetInventory)
-        {
-            ui_TargetInventory.SetActive(true);
-        }
-
-        curinventorySlotsUI = sourceInventorySlotsUI;
-        GameController.instance.gameState = GameController.GameState.inventory;
-        curTarget = 0;
-        ui_Selector.SetActive(true);
     }
 
     //Checks the player inventory to see if they've got enough of the loot required to build the target object
