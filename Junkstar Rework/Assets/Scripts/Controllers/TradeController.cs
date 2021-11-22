@@ -95,8 +95,8 @@ public class TradeController : MonoBehaviour
                     {
                         //Debug.Log((i + ": " + buyInventory[i].slotQty + 1) + " - " + buyInventory[i].slotStack);
                         buyInventory[i].slotQty += 1;
-                        RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);
                         buyTotal += tradeInventory.inventorySlots[slotIndex].slotValue;
+                        RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);                        
                         hasItem = true;
                         break;
                     }
@@ -113,8 +113,8 @@ public class TradeController : MonoBehaviour
                             buyInventory[emptySlot].slotQty = 1;
                             buyInventory[emptySlot].slotStack = lootStack;
                             buyInventory[emptySlot].slotValue = lootValue;
-                            RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);
                             buyTotal += tradeInventory.inventorySlots[slotIndex].slotValue;
+                            RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);                            
                         }
                         else
                         {
@@ -141,8 +141,8 @@ public class TradeController : MonoBehaviour
                     buyInventory[emptySlot].slotStack = lootStack;
                     buyInventory[emptySlot].slotQty = 1;
                     buyInventory[emptySlot].slotValue = lootValue;
-                    RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);
                     buyTotal += tradeInventory.inventorySlots[slotIndex].slotValue;
+                    RemoveSlotQty(slotIndex, tradeInventory.GetComponent<InventoryProps>().inventorySlots);                    
                 }
                 else
                 {
@@ -186,8 +186,8 @@ public class TradeController : MonoBehaviour
                     {
                         //Debug.Log((i + ": " + buyInventory[i].slotQty + 1) + " - " + buyInventory[i].slotStack);
                         sellInventory[i].slotQty += 1;
-                        RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
                         sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                        RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);                        
                         hasItem = true;
                         break;
                     }
@@ -204,8 +204,8 @@ public class TradeController : MonoBehaviour
                             sellInventory[emptySlot].slotQty = 1;
                             sellInventory[emptySlot].slotStack = lootStack;
                             sellInventory[emptySlot].slotValue = lootValue;
-                            RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
                             sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                            RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);                            
                         }
                         else
                         {
@@ -232,8 +232,8 @@ public class TradeController : MonoBehaviour
                     sellInventory[emptySlot].slotStack = lootStack;
                     sellInventory[emptySlot].slotQty = 1;
                     sellInventory[emptySlot].slotValue = lootValue;
-                    RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);
                     sellTotal += playerInventory.inventorySlots[slotIndex].slotValue;
+                    RemoveSlotQty(slotIndex, playerInventory.GetComponent<InventoryProps>().inventorySlots);                    
                 }
                 else
                 {
@@ -241,6 +241,7 @@ public class TradeController : MonoBehaviour
                 }
 
                 hasItem = true;
+                Debug.Log("end");
             }
         }
 
