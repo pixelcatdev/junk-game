@@ -10,7 +10,9 @@ public class TileProps : MonoBehaviour
     public float curHealth;
     public float maxHealth;
     public GameObject ui_tile;
+    public GameObject ui_BuildTile;
     public Image healthBar;
+    public Image buildBlueprint;
     public List<GameObject> spawnOnDestroy;
     public List<LootSlot> lootList;
 
@@ -148,48 +150,6 @@ public class TileProps : MonoBehaviour
         PlayerController.instance.isDestroying = false;
         Destroy(gameObject);
     }
-
-    ////Destroy the tile and spawn any loot/trigger any effects
-    //public void DestroyTile(bool spawnLoot, bool camShake)
-    //{
-    //    //Spawn object on destroy
-    //    foreach (GameObject spawnObj in spawnOnDestroy)
-    //    {
-    //        GameObject newObj = Instantiate(spawnObj, transform.position, transform.rotation, transform.parent);
-    //    }
-
-    //    //Spawn loot on destroy
-    //    if (spawnLoot)
-    //    {
-    //        for (int i = 0; i < lootList.Count; i++)
-    //        {
-    //            int lootQty = Random.Range(lootList[i].min, lootList[i].max);
-    //            for (int qty = 0; qty < lootQty; qty++)
-    //            {
-    //                Vector2 newPos = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 1;
-    //                GameObject newObj = Instantiate(lootList[i].loot, newPos, transform.rotation, transform.parent);
-    //            }
-    //        }
-
-    //    }
-
-    //    //Remove the tile from the Target Ships tilelist
-    //    TargetShipController.instance.shipTiles.Remove(gameObject);
-
-    //    if(tag == "ShipTileFloor" || tag == "ShipTileWall")
-    //    {
-    //        TargetShipController.instance.mapCurHealth -= 1;
-    //    }
-
-    //    //Shake camera
-    //    if (camShake)
-    //    {
-    //        Camera.main.GetComponent<Animator>().Play("Shake_Small", - 1, 0f);
-    //    }        
-
-    //    //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().isDestroying = false;
-    //    Destroy(gameObject);
-    //}
 }
 
 [System.Serializable]

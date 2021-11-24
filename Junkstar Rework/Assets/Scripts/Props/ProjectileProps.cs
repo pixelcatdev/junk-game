@@ -19,7 +19,7 @@ public class ProjectileProps : MonoBehaviour
         {
             if (collision.gameObject.tag == "isEnemy")
             {
-                //damage the enemy
+                collision.gameObject.GetComponent<EnemyProps>().TakeDamage(damage);
                 Destroy(gameObject);
             }
         }

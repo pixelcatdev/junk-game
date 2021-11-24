@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 422994947749280463}
   - component: {fileID: 6699295413914290224}
   - component: {fileID: 5535948610465501113}
+  - component: {fileID: 5933963238528673804}
   m_Layer: 0
   m_Name: EnemyBotDrone
   m_TagString: isEnemy
@@ -81,6 +82,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5933963238528673804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127770202810980006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016ff7c6ed92dd64d9b757b35e27ec1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  enemyName: Drone
+  maxHealth: 50
+  speed: 5
+  projectile: {fileID: 0}
+  attackDamage: 5
+  attackRate: 1
 --- !u!1 &3175399957887878794
 GameObject:
   m_ObjectHideFlags: 0

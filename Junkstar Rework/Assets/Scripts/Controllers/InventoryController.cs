@@ -156,6 +156,7 @@ public class InventoryController : MonoBehaviour
         targetInventory = inventoryParentObj.GetComponent<InventoryProps>();
         ui_playerInventoryBar.SetActive(true);
         ui_Transfer.SetActive(true);
+        GameController.instance.gameState = GameController.GameState.menu;
     }
 
     //Close and clear the Transfer UI
@@ -164,6 +165,7 @@ public class InventoryController : MonoBehaviour
         targetInventory = null;
         ui_playerInventoryBar.SetActive(false);
         ui_Transfer.SetActive(false);
+        GameController.instance.gameState = GameController.GameState.game;
     }
 
     //Transfer selected slot to the other inventory
@@ -415,10 +417,12 @@ public class InventoryController : MonoBehaviour
         if (ui_crafting.activeInHierarchy)
         {
             ui_crafting.SetActive(false);
+            GameController.instance.gameState = GameController.GameState.game;
         }
         else
         {
             ui_crafting.SetActive(true);
+            GameController.instance.gameState = GameController.GameState.menu;
         }
     }
 
@@ -432,8 +436,8 @@ public class InventoryController : MonoBehaviour
                 GameObject buildingObj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingObj;
                 PlayerController.instance.buildingObject = buildingObj;
                 ToggleCrafting();
-                PlayerController.instance.equipped = PlayerController.EquipType.build;
-                GameController.instance.gameCursor.GetComponent<CursorProps>().buildingCursor.GetComponent<Image>().sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
+                PlayerController.instance.equipMode = PlayerController.EquipType.build;
+                //GameController.instance.gameCursor.GetComponent<CursorProps>().buildingCursor.GetComponent<Image>().sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
                 GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
             }
             else

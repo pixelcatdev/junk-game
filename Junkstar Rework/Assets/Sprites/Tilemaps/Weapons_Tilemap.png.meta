@@ -1,40 +1,16 @@
 fileFormatVersion: 2
-guid: 81f16dad924a9994881bbfda342571f8
+guid: 71a90417d772199468bcca7b74fbb366
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1885875236619925605
-    second: GameUI_InventoryCrafting
+      213: -7005954086766999762
+    second: Weapon_Destroyer
   - first:
-      213: 8239143626073171675
-    second: GameUI_Slot
+      213: -4019512260296222932
+    second: Weapon_Builder
   - first:
-      213: -4310517633768675746
-    second: GameUI_LargeSlot
-  - first:
-      213: 8213209443941966412
-    second: GameUI_mouseCursor
-  - first:
-      213: -2445112111629730861
-    second: GameUI_CursorMain
-  - first:
-      213: 8213209443941966412
-    second: GameUI_Selector
-  - first:
-      213: -6090956832587707337
-    second: GameUI_CursorMain
-  - first:
-      213: 7095028429294131029
-    second: GameUI_BuildingTooltip
-  - first:
-      213: -8867523018990462336
-    second: GameUI_CursorShoot
-  - first:
-      213: 2428870884154379839
-    second: GameUI_CursorBuild
-  - first:
-      213: -8948020275080653947
-    second: GameUI_CursorDestroy
+      213: 7116978101175370354
+    second: Weapon_Boltgun
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -146,169 +122,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameUI_Slot
+      name: Weapon_Destroyer
       rect:
         serializedVersion: 2
-        x: 192
-        y: 224
+        x: 0
+        y: 48
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd6e38d9971575270800000000000000
-      internalID: 8239143626073171675
+      spriteID: e278e8190e9d5ce90800000000000000
+      internalID: -7005954086766999762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameUI_LargeSlot
+      name: Weapon_Builder
       rect:
         serializedVersion: 2
-        x: 128
-        y: 176
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e562929dc07fd24c0800000000000000
-      internalID: -4310517633768675746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_Selector
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 224
+        x: 0
+        y: 32
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c426b0c497e2bf170800000000000000
-      internalID: 8213209443941966412
+      spriteID: c2757b245e2d738c0800000000000000
+      internalID: -4019512260296222932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameUI_CursorMain
+      name: Weapon_Boltgun
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73c0f533803987ba0800000000000000
-      internalID: -6090956832587707337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_BuildingTooltip
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 208
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 557df5fe3ca967260800000000000000
-      internalID: 7095028429294131029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_CursorShoot
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08a597fdbca30f480800000000000000
-      internalID: -8867523018990462336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_CursorBuild
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3e8f4f433515b120800000000000000
-      internalID: 2428870884154379839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GameUI_CursorDestroy
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58313dce7fe32d380800000000000000
-      internalID: -8948020275080653947
+      spriteID: 272caca20e594c260800000000000000
+      internalID: 7116978101175370354
       vertices: []
       indices: 
       edges: []

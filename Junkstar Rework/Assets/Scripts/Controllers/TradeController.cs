@@ -65,6 +65,7 @@ public class TradeController : MonoBehaviour
         UpdateTradeUI();
         InventoryController.instance.ui_playerInventoryBar.SetActive(false);
         ui_trade.SetActive(true);
+        GameController.instance.gameState = GameController.GameState.menu;
     }
 
     //Buy 1 from the clicked slot from the Player Inventory
@@ -364,6 +365,7 @@ public class TradeController : MonoBehaviour
         ClearTrade();
         InventoryController.instance.ui_playerInventoryBar.SetActive(false);
         ui_trade.SetActive(false);
+        GameController.instance.gameState = GameController.GameState.game;
     }
 
     //Update Trade slot graphics

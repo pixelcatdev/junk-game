@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Player Input and stats
 public class PlayerController : MonoBehaviour
@@ -18,9 +19,10 @@ public class PlayerController : MonoBehaviour
     public GameObject helmet;
     public GameObject hair;
     public GameObject outfit;
+    public GameObject equipped;
 
-    public enum EquipType { destroy, build, shoot }
-    public EquipType equipped;
+    public enum EquipType { game, destroy, build, shoot }
+    public EquipType equipMode;
     public GameObject projectile;
 
     public bool isDestroying;
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (GameController.instance.gameState == GameController.GameState.game)
         {
             PlayerInput();
+            AimEquipped();
             Animator();
 
             DestroyMode();
@@ -70,17 +73,20 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("Cutter equipped");
-                equipped = EquipType.destroy;
+                equipMode = EquipType.destroy;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.destroy;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("Welder equipped");
-                equipped = EquipType.build;
+                equipMode = EquipType.build;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Debug.Log("Gun equipped");
-                equipped = EquipType.shoot;
+                equipMode = EquipType.shoot;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.aim;
             }
         }
     }
@@ -120,7 +126,7 @@ public class PlayerController : MonoBehaviour
                     transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
-        }        
+        }
 
         //Get interaction input
         if (Input.GetKeyDown(KeyCode.E))
@@ -129,7 +135,7 @@ public class PlayerController : MonoBehaviour
             foreach (Collider2D collider in colliders)
             {
                 GameObject targetObj = collider.gameObject;
-          
+
                 //If the object has an InteractorProps attached, call Activate()
                 if (targetObj.GetComponent<InteractorProps>())
                 {
@@ -139,9 +145,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Rotate the currently equipped tool to aim towards the mouse
+    void AimEquipped()
+    {
+        if (equipped.activeInHierarchy)
+        {
+            var pos = Input.mousePosition;
+            pos.z = transform.position.z - Camera.main.transform.position.z;
+            pos = Camera.main.ScreenToWorldPoint(pos);
+
+            equipped.transform.rotation = Quaternion.FromToRotation(Vector3.right, pos - transform.position);
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (mousePos.x < 0)
+            {
+                equipped.transform.Rotate(0, -180, 0);
+            }
+            else if (mousePos.x > 0)
+            {
+                equipped.transform.Rotate(0, 0, 0);
+            }
+        }        
+    }
+
     void DestroyMode()
     {
-        if (equipped == EquipType.destroy)
+        if (equipMode == EquipType.destroy)
         {
             LayerMask hitLayer = LayerMask.GetMask("ShipTile", "Object");
 
@@ -207,11 +236,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        //Clear the highlight on the object if they're not in destroy mode
+        else
+        {
+            if(lastHit != null)
+            {
+                lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+            }            
+        }
     }
 
     void BuildMode()
     {
-        if (equipped == EquipType.build)
+        if (equipMode == EquipType.build)
         {
             Debug.Log("Build mode");
             //get the sprite of the chosen blueprint
@@ -233,29 +271,34 @@ public class PlayerController : MonoBehaviour
                     {
                         lastHit = hitObj;
 
-                        hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                        hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
                     }
                     else
                     {
                         //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
                         if (hitObj != lastHit)
                         {
-                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                            lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
                             lastHit = hitObj;
-                            hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
+                            hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
                             //hitObj.GetComponent<TileProps>().blueprintCursor.GetComponent<SpriteRenderer>().sprite = buildObj.GetComponent<Buildable>().buildingBlueprint;
                         }
                     }
 
                     //work out if the player can afford it and color the blueprint accordingly
-                    if (InventoryController.instance.HasResources(buildingObject) == true)
+                    if(hitObj.GetComponent<TileProps>().ui_BuildTile != null)
                     {
-                        //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().color = Color.blue;
-                    }
-                    else
-                    {
-                        //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().color = Color.red;
-                    }
+                        if (InventoryController.instance.HasResources(buildingObject) == true)
+                        {
+                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
+                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.white;
+                        }
+                        else
+                        {
+                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
+                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.red;
+                        }
+                    }                    
 
                     //If mouse 0 is clicked, build the object
                     if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
@@ -272,7 +315,7 @@ public class PlayerController : MonoBehaviour
                             //Add the building to the list of builtObjects
                             playerBuildings.Add(newBuild.gameObject);
 
-                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                            lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
                             //lastHit.GetComponent<TileProps>().canDestroy = false;
                             lastHit.GetComponent<TileProps>().isOccupied = true;
                         }
@@ -283,16 +326,24 @@ public class PlayerController : MonoBehaviour
                     //If the player goes out of range of the object, clear the highlight on that object
                     if (lastHit != null)
                     {
-                        lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                        lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
                     }
                 }
+            }
+        }
+        //Clear the highlight on the object if they're not in build mode
+        else
+        {
+            if (lastHit != null && lastHit.GetComponent<TileProps>().ui_BuildTile != null)
+            {
+                lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
             }
         }
     }
 
     void ShootMode()
     {
-        if (equipped == EquipType.shoot)
+        if (equipMode == EquipType.shoot)
         {
             var pos = Input.mousePosition;
             pos.z = transform.position.z - Camera.main.transform.position.z;

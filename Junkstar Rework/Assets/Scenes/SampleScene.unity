@@ -152,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681822137}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &10291304
 MonoBehaviour:
@@ -189,7 +189,8 @@ MonoBehaviour:
   - {fileID: 8220009392493320552, guid: fe0cae2ea89efff4581024f579f137d7, type: 3}
   - {fileID: 2572913169018660508, guid: ed631b8840ebd6d449f0bf6aa042de73, type: 3}
   - {fileID: 1558375023152112948, guid: be5ea349ab050de40b33e9443658dcda, type: 3}
-  shipsMedium: []
+  shipsMedium:
+  - {fileID: 7915656754958166803, guid: 206d6e0d17f06494b8c8f5e71e245e0d, type: 3}
   shipsLarge: []
   shipObjects:
   - {fileID: 133360671677125098, guid: b11d3d58c80916d4b884c479a22573ad, type: 3}
@@ -2216,7 +2217,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 1471355376}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 1778362050}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -2425,14 +2428,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8948020275080653947, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4423,7 +4426,7 @@ Transform:
   - {fileID: 1133835298}
   - {fileID: 223209746}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &361077346
 PrefabInstance:
@@ -5004,7 +5007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12790,7 +12793,7 @@ Transform:
   - {fileID: 940960397}
   - {fileID: 5527623167895307357}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1045417105
 MonoBehaviour:
@@ -13263,7 +13266,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 2115281362}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 930924933}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -13801,7 +13806,7 @@ Transform:
   - {fileID: 1085598347}
   - {fileID: 176809471}
   m_Father: {fileID: 1681822137}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1123583778
 MonoBehaviour:
@@ -15524,6 +15529,7 @@ GameObject:
   - component: {fileID: 1236433799}
   - component: {fileID: 1236433801}
   - component: {fileID: 1236433800}
+  - component: {fileID: 1236433802}
   m_Layer: 2
   m_Name: AimCursor
   m_TagString: Untagged
@@ -15563,14 +15569,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8867523018990462336, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15588,6 +15594,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236433798}
   m_CullTransparentMesh: 0
+--- !u!95 &1236433802
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236433798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f599cea66102364cb8fe0b1b6ef137e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1247379092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
@@ -15743,7 +15768,7 @@ Transform:
   - {fileID: 1149358263}
   - {fileID: 1551288829}
   m_Father: {fileID: 1681822137}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1257268094
 PrefabInstance:
@@ -16790,13 +16815,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1378478520}
   - component: {fileID: 1378478521}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1378478520
 Transform:
   m_ObjectHideFlags: 0
@@ -18466,14 +18491,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2428870884154379839, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18697,7 +18722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1562557759
 PrefabInstance:
@@ -19257,11 +19282,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ab2da24c6581b4cbcfddbdef618e53, type: 3}
---- !u!4 &1596677344 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-  m_PrefabInstance: {fileID: 415609246566134839}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1597969377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20569,7 +20589,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681822137}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681822136
 GameObject:
@@ -20599,13 +20619,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1486317616}
+  - {fileID: 3035113218196212355}
   - {fileID: 10291303}
   - {fileID: 1123583777}
   - {fileID: 1252970034}
   - {fileID: 1679013397}
-  - {fileID: 1596677344}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1683147019
 PrefabInstance:
@@ -20910,7 +20930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23058,7 +23078,7 @@ Transform:
   - {fileID: 449088277}
   - {fileID: 1701487857}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885954110
 GameObject:
@@ -23166,6 +23186,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1911578029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2359449873805982710, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+  m_PrefabInstance: {fileID: 6428478614975526074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1912660770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
@@ -26789,63 +26814,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2884547334729714916}
   m_CullTransparentMesh: 0
---- !u!1001 &415609246566134839
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1681822137}
-    m_Modifications:
-    - target: {fileID: 127770202810980006, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_Name
-      value: EnemyBotDrone
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422994947749280463, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d459f015b2f17764ebdeda519a308e39, type: 3}
 --- !u!1001 &464575241992613580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39973,11 +39941,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3035113218196212359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1681822137}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3035113218196212356
 SpriteRenderer:
@@ -43263,7 +43231,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217589086541}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192017440584}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43289,7 +43259,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217626610464}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192054988069}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43315,7 +43287,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217655079688}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191951312141}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43341,7 +43315,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217693451117}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191988569448}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43367,7 +43343,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217749108096}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192201577349}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43393,7 +43371,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217810541200}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192139230357}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43419,7 +43399,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217817105479}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192133218882}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43445,7 +43427,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217834614119}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192317434722}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43471,7 +43455,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217908692967}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192242696674}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43497,7 +43483,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217979239364}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192441081281}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43523,7 +43511,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217993869796}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192426352609}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43549,7 +43539,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217989651703}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192422148850}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43575,7 +43567,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288218005670511}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192472845418}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43601,7 +43595,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288218077612200}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192409456301}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43627,7 +43623,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288218096599186}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192390694551}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43653,7 +43651,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217024240299}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192581860526}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43679,7 +43679,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217113568490}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192501310191}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43705,7 +43707,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217168393257}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192706138668}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43731,7 +43735,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217188371950}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192694684651}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43757,7 +43763,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217345360349}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192865241048}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43783,7 +43791,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217432268190}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192987790235}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43809,7 +43819,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217482265513}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379193005290924}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43835,7 +43847,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217498595539}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192920934102}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43861,7 +43875,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217541770314}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192945297999}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43887,7 +43903,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217547283583}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192931887738}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43913,7 +43931,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288217554370114}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379192924276807}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43939,7 +43959,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216504664464}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379190953949077}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43965,7 +43987,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216517120548}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379190949618721}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -43991,7 +44015,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216550662948}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379190983218465}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44017,7 +44043,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216545821771}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379190980424270}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44043,7 +44071,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216565269149}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379190894032024}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44069,7 +44099,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216621947493}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191104842848}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44095,7 +44127,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216720846312}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191014988781}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44121,7 +44155,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216765396617}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191230382220}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44147,7 +44183,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216802418049}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191268469636}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44173,7 +44211,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216798796147}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191263801206}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44199,7 +44239,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216812018361}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191259262140}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44225,7 +44267,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216808756826}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191253835871}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44251,7 +44295,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216907968822}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191356245811}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44277,7 +44323,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216928031172}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191411910593}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44303,7 +44351,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288215973347157}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191494314320}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44329,7 +44379,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288215981297101}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191485447112}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44355,7 +44407,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288215981908770}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191484994855}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44381,7 +44435,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288215975059432}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191483460077}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44407,7 +44463,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216040354266}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191427041247}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44433,7 +44491,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216053544870}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191472734627}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44459,7 +44519,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216066897749}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191458824528}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44485,7 +44547,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216079020155}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191446832766}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44511,7 +44575,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216076736102}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191448756323}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44537,7 +44603,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216096943895}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191638890770}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44563,7 +44631,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216181232327}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191554368706}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44589,7 +44659,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216239655685}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191764778240}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44615,7 +44687,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216305417087}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191690071418}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44641,7 +44715,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216446139224}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191818210653}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44667,7 +44743,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216454108951}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191877574930}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -44693,7 +44771,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8959288216470534242}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 7927379191860366951}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
@@ -51229,7 +51309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352511750362761775, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.r
-      value: 0.990566
+      value: 0.99215686
       objectReference: {fileID: 0}
     - target: {fileID: 352511750362761775, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.g
@@ -51237,7 +51317,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352511750362761775, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.b
-      value: 0.9553872
+      value: 0.90872663
+      objectReference: {fileID: 0}
+    - target: {fileID: 352511750362761775, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359449873805982710, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: inventorySlots.Array.size
@@ -51269,8 +51357,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: equipped
-      value: 0
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 1911578029}
     - target: {fileID: 4105722031043149635, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -51325,15 +51413,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132501, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.r
-      value: 0.8018868
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132501, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.g
-      value: 0.6694998
+      value: 0.7046245
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132501, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Color.b
-      value: 0.51063544
+      value: 0.6544144
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132503, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_Name
@@ -51342,6 +51430,18 @@ PrefabInstance:
     - target: {fileID: 6428478616444132503, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009037013560589746, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009037013560589746, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009037013560589746, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
@@ -51418,7 +51518,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571904923981}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842947249084}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51444,7 +51546,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571850339642}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843060441035}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51470,7 +51574,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571782138869}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842858017028}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51496,7 +51602,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571729320335}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842939417470}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51522,7 +51630,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571733567782}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842910110679}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51548,7 +51658,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571556197687}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842766299078}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51574,7 +51686,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571568784072}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842745329721}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51600,7 +51714,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571596868035}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842777604914}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51626,7 +51742,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571606306238}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842782848847}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51652,7 +51770,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571609883072}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842790624049}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51678,7 +51798,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571484804241}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842560687712}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51704,7 +51826,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571511986363}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842592059978}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51730,7 +51854,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571470320736}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842651061905}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51756,7 +51882,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572458232086}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843534111719}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51782,7 +51910,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572392445924}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843606740245}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51808,7 +51938,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572412197593}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843588739112}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51834,7 +51966,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572272137412}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843452878389}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51860,7 +51994,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572083390456}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843297684745}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51886,7 +52022,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572108889127}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843289626326}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51912,7 +52050,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572024964197}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843105042068}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51938,7 +52078,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571972675814}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843149218327}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51964,7 +52106,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879571976931898}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252843153473739}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -51990,7 +52134,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572892625892}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841959432469}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52016,7 +52162,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572911997181}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841941060108}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52042,7 +52190,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572806594428}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841835652493}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52068,7 +52218,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572816393643}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841849651034}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52094,7 +52246,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572709182903}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841604024134}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52120,7 +52274,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572716017753}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841615053480}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52146,7 +52302,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572720776737}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841653370064}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52172,7 +52330,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879572495541496}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252841558158857}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52198,7 +52358,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573501992432}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842430387969}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52224,7 +52386,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573395026840}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842327619945}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52250,7 +52414,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573292109545}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842354721816}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52276,7 +52442,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573228513723}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842161103690}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52302,7 +52470,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573247430149}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842142270708}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52328,7 +52498,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573256667857}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842189260832}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52354,7 +52526,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573215074638}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842248328127}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52380,7 +52554,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573135762821}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842068356980}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
@@ -52406,7 +52582,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 8025879573066603661}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2118252842129217148}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:

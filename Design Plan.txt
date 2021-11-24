@@ -11,8 +11,11 @@ Junkstar Game plan
 	- crafting UI				
 - repairing
 	- tile repair
-- shooting
-- enemy spawns
+- combat
+	- shooting
+	- death
+	- enemy types
+	- enemy spawns
 - overworld
 	- navigation				DONE
 	- scan					DONE
