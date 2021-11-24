@@ -21,9 +21,11 @@ public class InventoryController : MonoBehaviour
     public GameObject ui_playerInventoryBar;
     public GameObject ui_crafting;
 
+    private GameObject selectedBuilding;
     public Image craftingSprite;
     public TextMeshProUGUI txt_craftingName;
     public TextMeshProUGUI txt_craftingInfo;
+    public List<GameObject> craftingRecipeSlotsUI;
 
     public int curTarget;
     public int lootQty;
@@ -425,10 +427,19 @@ public class InventoryController : MonoBehaviour
         CraftingSlotProps craftingSlot = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>();
         if (craftingSlot.buildingUnlocked)
         {
-            GameObject buildingObj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingObj;
-            PlayerController.instance.buildingObject = buildingObj;
-            ToggleCrafting();
-            PlayerController.instance.equipped = PlayerController.EquipType.build;
+            if (HasResources(selectedBuilding) == true)
+            {
+                GameObject buildingObj = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingObj;
+                PlayerController.instance.buildingObject = buildingObj;
+                ToggleCrafting();
+                PlayerController.instance.equipped = PlayerController.EquipType.build;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().buildingCursor.GetComponent<Image>().sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
+            }
+            else
+            {
+                Debug.Log("Not enough resources to build");
+            }
         }
     }
 
@@ -445,14 +456,49 @@ public class InventoryController : MonoBehaviour
                 if (hit.transform.parent.gameObject.GetComponent<CraftingSlotProps>().buildingUnlocked)
                 {
                     CraftingSlotProps craftingSlot = hit.transform.parent.gameObject.GetComponent<CraftingSlotProps>();
-                    GameObject buildingObj = craftingSlot.buildingObj;
+                    selectedBuilding = craftingSlot.buildingObj;
 
-                    craftingSprite.sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
-                    txt_craftingName.text = buildingObj.GetComponent<BuildingProps>().buildingName.ToUpper();
-                    txt_craftingInfo.text = buildingObj.GetComponent<BuildingProps>().buildingInfo.ToUpper();
+                    craftingSprite.sprite = selectedBuilding.GetComponent<BuildingProps>().buildingBlueprint;
+                    txt_craftingName.text = selectedBuilding.GetComponent<BuildingProps>().buildingName.ToUpper();
+                    txt_craftingInfo.text = selectedBuilding.GetComponent<BuildingProps>().buildingInfo.ToUpper();
+
+                    //Set the buildable object
+                    PlayerController.instance.buildingObject = selectedBuilding;
+
+                    //Clear the slots
+                    for (int i = 0; i < craftingRecipeSlotsUI.Count; i++)
+                    {
+                        craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotContents.SetActive(false);
+                        craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotSprite.sprite = null;
+                        craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().txt_Qty.text = null;
+                    }
+
+                    List<BuildingRecipe> buildingRecipeSlots = selectedBuilding.GetComponent<BuildingProps>().buildingRecipe;
 
                     //Return the ingredient and quantity to each reciple slot
-                    //Highlight the slot red if there isn't enough so that the player knows
+                    for (int i = 0; i < buildingRecipeSlots.Count; i++)
+                    {
+                        if(buildingRecipeSlots[i].lootObject != null)
+                        {
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotContents.SetActive(true);
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotSprite.sprite = buildingRecipeSlots[i].lootObject.GetComponent<LootProps>().lootSprite;
+                            //if (buildingRecipeSlots[i])
+                            //{
+                            //    craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().txt_Qty.color = Color.white;
+                            //}
+                            //else
+                            //{
+                            //    craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().txt_Qty.color = Color.red;
+                            //}
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().txt_Qty.text = buildingRecipeSlots[i].itemCost.ToString();
+                        }
+                        else
+                        {
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotContents.SetActive(false);
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().slotSprite.sprite = null;
+                            craftingRecipeSlotsUI[i].GetComponent<RecipeSlotProps>().txt_Qty.text = null;
+                        }                       
+                    }
                 }
             }
         }

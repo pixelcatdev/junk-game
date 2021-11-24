@@ -340,6 +340,9 @@ MonoBehaviour:
   - lootObject: {fileID: 2335509057318779265, guid: a0ccce794ee424c4ab3f8f260d6efee5, type: 3}
     itemCost: 1
     canAfford: 0
+  - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
+    itemCost: 5
+    canAfford: 0
 --- !u!1 &4226455308522488096
 GameObject:
   m_ObjectHideFlags: 0

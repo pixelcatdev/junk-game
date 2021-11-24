@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private GameObject lastHit;
     private bool tileHit;
 
+    private float cooldownTimer;
+
     public GameObject buildingObject;
     public List<GameObject> playerBuildings;
 
@@ -62,24 +64,7 @@ public class PlayerController : MonoBehaviour
 
             DestroyMode();
             BuildMode();
-
-            //work out if the player can afford it and color the blueprint accordingly
-            if (equipped == EquipType.build)
-            {
-                if (Input.GetKeyDown(KeyCode.B))
-                {
-                    if (InventoryController.instance.HasResources(buildingObject) == true)
-                    {
-                        Debug.Log("Enough loot, can build");
-                        //build object
-                    }
-                    else
-                    {
-                        Debug.Log("Not enough loot, cannot build");
-                        //don't build object
-                    }
-                }
-            }
+            ShootMode();
 
             //Debug tool toggling
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -234,7 +219,7 @@ public class PlayerController : MonoBehaviour
             LayerMask hitLayer = LayerMask.GetMask("ShipTile");
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
 
-            if (hit && hit.transform.gameObject.GetComponent<TileProps>() && hit.transform.tag == "ShipTileFloor" && !hit.transform.gameObject.GetComponent<TileProps>().isOccupied)
+            if (hit && hit.transform.gameObject.GetComponent<TileProps>() && hit.transform.tag == "ShipTileFloor" && !hit.transform.gameObject.GetComponent<TileProps>().isOccupied && buildingObject != null)
             {
                 GameObject hitObj = hit.transform.gameObject;
 
@@ -258,7 +243,7 @@ public class PlayerController : MonoBehaviour
                             lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
                             lastHit = hitObj;
                             hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
-                            //hitObj.GetComponent<Object>().blueprintCursor.GetComponent<SpriteRenderer>().sprite = buildObj.GetComponent<Buildable>().buildingBlueprint;
+                            //hitObj.GetComponent<TileProps>().blueprintCursor.GetComponent<SpriteRenderer>().sprite = buildObj.GetComponent<Buildable>().buildingBlueprint;
                         }
                     }
 
@@ -305,36 +290,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FireWeapon()
+    void ShootMode()
     {
-        ////Get right input
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    aimDirection = Vector2.up;
-        //}
-        //else if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    aimDirection = Vector2.down;
-        //}
-        //else if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    aimDirection = Vector2.left;
-        //}
-        //else if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    aimDirection = Vector2.right;
-        //}
+        if (equipped == EquipType.shoot)
+        {
+            var pos = Input.mousePosition;
+            pos.z = transform.position.z - Camera.main.transform.position.z;
+            pos = Camera.main.ScreenToWorldPoint(pos);
+            //targetCursor.transform.position = pos;
 
-        //if (gunTimer > 0)
-        //{
-        //    gunTimer -= Time.deltaTime;
-        //}
-        //else
-        //{
-        //    GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
-        //    newProjectile.GetComponent<Rigidbody2D>().AddForce(aimDirection * newProjectile.GetComponent<ProjectileProps>().speed, ForceMode2D.Impulse);
-        //    gunTimer = projectile.GetComponent<ProjectileProps>().cooldown;
-        //}
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                if (Time.time > cooldownTimer)
+                {
+                    ProjectileProps projectileProps = projectile.GetComponent<ProjectileProps>();
+
+                    var q = Quaternion.FromToRotation(Vector3.up, pos - transform.position);
+                    var go = Instantiate(projectile, transform.position, q);
+                    go.GetComponent<Rigidbody2D>().AddForce(go.transform.up * projectileProps.speed, ForceMode2D.Impulse);
+
+                    cooldownTimer = Time.time + projectileProps.cooldown;
+
+                }
+            }
+        }
     }
 
     void Animator()

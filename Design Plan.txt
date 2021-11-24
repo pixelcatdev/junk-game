@@ -8,7 +8,7 @@ Junkstar Game plan
 - crafting					
 	- building on tiles			DONE
 	- building recipes			DONE
-	- crafting UI
+	- crafting UI				
 - repairing
 	- tile repair
 - shooting
@@ -31,7 +31,7 @@ Junkstar Game plan
 	- debris field
 	- sos
 - missions
+- player customization
 - save/load
 - config
 - input mapping
-- player customization

@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
 
+    public GameObject gameCursor;
+
     // Singleton Initialization
     void Awake()
     {
@@ -35,6 +37,7 @@ public class GameController : MonoBehaviour
         }
 
         gameState = GameState.game;
+
     }
 
     public void SwitchToOverworld()

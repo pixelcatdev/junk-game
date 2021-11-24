@@ -58,7 +58,7 @@ public class TileProps : MonoBehaviour
 
                 if (isShotAt == true)
                 {
-                    StartCoroutine("FlashDamage");
+                    //StartCoroutine("FlashDamage");
                 }
             }
             else
