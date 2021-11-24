@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //Controls tooltips etc
 public class CursorProps : MonoBehaviour
 {
-    public enum CursorType { main, building, destroy, aim }
+    public enum CursorType { select, building, destroy, aim }
     public CursorType cursorType;
     public GameObject mainCursor;
     public GameObject buildingCursor;
@@ -28,7 +28,7 @@ public class CursorProps : MonoBehaviour
 
     void SwitchCursors()
     {
-        if (cursorType == CursorType.main)
+        if (cursorType == CursorType.select)
         {
             mainCursor.SetActive(true);
             buildingCursor.SetActive(false);
@@ -56,10 +56,5 @@ public class CursorProps : MonoBehaviour
             destroyCursor.SetActive(false);
             aimingCursor.SetActive(true);
         }
-    }
-
-    void SetGraphics()
-    {
-        
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8617958635254062308}
   m_Layer: 9
   m_Name: Object_BarrelGreen
-  m_TagString: Untagged
+  m_TagString: isExploder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 1582492061693778280}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 5456684651274134127}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 8665982228556635498, guid: b06b831cb57ffab439e3a7e3f2b5f463, type: 3}
   lootList:

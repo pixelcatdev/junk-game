@@ -86,7 +86,7 @@ public class OverworldController : MonoBehaviour
         shipwrecks.Add(spaceStation);
 
         //Randomise shipwrecks
-        int randomWreckTotal = Random.Range(2, 5);
+        int randomWreckTotal = Random.Range(30, 50);
 
         for (int i = 0; i < randomWreckTotal; i++)
         {

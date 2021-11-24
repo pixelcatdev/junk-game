@@ -23,6 +23,13 @@ public class ExploderProps : MonoBehaviour
                 collision.GetComponent<TileProps>().TakeDamage(500f, true);
             }
         }
+
+        if (collision.gameObject.tag == "isEnemy")
+        {
+            collision.gameObject.GetComponent<EnemyProps>().TakeDamage(500f);
+            Destroy(gameObject);
+        }
+
         StartCoroutine("ClearUpEffect");
     }
 

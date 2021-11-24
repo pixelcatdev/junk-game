@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1707378849740046169}
   m_Layer: 0
   m_Name: FloorBase01
-  m_TagString: Untagged
+  m_TagString: ShipTileFloorBroken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

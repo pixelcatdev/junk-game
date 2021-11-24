@@ -8,6 +8,7 @@ public class BuildingProps : MonoBehaviour
     public string buildingName;
     public string buildingInfo;
     public Sprite buildingBlueprint;
+    public bool needsFloor;
     public List<BuildingRecipe> buildingRecipe = new List<BuildingRecipe>();
 
 }

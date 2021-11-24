@@ -12,6 +12,8 @@ TagManager:
   - ShipTileWall
   - NpcTrader
   - isEnemy
+  - isExploder
+  - ShipTileFloorBroken
   layers:
   - Default
   - TransparentFX

@@ -35,6 +35,18 @@ TextureImporter:
   - first:
       213: -8948020275080653947
     second: GameUI_CursorDestroy
+  - first:
+      213: -1885875236619925605
+    second: GameUI_IconInventory
+  - first:
+      213: 8420073779583551526
+    second: GameUI_IconBuild
+  - first:
+      213: 5561837468517970498
+    second: GameUI_IconShoot
+  - first:
+      213: 2073009626485061162
+    second: GameUI_IconDestroy
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -309,6 +321,90 @@ TextureImporter:
       bones: []
       spriteID: 58313dce7fe32d380800000000000000
       internalID: -8948020275080653947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_IconInventory
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 232
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b97409ec67604d5e0800000000000000
+      internalID: -1885875236619925605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_IconBuild
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62888a6bd7c1ad470800000000000000
+      internalID: 8420073779583551526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_IconShoot
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 224
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242b871b5bd9f2d40800000000000000
+      internalID: 5561837468517970498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_IconDestroy
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 232
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a267b92a54fc4cc10800000000000000
+      internalID: 2073009626485061162
       vertices: []
       indices: 
       edges: []

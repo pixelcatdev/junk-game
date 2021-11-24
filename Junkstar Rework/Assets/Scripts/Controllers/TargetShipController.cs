@@ -37,6 +37,10 @@ public class TargetShipController : MonoBehaviour
 
     public List<GameObject> shipObjects;
 
+    public List<GameObject> backgroundJunk;
+    public Transform background;
+    public int maxJunk;
+
     public static TargetShipController instance;
 
     // Singleton Initialization
@@ -130,6 +134,7 @@ public class TargetShipController : MonoBehaviour
                 //select a random tile
                 int randomTile = Random.Range(0, shipFloorTiles.Count - 1);
                 GameObject tile = shipFloorTiles[randomTile];
+                tile.GetComponent<TileProps>().isOccupied = true;
                 Instantiate(shipObjects[Random.Range(0, shipObjects.Count - 1)], tile.transform.position, tile.transform.rotation);
                 shipFloorTiles.RemoveAt(randomTile);
             }
@@ -141,8 +146,16 @@ public class TargetShipController : MonoBehaviour
             //Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
 
             //spawn x enemy based on ship size and enemy type
-        }
 
+            //Spawn random backgroundJunk based on density
+            background.position = transform.position;
+
+            for (int i = 0; i < maxJunk; i++)
+            {
+                Vector2 newPos = new Vector2(generatedMap.transform.position.x, generatedMap.transform.position.y) + Random.insideUnitCircle * 20f;
+                GameObject junk = Instantiate(backgroundJunk[Random.Range(0, backgroundJunk.Count - 1)], newPos, generatedMap.transform.rotation, background.transform);
+            }
+        }
 
         playerShipIsDocked = true;
         Debug.Log("Map generated");

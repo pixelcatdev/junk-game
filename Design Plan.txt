@@ -16,6 +16,7 @@ Junkstar Game plan
 	- death
 	- enemy types
 	- enemy spawns
+	- turrets
 - overworld
 	- navigation				DONE
 	- scan					DONE

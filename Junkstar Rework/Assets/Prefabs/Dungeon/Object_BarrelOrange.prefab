@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5963116230807657693}
   m_Layer: 9
   m_Name: Object_BarrelOrange
-  m_TagString: Untagged
+  m_TagString: isExploder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,13 +127,16 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 3630242586945188073}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 1010611335312318676}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 3202973783898233669, guid: 1033c166e1d47bd4eaf6794b5f8b94ea, type: 3}
   lootList:
   - loot: {fileID: 7174525439547467649, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
     min: 1
     max: 3
+  isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
 --- !u!1 &2841144056293893803

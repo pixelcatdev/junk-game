@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6162225536512874112}
   - component: {fileID: 9133338002770800999}
   - component: {fileID: 5448401457916677520}
+  - component: {fileID: 3958608604194256736}
   m_Layer: 0
   m_Name: Background_Wreck06
   m_TagString: Untagged
@@ -104,3 +105,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3958608604194256736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140541013419252020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ad9c178c92e354fa999d7cd0371c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

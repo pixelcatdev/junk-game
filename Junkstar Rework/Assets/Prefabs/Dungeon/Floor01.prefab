@@ -365,6 +365,7 @@ MonoBehaviour:
   buildBlueprint: {fileID: 58583598734413725}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+  - {fileID: 4277631876284800167, guid: 1baf1825e54f8b74489d49493747ae40, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1

@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 3916325095958849906
     second: BuildingsIcon_Turret01
+  - first:
+      213: -3311200877722795201
+    second: Building_ScrapFloor01
+  - first:
+      213: 904486484140976057
+    second: Building_ScrapFloor02
+  - first:
+      213: -159855045494663970
+    second: Building_ScrapFloor03
+  - first:
+      213: 6144619419498489447
+    second: Building_ScrapFloor04
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -196,7 +208,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,6 +216,90 @@ TextureImporter:
       bones: []
       spriteID: 2792399dce4995630800000000000000
       internalID: 3916325095958849906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_ScrapFloor01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f330f5f58504c02d0800000000000000
+      internalID: -3311200877722795201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_ScrapFloor02
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b76d574aa16d8c00800000000000000
+      internalID: 904486484140976057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_ScrapFloor03
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed49cbddea418cdf0800000000000000
+      internalID: -159855045494663970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building_ScrapFloor04
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766ac237ec2164550800000000000000
+      internalID: 6144619419498489447
       vertices: []
       indices: 
       edges: []

@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject outfit;
     public GameObject equipped;
 
-    public enum EquipType { game, destroy, build, shoot }
+    public enum EquipType { select, destroy, build, shoot }
     public EquipType equipMode;
     public GameObject projectile;
 
@@ -69,24 +69,10 @@ public class PlayerController : MonoBehaviour
             BuildMode();
             ShootMode();
 
-            //Debug tool toggling
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                Debug.Log("Cutter equipped");
-                equipMode = EquipType.destroy;
-                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.destroy;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Debug.Log("Welder equipped");
-                equipMode = EquipType.build;
-                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Debug.Log("Gun equipped");
-                equipMode = EquipType.shoot;
-                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.aim;
+                equipMode = EquipType.select;
+                GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
             }
         }
     }
@@ -145,6 +131,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Takes UI input and toggles the relevant mode
+    public void SwitchEquipped(int mode)
+    {
+        //Destroy
+        if (mode == 1)
+        {
+            equipMode = EquipType.destroy;
+            GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.destroy;
+        }
+        //Build
+        else if (mode == 2)
+        {
+            equipMode = EquipType.build;
+            GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
+        }
+        //Shoot
+        else if (mode == 3)
+        {
+            equipMode = EquipType.shoot;
+            GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.aim;
+        }
+    }
+
     //Rotate the currently equipped tool to aim towards the mouse
     void AimEquipped()
     {
@@ -165,7 +174,7 @@ public class PlayerController : MonoBehaviour
             {
                 equipped.transform.Rotate(0, 0, 0);
             }
-        }        
+        }
     }
 
     void DestroyMode()
@@ -240,10 +249,10 @@ public class PlayerController : MonoBehaviour
         //Clear the highlight on the object if they're not in destroy mode
         else
         {
-            if(lastHit != null)
+            if (lastHit != null)
             {
                 lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
-            }            
+            }
         }
     }
 
@@ -257,67 +266,73 @@ public class PlayerController : MonoBehaviour
             LayerMask hitLayer = LayerMask.GetMask("ShipTile");
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
 
-            if (hit && hit.transform.gameObject.GetComponent<TileProps>() && hit.transform.tag == "ShipTileFloor" && !hit.transform.gameObject.GetComponent<TileProps>().isOccupied && buildingObject != null)
+            if (hit)
             {
-                GameObject hitObj = hit.transform.gameObject;
-
-                float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
-
-                //if the hit obj is within than the players range
-                if (objDistance < 2)
+                if (hit.transform.gameObject.GetComponent<TileProps>())
                 {
-                    //if there's no objects previously hit, set the current object to that last object and highlight it
-                    if (lastHit == null)
+                    TileProps tile = hit.transform.gameObject.GetComponent<TileProps>();
+
+                    if (hit.transform.tag == "ShipTileFloor" && !tile.isOccupied)
                     {
-                        lastHit = hitObj;
+                        GameObject hitObj = hit.transform.gameObject;
 
-                        hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
-                    }
-                    else
-                    {
-                        //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
-                        if (hitObj != lastHit)
+                        float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+
+                        //if the hit obj is within than the players range
+                        if (objDistance < 2)
                         {
-                            lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-                            lastHit = hitObj;
-                            hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
-                            //hitObj.GetComponent<TileProps>().blueprintCursor.GetComponent<SpriteRenderer>().sprite = buildObj.GetComponent<Buildable>().buildingBlueprint;
-                        }
-                    }
+                            //if there's no objects previously hit, set the current object to that last object and highlight it
+                            if (lastHit == null)
+                            {
+                                lastHit = hitObj;
+                                hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
+                            }
+                            else
+                            {
+                                //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
+                                if (hitObj != lastHit)
+                                {
+                                    lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
+                                    lastHit = hitObj;
+                                    hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
+                                }
+                            }
 
-                    //work out if the player can afford it and color the blueprint accordingly
-                    if(hitObj.GetComponent<TileProps>().ui_BuildTile != null)
-                    {
-                        if (InventoryController.instance.HasResources(buildingObject) == true)
-                        {
-                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
-                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.white;
-                        }
-                        else
-                        {
-                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
-                            hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.red;
-                        }
-                    }                    
+                            //work out if the player can afford it and color the blueprint accordingly
+                            if (hitObj.GetComponent<TileProps>().ui_BuildTile != null)
+                            {
+                                if (InventoryController.instance.HasResources(buildingObject) == true)
+                                {
+                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
+                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.white;
+                                }
+                                else
+                                {
+                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
+                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.red;
+                                }
+                            }
 
-                    //If mouse 0 is clicked, build the object
-                    if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
-                    {
-                        //deduct the building costs
-                        if (InventoryController.instance.HasResources(buildingObject) == true)
-                        {
-                            //Deduct the item costs
-                            InventoryController.instance.DeductResources(buildingObject);
+                            //If mouse 0 is clicked, build the object
+                            if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
+                            {
+                                //deduct the building costs
+                                if (InventoryController.instance.HasResources(buildingObject) == true)
+                                {
+                                    //Deduct the item costs
+                                    InventoryController.instance.DeductResources(buildingObject);
 
-                            //instantiate the new building, and child it to the hitObj
-                            GameObject newBuild = Instantiate(buildingObject, hitObj.transform.position, hitObj.transform.rotation, hitObj.transform);
+                                    //instantiate the new building, and child it to the hitObj
+                                    GameObject newBuild = Instantiate(buildingObject, hitObj.transform.position, hitObj.transform.rotation, hitObj.transform);
 
-                            //Add the building to the list of builtObjects
-                            playerBuildings.Add(newBuild.gameObject);
+                                    //Add the building to the list of builtObjects
+                                    playerBuildings.Add(newBuild.gameObject);
 
-                            lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-                            //lastHit.GetComponent<TileProps>().canDestroy = false;
-                            lastHit.GetComponent<TileProps>().isOccupied = true;
+                                    lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
+                                    //lastHit.GetComponent<TileProps>().canDestroy = false;
+                                    lastHit.GetComponent<TileProps>().isOccupied = true;
+                                }
+                            }
                         }
                     }
                 }
