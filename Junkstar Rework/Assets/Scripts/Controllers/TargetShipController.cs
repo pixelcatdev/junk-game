@@ -6,10 +6,10 @@ using UnityEngine.UI;
 //Holds all generated map info; structure, power, enemy type etc
 public class TargetShipController : MonoBehaviour
 {
-    public float mapCurHealth;
-    public float mapMaxHealth;
-    public float mapCritHealth;
-    public float mapPower;
+    //public float mapCurHealth;
+    //public float mapMaxHealth;
+    //public float mapCritHealth;
+    //public float mapPower;
     public Image img_healthBar;
 
     public List<GameObject> shipTiles;
@@ -103,7 +103,8 @@ public class TargetShipController : MonoBehaviour
                 shipTiles.Add(tile);
             }
 
-            mapMaxHealth = shipTiles.Count;
+            //Set the ships max health to how many tiles there in total in shipTiles
+            GetComponent<ShipMapProps>().mapMaxHealth = shipTiles.Count;
 
             //Quality - poor, damage 75% of tiles / average - 50%, good - 25% (testing at 50%)
             if (quality == "poor")
@@ -119,7 +120,7 @@ public class TargetShipController : MonoBehaviour
                 qualityPer = 0.05f;
             }
 
-            for (int i = 0; i < mapMaxHealth * qualityPer; i++)
+            for (int i = 0; i < GetComponent<ShipMapProps>().mapMaxHealth * qualityPer; i++)
             {
                 //select a random tile
                 int randomTile = Random.Range(0, shipTiles.Count - 1);
@@ -129,7 +130,7 @@ public class TargetShipController : MonoBehaviour
             }
 
             //Spawn ship Objects on floor ShipTiles (clear after for optimization)
-            for (int i = 0; i < mapMaxHealth * (qualityPer / 8); i++)
+            for (int i = 0; i < GetComponent<ShipMapProps>().mapMaxHealth * (qualityPer / 8); i++)
             {
                 //select a random tile
                 int randomTile = Random.Range(0, shipFloorTiles.Count - 1);
@@ -140,8 +141,9 @@ public class TargetShipController : MonoBehaviour
             }
             shipFloorTiles.Clear();
 
-            mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
-            mapCurHealth = shipTiles.Count;
+            //Set the critical health level before the ship starts to break apart, and the current health level based on the remaining number of tiles
+            GetComponent<ShipMapProps>().mapCritHealth = Random.Range(10, 20); //Mathf.RoundToInt(mapCurHealth * 0.05f);
+            GetComponent<ShipMapProps>().mapCurHealth = shipTiles.Count;
 
             //Debug.Log(shipName + ": Quality damage at " + qualityPer * 100f + "%, total Ship Health is " + mapMaxHealth + ", destroying " + mapMaxHealth * qualityPer + " tiles. Ship will break apart if less than " + mapCritHealth + "tiles remain");
 
@@ -166,14 +168,14 @@ public class TargetShipController : MonoBehaviour
     {
         if (playerIsBoarded)
         {
-            if (mapCurHealth < mapCritHealth)
+            if (GetComponent<ShipMapProps>().mapCurHealth < GetComponent<ShipMapProps>().mapCritHealth)
             {
                 if (!isCollapsing)
                 {
                     isCollapsing = true;
                 }
             }
-            img_healthBar.fillAmount = (mapCurHealth / mapMaxHealth);
+            img_healthBar.fillAmount = (GetComponent<ShipMapProps>().mapCurHealth / GetComponent<ShipMapProps>().mapMaxHealth);
         }
     }
 
@@ -234,7 +236,7 @@ public class TargetShipController : MonoBehaviour
             else
             {
                 //Every second, destroy a remaining ship tile
-                if (mapCurHealth > 0)
+                if (GetComponent<ShipMapProps>().mapCurHealth > 0)
                 {
                     //select a random tile
                     int randomTile = Random.Range(0, shipTiles.Count - 1);

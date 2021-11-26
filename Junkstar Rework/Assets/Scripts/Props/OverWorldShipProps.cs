@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipProps : MonoBehaviour
+public class OverWorldShipProps : MonoBehaviour
 {
 
     string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS ", "Atala-", "Orphan ", "Dawn", "Morning ", "Midnight "};

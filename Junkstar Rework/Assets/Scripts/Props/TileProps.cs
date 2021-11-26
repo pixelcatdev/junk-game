@@ -56,7 +56,10 @@ public class TileProps : MonoBehaviour
     //Repairs certain tile types (floors mainly)
     public void Repair()
     {
-        DestroyObject(false, true);
+        transform.parent.parent.GetComponent<ShipMapProps>().mapCurHealth += 1;
+        GameObject newObj = Instantiate(spawnOnDestroy[0], transform.position, transform.rotation, transform.parent);
+        //Add newObj to transform.parent.parent's shiptiles list
+        //DestroyObject(false, true);
     }
 
     public void DestroyObject(bool isShotAt, bool camShake)
@@ -68,6 +71,7 @@ public class TileProps : MonoBehaviour
         foreach (GameObject spawnObj in spawnOnDestroy)
         {
             GameObject newObj = Instantiate(spawnObj, transform.position, transform.rotation, transform.parent);
+
         }
 
         //Spawn loot only if it was destroyed by the cutter
@@ -115,7 +119,8 @@ public class TileProps : MonoBehaviour
 
         if (tag == "ShipTileFloor" || tag == "ShipTileWall")
         {
-            TargetShipController.instance.mapCurHealth -= 1;
+            Debug.Log(transform.parent.parent);
+            transform.parent.parent.GetComponent<ShipMapProps>().mapCurHealth -= 1;
         }
 
         //If it's a player built object, return all the loot and remove it from the list of player buildings

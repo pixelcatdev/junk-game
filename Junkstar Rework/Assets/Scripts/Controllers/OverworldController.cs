@@ -120,7 +120,7 @@ public class OverworldController : MonoBehaviour
         for (int i = 0; i < shipwrecks.Count; i++)
         {
             //If not a station
-            if (!shipwrecks[i].GetComponent<ShipProps>().isStation)
+            if (!shipwrecks[i].GetComponent<OverWorldShipProps>().isStation)
             {
                 Destroy(shipwrecks[i]);
             }
@@ -180,18 +180,18 @@ public class OverworldController : MonoBehaviour
 
     void UpdateTargetUI()
     {
-        txt_shipName.text = shipwrecks[curTarget].GetComponent<ShipProps>().shipName.ToUpper();
-        txt_shipSize.text = shipwrecks[curTarget].GetComponent<ShipProps>().size.ToString().ToUpper();
-        txt_shipQuality.text = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString().ToUpper();
-        txt_shipEnemy.text = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString().ToUpper();
+        txt_shipName.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().shipName.ToUpper();
+        txt_shipSize.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().size.ToString().ToUpper();
+        txt_shipQuality.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().quality.ToString().ToUpper();
+        txt_shipEnemy.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().enemy.ToString().ToUpper();
 
         //If the target isnt the trading station, get the ships stats and pass them into TargetShipMap so it can create the appropriate map (quality, size, enemy etc)
-        if (!shipwrecks[curTarget].gameObject.GetComponent<ShipProps>().isStation)
+        if (!shipwrecks[curTarget].gameObject.GetComponent<OverWorldShipProps>().isStation)
         {
-            TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<ShipProps>().shipName.ToUpper();
-            TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<ShipProps>().size.ToString();
-            TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<ShipProps>().quality.ToString();
-            TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<ShipProps>().enemy.ToString();
+            TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().shipName.ToUpper();
+            TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().size.ToString();
+            TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().quality.ToString();
+            TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().enemy.ToString();
             TargetShipController.instance.isStation = false;
         }
         else
