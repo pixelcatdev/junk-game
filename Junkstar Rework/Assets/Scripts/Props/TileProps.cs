@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class TileProps : MonoBehaviour
 {
     public bool canDestroy;
+    public bool canRepair;
     public float curHealth;
     public float maxHealth;
     public List<GameObject> spawnOnDestroy;
     public List<LootSlot> lootList;
+    public List<GameObject> repairLoot;
 
     public bool isOccupied;
     public bool isTakingDamage;
@@ -51,6 +53,12 @@ public class TileProps : MonoBehaviour
         }
     }
 
+    //Repairs certain tile types (floors mainly)
+    public void Repair()
+    {
+        DestroyObject(false, true);
+    }
+
     public void DestroyObject(bool isShotAt, bool camShake)
     {
         //Clear any UI elements on the object
@@ -81,16 +89,18 @@ public class TileProps : MonoBehaviour
                 Debug.Log("Returning player loot");
                 List<BuildingRecipe> buildingResources = new List<BuildingRecipe>();
                 buildingResources = GetComponent<BuildingProps>().buildingRecipe;
-
-                foreach (BuildingRecipe resource in buildingResources)
+                if (GetComponent<BuildingProps>().returnLootOnDestroy)
                 {
-                    int lootQty = resource.itemCost;
-                    for (int qty = 0; qty < lootQty; qty++)
+                    foreach (BuildingRecipe resource in buildingResources)
                     {
-                        Vector2 newPos = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 1;
-                        GameObject newObj = Instantiate(resource.lootObject, newPos, transform.rotation, transform.parent);
-                    }                               
-                }
+                        int lootQty = resource.itemCost;
+                        for (int qty = 0; qty < lootQty; qty++)
+                        {
+                            Vector2 newPos = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * 1;
+                            GameObject newObj = Instantiate(resource.lootObject, newPos, transform.rotation, transform.parent);
+                        }
+                    }
+                }                
             }
         }
 
@@ -120,9 +130,8 @@ public class TileProps : MonoBehaviour
             }
         }
 
-        //Player.Instance.beamObj.SetActive(false);
         GameController.instance.selectorDestroy.SetActive(false);
-        PlayerController.instance.isDestroying = false;
+        PlayerController.instance.isMouseDown = false;
         Destroy(gameObject);
     }
 }

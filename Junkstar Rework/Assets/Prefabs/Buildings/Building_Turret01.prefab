@@ -238,14 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 0}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 0}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy: []
   lootList: []
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -265,6 +263,7 @@ MonoBehaviour:
   buildingInfo: Weak turret, slow fire rate
   buildingBlueprint: {fileID: 3916325095958849906, guid: 4607fbf833101e541bc86732c840527c, type: 3}
   needsFloor: 0
+  returnLootOnDestroy: 1
   buildingRecipe:
   - lootObject: {fileID: 2335509057318779265, guid: a0ccce794ee424c4ab3f8f260d6efee5, type: 3}
     itemCost: 1

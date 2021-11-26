@@ -439,7 +439,6 @@ public class InventoryController : MonoBehaviour
                 PlayerController.instance.buildingObject = buildingObj;
                 ToggleCrafting();
                 PlayerController.instance.equipMode = PlayerController.EquipType.build;
-                //GameController.instance.gameCursor.GetComponent<CursorProps>().buildingCursor.GetComponent<Image>().sprite = buildingObj.GetComponent<BuildingProps>().buildingBlueprint;
                 GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
             }
             else

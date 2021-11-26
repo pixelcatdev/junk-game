@@ -6,11 +6,12 @@ using UnityEngine.UI;
 //Controls tooltips etc
 public class CursorProps : MonoBehaviour
 {
-    public enum CursorType { select, building, destroy, aim }
+    public enum CursorType { select, building, destroy, aim, repair }
     public CursorType cursorType;
     public GameObject mainCursor;
     public GameObject buildingCursor;
     public GameObject destroyCursor;
+    public GameObject repairCursor;
     public GameObject aimingCursor;
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class CursorProps : MonoBehaviour
             buildingCursor.SetActive(false);
             destroyCursor.SetActive(false);
             aimingCursor.SetActive(false);
+            repairCursor.SetActive(false);
         }
         else if (cursorType == CursorType.building)
         {
@@ -41,6 +43,7 @@ public class CursorProps : MonoBehaviour
             buildingCursor.SetActive(true);
             destroyCursor.SetActive(false);
             aimingCursor.SetActive(false);
+            repairCursor.SetActive(false);
         }
         else if (cursorType == CursorType.destroy)
         {
@@ -48,6 +51,7 @@ public class CursorProps : MonoBehaviour
             buildingCursor.SetActive(false);
             destroyCursor.SetActive(true);
             aimingCursor.SetActive(false);
+            repairCursor.SetActive(false);
         }
         else if (cursorType == CursorType.aim)
         {
@@ -55,6 +59,16 @@ public class CursorProps : MonoBehaviour
             buildingCursor.SetActive(false);
             destroyCursor.SetActive(false);
             aimingCursor.SetActive(true);
+            repairCursor.SetActive(false);
+        }
+        else if (cursorType == CursorType.repair)
+        {
+            mainCursor.SetActive(false);
+            buildingCursor.SetActive(false);
+            destroyCursor.SetActive(false);
+            aimingCursor.SetActive(false);
+            repairCursor.SetActive(true);
+
         }
     }
 }

@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3949039482491686484}
   - component: {fileID: 7459119008582286975}
+  - component: {fileID: 8986675193205848803}
   - component: {fileID: -1707378849740046169}
-  m_Layer: 0
+  - component: {fileID: 3877175661430731292}
+  m_Layer: 8
   m_Name: FloorBase01
   m_TagString: ShipTileFloorBroken
   m_Icon: {fileID: 0}
@@ -83,6 +85,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8986675193205848803
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811425909305499350}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &-1707378849740046169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,3 +127,25 @@ MonoBehaviour:
   - {fileID: 9195458816829828436, guid: 639005594dbd5e147ada930b5d46ecb6, type: 3}
   - {fileID: 327281021463134056, guid: 639005594dbd5e147ada930b5d46ecb6, type: 3}
   randomiseSprite: 1
+--- !u!114 &3877175661430731292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811425909305499350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766172424254809408ac5d3e2afe70e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDestroy: 0
+  canRepair: 1
+  curHealth: 0
+  maxHealth: 100
+  spawnOnDestroy:
+  - {fileID: 3854508035987547749, guid: a091908845743e64f938b2617a16a67f, type: 3}
+  lootList: []
+  isOccupied: 0
+  isTakingDamage: 0
+  dmgAmount: 0

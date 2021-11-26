@@ -10,16 +10,25 @@ Junkstar Game plan
 	- building recipes			DONE
 	- crafting UI				DONE
 - repairing
-	- tile repair
+	- tile repair				DONE
 - combat
 	- shooting				DONE
+		- ammo use
+		- explosive damage		DONE
+		- cooldown icon
 	- death
 	- enemy types
 	- enemy spawns				DONE
-	- turrets
+	- turrets				DONE
 - overworld
 	- navigation				DONE
 	- scan					DONE
+	- traders
+	- events
+		- ship attack
+		- boarding party
+		- debris field
+		- sos
 - map gen
 	- randomise map				DONE
 	- damage based on quality		DONE
@@ -30,15 +39,19 @@ Junkstar Game plan
 	- add item				DONE
 	- trash item				DONE
 	- store item				DONE
-- ship events
-	- boarding party
-	- debris field
-	- sos
-- missions
+- ship management
+	- health
+	- fuel
+	- upgrades
+- ship combat
+	
+- contracts
 	- bounty hunt
 	- demolition
 	- asset recovery
-- player customization
+- player
+	- upgrades
+	- customization
 - save/load
 - config
 - input mapping

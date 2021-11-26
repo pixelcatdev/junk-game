@@ -47,6 +47,9 @@ TextureImporter:
   - first:
       213: 2073009626485061162
     second: GameUI_IconDestroy
+  - first:
+      213: -1070911604190337319
+    second: GameUI_CursorRepair
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -397,7 +400,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -405,6 +408,27 @@ TextureImporter:
       bones: []
       spriteID: a267b92a54fc4cc10800000000000000
       internalID: 2073009626485061162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_CursorRepair
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d62466e19b5321f0800000000000000
+      internalID: -1070911604190337319
       vertices: []
       indices: 
       edges: []

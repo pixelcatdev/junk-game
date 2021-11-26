@@ -325,11 +325,11 @@ GameObject:
   - component: {fileID: 81145951381220690}
   - component: {fileID: 5945824361631487733}
   - component: {fileID: 5242414326389050403}
-  - component: {fileID: 1803958386532492532}
+  - component: {fileID: 8578996534456788662}
   - component: {fileID: 1460360268499438988}
-  m_Layer: 9
-  m_Name: Building_ScrapFloor
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: FloorScrap01
+  m_TagString: ShipTileFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,18 +440,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 5688308131531661440}
-  ui_BuildTile: {fileID: 712246606166073693}
-  healthBar: {fileID: 2870993926497824132}
-  buildBlueprint: {fileID: 2642505330789138951}
-  spawnOnDestroy: []
+  spawnOnDestroy:
+  - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+  - {fileID: 4277631876284800167, guid: 1baf1825e54f8b74489d49493747ae40, type: 3}
   lootList: []
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
---- !u!114 &1803958386532492532
+--- !u!114 &8578996534456788662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,9 +463,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b389c28f888e19044acee6272438b64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Scrap Deckplate
-  buildingInfo: Sheets of Alloy, banded together to form replacement deckplates
-  buildingBlueprint: {fileID: -3311200877722795201, guid: 4607fbf833101e541bc86732c840527c, type: 3}
+  buildingName: 
+  buildingInfo: 
+  buildingBlueprint: {fileID: 0}
+  needsFloor: 0
   buildingRecipe:
   - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     itemCost: 1

@@ -880,7 +880,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2270,11 +2270,11 @@ RectTransform:
   m_Children:
   - {fileID: 1129660999}
   m_Father: {fileID: 1783259343}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -869.2, y: 433.25}
+  m_AnchoredPosition: {x: -822.95, y: 433.25}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173969096
@@ -2422,18 +2422,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 1471355376}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 1778362050}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -2616,7 +2614,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1378478520}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3015,7 +3013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
       propertyPath: m_RootOrder
-      value: 135
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3144,11 +3142,6 @@ Canvas:
 Transform:
   m_CorrespondingSourceObject: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
   m_PrefabInstance: {fileID: 216172175}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &226295109 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-  m_PrefabInstance: {fileID: 829493171}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &240484579 stripped
 GameObject:
@@ -3911,7 +3904,7 @@ RectTransform:
   - {fileID: 1502123461}
   - {fileID: 1653306549}
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5809,7 +5802,7 @@ RectTransform:
   m_Children:
   - {fileID: 986086468}
   m_Father: {fileID: 1783259343}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -6359,7 +6352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8034,7 +8027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8113,7 +8106,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8212,6 +8205,10 @@ PrefabInstance:
     - target: {fileID: 3662349294823646158, guid: 1bd2e0a0ff36eb64b87a7cb392a32a86, type: 3}
       propertyPath: m_Name
       value: Building_Turret01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662349294823646158, guid: 1bd2e0a0ff36eb64b87a7cb392a32a86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bd2e0a0ff36eb64b87a7cb392a32a86, type: 3}
@@ -9080,6 +9077,140 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   m_PrefabInstance: {fileID: 1643077293}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &701161396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701161397}
+  - component: {fileID: 701161399}
+  - component: {fileID: 701161398}
+  m_Layer: 5
+  m_Name: Txt_Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &701161397
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701161396}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 882401096}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 6.9487305, y: 6.9579277}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &701161398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701161396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: R
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 08a084f4b07d18040a65da455f37e018, type: 2}
+  m_sharedMaterial: {fileID: -8408720048216565067, guid: 08a084f4b07d18040a65da455f37e018, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 4
+  m_fontSizeBase: 4
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &701161399
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701161396}
+  m_CullTransparentMesh: 0
 --- !u!1 &704351893
 GameObject:
   m_ObjectHideFlags: 0
@@ -9949,6 +10080,110 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5660886571437173741, guid: 87ab2da24c6581b4cbcfddbdef618e53, type: 3}
   m_PrefabInstance: {fileID: 914704340}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &742577590 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+  m_PrefabInstance: {fileID: 1413750392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &762605308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 762605309}
+  - component: {fileID: 762605312}
+  - component: {fileID: 762605311}
+  - component: {fileID: 762605310}
+  m_Layer: 5
+  m_Name: UI_BuildCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &762605309
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762605308}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
+  m_Children:
+  - {fileID: 1436528732}
+  m_Father: {fileID: 1909437488}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 16, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &762605310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762605308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &762605311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762605308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 16
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &762605312
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762605308}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -1045490079
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1001 &770847504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10204,7 +10439,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -10701,63 +10936,6 @@ PrefabInstance:
     - target: {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
       propertyPath: m_Name
       value: Floor01 (78)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
---- !u!1001 &829493171
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1123583777}
-    m_Modifications:
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_RootOrder
-      value: 138
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
-      propertyPath: m_Name
-      value: Floor01 (31)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
@@ -11367,7 +11545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
       propertyPath: m_RootOrder
-      value: 137
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11387,6 +11565,138 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+--- !u!1 &882401095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 882401096}
+  - component: {fileID: 882401099}
+  - component: {fileID: 882401098}
+  - component: {fileID: 882401097}
+  m_Layer: 5
+  m_Name: Button_Repair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &882401096
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882401095}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_Children:
+  - {fileID: 701161397}
+  m_Father: {fileID: 1783259343}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -868.3, y: 433.25}
+  m_SizeDelta: {x: 8, y: 8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &882401097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882401095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 882401098}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1564812228}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SwitchEquipped
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &882401098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882401095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 8239143626073171675, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &882401099
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882401095}
+  m_CullTransparentMesh: 0
 --- !u!1001 &889473251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11444,6 +11754,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+--- !u!1 &895121746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895121747}
+  - component: {fileID: 895121749}
+  - component: {fileID: 895121748}
+  m_Layer: 0
+  m_Name: Img_HealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &895121747
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895121746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1884022196}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -818.5, y: 443.06}
+  m_SizeDelta: {x: 232.13971, y: 13.877075}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &895121748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895121746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8396226, g: 0.1544589, b: 0.1544589, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &895121749
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895121746}
+  m_CullTransparentMesh: 0
 --- !u!1001 &899925065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13327,6 +13712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+--- !u!1 &1030448982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3137102845858026345, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+  m_PrefabInstance: {fileID: 6428478614975526074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1031357522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13337,15 +13727,15 @@ PrefabInstance:
     - target: {fileID: 3108958808776192861, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
       propertyPath: buildingObj
       value: 
-      objectReference: {fileID: 3854508035987547749, guid: a091908845743e64f938b2617a16a67f, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3108958808776192861, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
       propertyPath: buildingUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3670555806385747982, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3311200877722795201, guid: 4607fbf833101e541bc86732c840527c, type: 3}
+      objectReference: {fileID: 8239143626073171675, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
     - target: {fileID: 4297985373495083198, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -13444,7 +13834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4477096728447965627, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
       propertyPath: m_Name
-      value: CraftScrapFloor
+      value: CraftingSlot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
@@ -14286,18 +14676,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 2115281362}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 930924933}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -14540,7 +14928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14672,7 +15060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1123583777
 Transform:
   m_ObjectHideFlags: 0
@@ -14818,11 +15206,11 @@ Transform:
   - {fileID: 50550832604515558}
   - {fileID: 50550830921554072}
   - {fileID: 50550831473799560}
+  - {fileID: 742577590}
   - {fileID: 50550831220670054}
   - {fileID: 1209741254}
   - {fileID: 679665720}
   - {fileID: 166472313}
-  - {fileID: 226295109}
   - {fileID: 1737294872}
   - {fileID: 376546778}
   - {fileID: 263194296}
@@ -15767,11 +16155,11 @@ RectTransform:
   m_Children:
   - {fileID: 1386561448}
   m_Father: {fileID: 1783259343}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -822.4, y: 433.25}
+  m_AnchoredPosition: {x: -776.15, y: 433.25}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174284801
@@ -15824,7 +16212,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16671,6 +17059,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1783259343}
+  - {fileID: 1884022196}
   - {fileID: 780062778}
   - {fileID: 649344237}
   - {fileID: 1324841891}
@@ -16839,7 +17228,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1378478520}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17578,7 +17967,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18124,8 +18513,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 387641570}
-  - {fileID: 1538076126}
   - {fileID: 209352834}
+  - {fileID: 1523607202}
+  - {fileID: 1538076126}
   - {fileID: 1236433799}
   m_Father: {fileID: 1133835298}
   m_RootOrder: 1
@@ -18146,6 +18536,7 @@ MonoBehaviour:
   mainCursor: {fileID: 387641569}
   buildingCursor: {fileID: 1538076125}
   destroyCursor: {fileID: 209352833}
+  repairCursor: {fileID: 1523607201}
   aimingCursor: {fileID: 1236433798}
 --- !u!4 &1379514710 stripped
 Transform:
@@ -18412,6 +18803,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4477096728447965620, guid: 8ec68a7d82d76a843b85555c43f0ceb7, type: 3}
   m_PrefabInstance: {fileID: 1396047053}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399570404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8779135483048005908, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+  m_PrefabInstance: {fileID: 6428478614975526074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1406060728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18555,9 +18951,67 @@ Transform:
   m_Children:
   - {fileID: 214820895}
   - {fileID: 831011429}
+  - {fileID: 1909437488}
   m_Father: {fileID: 357373197}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1413750392
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1123583777}
+    m_Modifications:
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_RootOrder
+      value: 134
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949039482491686484, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
+      propertyPath: m_Name
+      value: FloorBase01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
 --- !u!1 &1417016056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4058683864212104840, guid: 7accbef4a9c2f1d4eb6d10255b473ed3, type: 3}
@@ -18576,7 +19030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6964051784266774280, guid: d4e0463756fba3844b6630486547a7fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18697,6 +19151,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
   m_PrefabInstance: {fileID: 286225352}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1436528731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436528732}
+  - component: {fileID: 1436528734}
+  - component: {fileID: 1436528733}
+  m_Layer: 5
+  m_Name: BuildingBlueprint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1436528732
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436528731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 762605309}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 16, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1436528733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436528731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -3521957681971518643, guid: 4607fbf833101e541bc86732c840527c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1436528734
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436528731}
+  m_CullTransparentMesh: 0
 --- !u!4 &1437451721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
@@ -19217,7 +19746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19941,6 +20470,81 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5660886571437173741, guid: 87ab2da24c6581b4cbcfddbdef618e53, type: 3}
   m_PrefabInstance: {fileID: 1523591296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1523607201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1523607202}
+  - component: {fileID: 1523607204}
+  - component: {fileID: 1523607203}
+  m_Layer: 2
+  m_Name: RepairCursor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1523607202
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523607201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1378478520}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: -3}
+  m_SizeDelta: {x: 16, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1523607203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523607201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1070911604190337319, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1523607204
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523607201}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1526480981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20077,7 +20681,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1378478520}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20522,7 +21126,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21263,7 +21867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22488,11 +23092,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.73984283
+      value: 0.010157168
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4614074
+      value: 2.9614074
       objectReference: {fileID: 0}
     - target: {fileID: 8554680165206483941, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23066,8 +23670,9 @@ RectTransform:
   m_Children:
   - {fileID: 65496202}
   - {fileID: 1219066958}
-  - {fileID: 173969095}
   - {fileID: 425512989}
+  - {fileID: 882401096}
+  - {fileID: 173969095}
   - {fileID: 1174284800}
   m_Father: {fileID: 1225338151}
   m_RootOrder: 0
@@ -23307,6 +23912,10 @@ PrefabInstance:
     - target: {fileID: 7915656754958166803, guid: 206d6e0d17f06494b8c8f5e71e245e0d, type: 3}
       propertyPath: m_Name
       value: MediumShip01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915656754958166803, guid: 206d6e0d17f06494b8c8f5e71e245e0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206d6e0d17f06494b8c8f5e71e245e0d, type: 3}
@@ -24554,6 +25163,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
+--- !u!1 &1884022195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1884022196}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1884022196
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884022195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 895121747}
+  m_Father: {fileID: 1225338151}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1885000296
 GameObject:
   m_ObjectHideFlags: 0
@@ -24839,6 +25484,125 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1909437487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1909437488}
+  - component: {fileID: 1909437491}
+  - component: {fileID: 1909437490}
+  - component: {fileID: 1909437489}
+  m_Layer: 0
+  m_Name: Selector_repair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1909437488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909437487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 762605309}
+  m_Father: {fileID: 1412382991}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909437489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909437487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2d56b0de169384e8d90c6998173ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTile: {fileID: 0}
+  healthBar: {fileID: 0}
+  buildingBlueprint: {fileID: 1436528733}
+--- !u!95 &1909437490
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909437487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9aa35cbe59a7fda49ab10f9cd082cd03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &1909437491
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909437487}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1045490079
+  m_SortingLayer: 5
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 8213209443941966412, guid: 81f16dad924a9994881bbfda342571f8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1911578029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2359449873805982710, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
@@ -24994,7 +25758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 1199138035590655357, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25377,6 +26141,7 @@ MonoBehaviour:
   gameCursor: {fileID: 1378478519}
   selectorBuild: {fileID: 831011428}
   selectorDestroy: {fileID: 214820894}
+  selectorRepair: {fileID: 1909437487}
 --- !u!4 &1975632118
 Transform:
   m_ObjectHideFlags: 0
@@ -25391,6 +26156,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1977448201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5048475342613025879, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+  m_PrefabInstance: {fileID: 6428478614975526074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1993613398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25637,7 +26407,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1225338151}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -26054,7 +26824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
       propertyPath: m_RootOrder
-      value: 136
+      value: 137
       objectReference: {fileID: 0}
     - target: {fileID: 50550833055507217, guid: 61c0f320d1691214181dd695ea625acc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -27601,7 +28371,7 @@ Transform:
   m_Children:
   - {fileID: 7085876827802083147}
   m_Father: {fileID: 1123583777}
-  m_RootOrder: 134
+  m_RootOrder: 135
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &50550831240926043
 Transform:
@@ -41598,7 +42368,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3035113218196212359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: 0.5, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681822137}
@@ -44885,18 +45655,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217589086541}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192017440584}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -44913,18 +45681,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217626610464}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192054988069}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -44941,18 +45707,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217655079688}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191951312141}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -44969,18 +45733,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217693451117}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191988569448}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -44997,18 +45759,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217749108096}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192201577349}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45025,18 +45785,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217810541200}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192139230357}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45053,18 +45811,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217817105479}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192133218882}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45081,18 +45837,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217834614119}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192317434722}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45109,18 +45863,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217908692967}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192242696674}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45137,18 +45889,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217979239364}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192441081281}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45165,18 +45915,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217993869796}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192426352609}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45193,18 +45941,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217989651703}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192422148850}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45221,18 +45967,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288218005670511}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192472845418}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45249,18 +45993,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288218077612200}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192409456301}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45277,18 +46019,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288218096599186}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192390694551}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45305,18 +46045,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217024240299}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192581860526}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45333,18 +46071,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217113568490}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192501310191}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45361,18 +46097,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217168393257}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192706138668}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45389,18 +46123,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217188371950}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192694684651}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45417,18 +46149,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217345360349}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192865241048}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45445,18 +46175,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217432268190}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192987790235}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45473,18 +46201,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217482265513}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379193005290924}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45501,18 +46227,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217498595539}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192920934102}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45529,18 +46253,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217541770314}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192945297999}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45557,18 +46279,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217547283583}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192931887738}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45585,18 +46305,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288217554370114}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379192924276807}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45613,18 +46331,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216504664464}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379190953949077}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45641,18 +46357,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216517120548}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379190949618721}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45669,18 +46383,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216550662948}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379190983218465}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45697,18 +46409,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216545821771}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379190980424270}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45725,18 +46435,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216565269149}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379190894032024}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45753,18 +46461,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216621947493}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191104842848}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45781,18 +46487,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216720846312}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191014988781}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45809,18 +46513,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216765396617}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191230382220}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45837,18 +46539,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216802418049}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191268469636}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45865,18 +46565,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216798796147}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191263801206}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45893,18 +46591,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216812018361}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191259262140}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45921,18 +46617,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216808756826}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191253835871}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45949,18 +46643,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216907968822}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191356245811}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -45977,18 +46669,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216928031172}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191411910593}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46005,18 +46695,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288215973347157}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191494314320}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46033,18 +46721,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288215981297101}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191485447112}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46061,18 +46747,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288215981908770}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191484994855}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46089,18 +46773,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288215975059432}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191483460077}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46117,18 +46799,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216040354266}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191427041247}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46145,18 +46825,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216053544870}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191472734627}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46173,18 +46851,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216066897749}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191458824528}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46201,18 +46877,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216079020155}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191446832766}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46229,18 +46903,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216076736102}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191448756323}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46257,18 +46929,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216096943895}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191638890770}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46285,18 +46955,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216181232327}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191554368706}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46313,18 +46981,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216239655685}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191764778240}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46341,18 +47007,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216305417087}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191690071418}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46369,18 +47033,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216446139224}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191818210653}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46397,18 +47059,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216454108951}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191877574930}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -46425,18 +47085,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8959288216470534242}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 7927379191860366951}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5811425909305499350, guid: 3a7e081e560872442b5a8888052ff305, type: 3}
   lootList:
   - loot: {fileID: 6806229792521677760, guid: d56320c1846a3a047a30ec0a431247c2, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53003,7 +53661,7 @@ PrefabInstance:
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 4943611353516409487, guid: 55796e480718e2e44ba7f158f20c98ba, type: 3}
+      objectReference: {fileID: 6561824917087977903, guid: f72dfdfca8e4c3f48b1901451a11af1c, type: 3}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: buildingObject
       value: 
@@ -53016,6 +53674,18 @@ PrefabInstance:
       propertyPath: equipped
       value: 
       objectReference: {fileID: 1911578029}
+    - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: equippedDestroyer
+      value: 
+      objectReference: {fileID: 1030448982}
+    - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: equippedBuilder
+      value: 
+      objectReference: {fileID: 1399570404}
+    - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
+      propertyPath: equippedGun
+      value: 
+      objectReference: {fileID: 1977448201}
     - target: {fileID: 4105722031043149635, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -53026,7 +53696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132490, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6428478616444132490, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53172,18 +53842,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571904923981}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842947249084}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53200,18 +53868,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571850339642}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843060441035}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53228,18 +53894,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571782138869}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842858017028}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53256,18 +53920,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571729320335}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842939417470}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53284,18 +53946,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571733567782}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842910110679}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53312,18 +53972,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571556197687}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842766299078}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53340,18 +53998,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571568784072}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842745329721}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53368,18 +54024,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571596868035}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842777604914}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53396,18 +54050,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571606306238}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842782848847}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53424,18 +54076,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571609883072}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842790624049}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53452,18 +54102,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571484804241}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842560687712}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53480,18 +54128,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571511986363}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842592059978}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53508,18 +54154,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571470320736}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842651061905}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53536,18 +54180,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572458232086}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843534111719}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53564,18 +54206,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572392445924}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843606740245}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53592,18 +54232,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572412197593}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843588739112}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53620,18 +54258,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572272137412}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843452878389}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53648,18 +54284,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572083390456}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843297684745}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53676,18 +54310,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572108889127}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843289626326}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53704,18 +54336,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572024964197}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843105042068}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53732,18 +54362,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571972675814}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843149218327}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53760,18 +54388,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879571976931898}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252843153473739}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53788,18 +54414,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572892625892}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841959432469}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53816,18 +54440,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572911997181}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841941060108}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53844,18 +54466,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572806594428}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841835652493}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53872,18 +54492,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572816393643}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841849651034}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53900,18 +54518,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572709182903}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841604024134}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53928,18 +54544,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572716017753}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841615053480}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53956,18 +54570,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572720776737}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841653370064}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -53984,18 +54596,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879572495541496}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252841558158857}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54012,18 +54622,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573501992432}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842430387969}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54040,18 +54648,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573395026840}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842327619945}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54068,18 +54674,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573292109545}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842354721816}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54096,18 +54700,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573228513723}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842161103690}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54124,18 +54726,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573247430149}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842142270708}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54152,18 +54752,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573256667857}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842189260832}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54180,18 +54778,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573215074638}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842248328127}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54208,18 +54804,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573135762821}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842068356980}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -54236,18 +54830,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 8025879573066603661}
-  ui_BuildTile: {fileID: 0}
-  healthBar: {fileID: 2118252842129217148}
-  buildBlueprint: {fileID: 0}
   spawnOnDestroy:
   - {fileID: 5890785553864213113, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   lootList:
   - loot: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     min: 1
     max: 3
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0

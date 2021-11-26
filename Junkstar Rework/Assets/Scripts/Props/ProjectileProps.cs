@@ -11,6 +11,9 @@ public class ProjectileProps : MonoBehaviour
     public float damage;
     public float speed;
 
+    public bool useAmmo;
+    public int ammoMax;
+    public bool explodeOnImpact;
     public GameObject explosionDamage;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +24,11 @@ public class ProjectileProps : MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyProps>().TakeDamage(damage);
                 Destroy(gameObject);
+
+                if (explodeOnImpact)
+                {
+                    Instantiate(explosionDamage, transform.position, transform.rotation);
+                }
             }
         }
 
@@ -30,6 +38,11 @@ public class ProjectileProps : MonoBehaviour
             {
                 //damage the player
                 Destroy(gameObject);
+
+                if (explodeOnImpact)
+                {
+                    Instantiate(explosionDamage, transform.position, transform.rotation);
+                }
             }
         }
 
@@ -37,11 +50,21 @@ public class ProjectileProps : MonoBehaviour
         {
             collision.gameObject.GetComponent<TileProps>().TakeDamage(damage, true);
             Destroy(gameObject);
+
+            if (explodeOnImpact)
+            {
+                Instantiate(explosionDamage, transform.position, transform.rotation);
+            }
         }
 
         if (collision.gameObject.tag == "isHull")
         {
             Destroy(gameObject);
+
+            if (explodeOnImpact)
+            {
+                Instantiate(explosionDamage, transform.position, transform.rotation);
+            }
         }
 
     }

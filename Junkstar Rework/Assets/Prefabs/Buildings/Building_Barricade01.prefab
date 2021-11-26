@@ -438,12 +438,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 1
+  canRepair: 0
   curHealth: 0
   maxHealth: 100
-  ui_tile: {fileID: 2857151418906216706}
-  healthBar: {fileID: 5656973905898062854}
   spawnOnDestroy: []
   lootList: []
+  repairLoot: []
   isOccupied: 0
   isTakingDamage: 0
   dmgAmount: 0
@@ -462,6 +462,8 @@ MonoBehaviour:
   buildingName: Barricade
   buildingInfo: Weak Barricade, capable of slowing down enemies but not for long
   buildingBlueprint: {fileID: -3521957681971518643, guid: 4607fbf833101e541bc86732c840527c, type: 3}
+  needsFloor: 0
+  returnLootOnDestroy: 1
   buildingRecipe:
   - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     itemCost: 1

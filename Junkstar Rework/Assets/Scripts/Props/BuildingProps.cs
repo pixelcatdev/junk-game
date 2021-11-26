@@ -9,6 +9,7 @@ public class BuildingProps : MonoBehaviour
     public string buildingInfo;
     public Sprite buildingBlueprint;
     public bool needsFloor;
+    public bool returnLootOnDestroy;
     public List<BuildingRecipe> buildingRecipe = new List<BuildingRecipe>();
 
 }

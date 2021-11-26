@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     public GameObject selectorBuild;
     public GameObject selectorDestroy;
+    public GameObject selectorRepair;
 
     // Singleton Initialization
     void Awake()

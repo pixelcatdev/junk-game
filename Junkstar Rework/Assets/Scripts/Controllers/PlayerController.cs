@@ -20,12 +20,15 @@ public class PlayerController : MonoBehaviour
     public GameObject hair;
     public GameObject outfit;
     public GameObject equipped;
+    public GameObject equippedDestroyer;
+    public GameObject equippedBuilder;
+    public GameObject equippedGun;
 
-    public enum EquipType { select, destroy, build, shoot }
+    public enum EquipType { select, destroy, repair, build, shoot }
     public EquipType equipMode;
     public GameObject projectile;
 
-    public bool isDestroying;
+    public bool isMouseDown;
     private Vector2 targetDirection;
     private GameObject lastHit;
     private bool tileHit;
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        SwitchEquipped(1);
     }
 
     void Update()
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
             Animator();
 
             DestroyMode();
+            RepairMode();
             BuildMode();
             ShootMode();
 
@@ -129,6 +134,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        //Switch to destroy or gun
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchEquipped(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchEquipped(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchEquipped(4);
+        }
     }
 
     //Takes UI input and toggles the relevant mode
@@ -136,23 +155,42 @@ public class PlayerController : MonoBehaviour
     {
         GameController.instance.selectorBuild.SetActive(false);
         GameController.instance.selectorDestroy.SetActive(false);
+        GameController.instance.selectorRepair.SetActive(false);
 
         //Destroy
         if (mode == 1)
         {
             equipMode = EquipType.destroy;
+            equippedDestroyer.SetActive(true);
+            equippedBuilder.SetActive(false);
+            equippedGun.SetActive(false);
             GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.destroy;
         }
-        //Build
+        //Repair
         else if (mode == 2)
         {
+            equipMode = EquipType.repair;
+            equippedDestroyer.SetActive(true);
+            equippedBuilder.SetActive(false);
+            equippedGun.SetActive(false);
+            GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.repair;
+        }
+        //Build
+        else if (mode == 3)
+        {
             equipMode = EquipType.build;
+            equippedDestroyer.SetActive(false);
+            equippedBuilder.SetActive(true);
+            equippedGun.SetActive(false);
             GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.building;
         }
         //Shoot
-        else if (mode == 3)
+        else if (mode == 4)
         {
             equipMode = EquipType.shoot;
+            equippedDestroyer.SetActive(false);
+            equippedBuilder.SetActive(false);
+            equippedGun.SetActive(true);
             GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.aim;
         }
     }
@@ -196,10 +234,8 @@ public class PlayerController : MonoBehaviour
 
                 float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
 
-                Debug.Log("hit");
-
                 //if the hit obj is within than the players range
-                if (objDistance < cutterRange && hitObj.GetComponent<TileProps>())
+                if (objDistance < cutterRange && hitObj.GetComponent<TileProps>() && hitObj.GetComponent<TileProps>().canDestroy)
                 {
                     GameController.instance.selectorDestroy.SetActive(true);
                     GameController.instance.selectorDestroy.transform.position = hit.transform.position;
@@ -208,16 +244,16 @@ public class PlayerController : MonoBehaviour
                     //If the player presses the mouse 0, start damaging the object
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        isDestroying = true;
+                        isMouseDown = true;
                     }
 
-                    if (Input.GetKey(KeyCode.Mouse0) && isDestroying == true)
+                    if (Input.GetKey(KeyCode.Mouse0) && isMouseDown == true)
                     {
                         hit.transform.GetComponent<TileProps>().TakeDamage(cutterDamage, false);
                     }
                     else
                     {
-                        isDestroying = false;
+                        isMouseDown = false;
                     }
                 }
                 else
@@ -228,6 +264,72 @@ public class PlayerController : MonoBehaviour
             else
             {
                 GameController.instance.selectorDestroy.SetActive(false);
+            }
+        }
+    }
+
+    void RepairMode()
+    {
+        if (equipMode == EquipType.repair)
+        {
+            LayerMask hitLayer = LayerMask.GetMask("ShipTile", "Object");
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
+
+            if (hits.Length > 0)
+            {
+                //System.Array.Sort(hits, (h1, h2) => h2.transform.gameObject.layer.CompareTo(h1.transform.gameObject.layer));
+                GameObject hit = hits[0].transform.gameObject;
+                GameObject hitObj = hit.transform.gameObject;
+
+                float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+
+                //if the hit obj is within than the players range
+                if (objDistance < cutterRange && hitObj.GetComponent<TileProps>() && hitObj.GetComponent<TileProps>().canRepair)
+                {
+                    GameController.instance.selectorRepair.SetActive(true);
+                    GameController.instance.selectorRepair.transform.position = hit.transform.position;
+                    GameController.instance.selectorRepair.GetComponent<SelectorProps>().targetTile = hit;
+                    GameController.instance.selectorRepair.GetComponent<SelectorProps>().buildingBlueprint.sprite = hit.GetComponent<TileProps>().spawnOnDestroy[0].GetComponent<SpriteRenderer>().sprite;
+
+                    if (InventoryController.instance.HasResources(hit.GetComponent<TileProps>().spawnOnDestroy[0]) == true)
+                    {
+                        GameController.instance.selectorRepair.GetComponent<SelectorProps>().buildingBlueprint.color = Color.white;
+                    }
+                    else
+                    {
+                        GameController.instance.selectorRepair.GetComponent<SelectorProps>().buildingBlueprint.color = Color.red;
+                    }
+
+                    //If the player presses the mouse 0, start damaging the object
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        isMouseDown = true;
+                    }
+
+                    if (Input.GetKey(KeyCode.Mouse0) && isMouseDown == true)
+                    {
+                        //if the player has the resources to repair
+                        if (InventoryController.instance.HasResources(hit.GetComponent<TileProps>().spawnOnDestroy[0]) == true)
+                        {
+                            //Deduct the item costs
+                            InventoryController.instance.DeductResources(hit.GetComponent<TileProps>().spawnOnDestroy[0]);
+                            hit.transform.GetComponent<TileProps>().Repair();
+                        }
+                    }
+                    else
+                    {
+                        isMouseDown = false;
+                    }
+                }
+                else
+                {
+                    GameController.instance.selectorRepair.SetActive(false);
+                }
+            }
+            else
+            {
+                GameController.instance.selectorRepair.SetActive(false);
             }
         }
     }
@@ -244,10 +346,8 @@ public class PlayerController : MonoBehaviour
 
             if (hit)
             {
-                Debug.Log("a");
                 if (hit.transform.gameObject.GetComponent<TileProps>())
                 {
-                    Debug.Log("b");
                     TileProps tile = hit.transform.gameObject.GetComponent<TileProps>();
 
                     GameObject hitObj = hit.transform.gameObject;
@@ -255,7 +355,6 @@ public class PlayerController : MonoBehaviour
 
                     if (hit.transform.tag == "ShipTileFloor" && !tile.isOccupied && objDistance < 2)
                     {
-                        Debug.Log("d");
                         //work out if the player can afford it and color the blueprint accordingly
 
                         GameController.instance.selectorBuild.SetActive(true);
@@ -293,6 +392,10 @@ public class PlayerController : MonoBehaviour
                             }
                         }
 
+                    }
+                    else
+                    {
+                        GameController.instance.selectorBuild.SetActive(false);
                     }
                 }
                 else
