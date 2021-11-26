@@ -9,10 +9,6 @@ public class TileProps : MonoBehaviour
     public bool canDestroy;
     public float curHealth;
     public float maxHealth;
-    public GameObject ui_tile;
-    public GameObject ui_BuildTile;
-    public Image healthBar;
-    public Image buildBlueprint;
     public List<GameObject> spawnOnDestroy;
     public List<LootSlot> lootList;
 
@@ -29,25 +25,6 @@ public class TileProps : MonoBehaviour
     {
         //TakingDamage();
     }
-
-    //Damage the tile, destroy if below zero and place whatever objects are found in spawnOnDestroy
-    //public void TakingDamage()
-    //{
-    //    if (canDestroy && isTakingDamage)
-    //    {
-    //        //ui_tile.SetActive(true);
-    //        healthBar.fillAmount = curHealth / maxHealth;
-
-    //        if (curHealth - dmgAmount > 0)
-    //        {
-    //            curHealth -= dmgAmount;
-    //        }
-    //        else
-    //        {
-    //            DestroyTile(true, true);
-    //        }
-    //    }
-    //}
 
     public void TakeDamage(float damage, bool isShotAt)
     {
@@ -67,9 +44,6 @@ public class TileProps : MonoBehaviour
             {
                 DestroyObject(isShotAt, true);
             }
-
-            //Draw healthbar
-            healthBar.fillAmount = curHealth / maxHealth;
         }
         else
         {
@@ -147,6 +121,7 @@ public class TileProps : MonoBehaviour
         }
 
         //Player.Instance.beamObj.SetActive(false);
+        GameController.instance.selectorDestroy.SetActive(false);
         PlayerController.instance.isDestroying = false;
         Destroy(gameObject);
     }

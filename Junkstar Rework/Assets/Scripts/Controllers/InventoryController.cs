@@ -417,12 +417,14 @@ public class InventoryController : MonoBehaviour
         if (ui_crafting.activeInHierarchy)
         {
             ui_crafting.SetActive(false);
-            GameController.instance.gameState = GameController.GameState.game;
+            GameController.instance.gameState = GameController.GameState.game;            
         }
         else
         {
             ui_crafting.SetActive(true);
             GameController.instance.gameState = GameController.GameState.menu;
+            //GameController.instance.selectorBuild.SetActive(false);
+            //GameController.instance.selectorDestroy.SetActive(false);
         }
     }
 

@@ -134,6 +134,9 @@ public class PlayerController : MonoBehaviour
     //Takes UI input and toggles the relevant mode
     public void SwitchEquipped(int mode)
     {
+        GameController.instance.selectorBuild.SetActive(false);
+        GameController.instance.selectorDestroy.SetActive(false);
+
         //Destroy
         if (mode == 1)
         {
@@ -193,36 +196,19 @@ public class PlayerController : MonoBehaviour
 
                 float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
 
+                Debug.Log("hit");
+
                 //if the hit obj is within than the players range
                 if (objDistance < cutterRange && hitObj.GetComponent<TileProps>())
                 {
-                    //if there's no objects previously hit, set the current object to that last object and highlight it
-                    if (lastHit == null)
-                    {
-                        lastHit = hitObj;
-
-                        hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
-                    }
-                    else
-                    {
-                        //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
-                        if (hitObj != lastHit)
-                        {
-                            lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
-                            lastHit = hitObj;
-                            hitObj.GetComponent<TileProps>().ui_tile.SetActive(true);
-                        }
-                    }
+                    GameController.instance.selectorDestroy.SetActive(true);
+                    GameController.instance.selectorDestroy.transform.position = hit.transform.position;
+                    GameController.instance.selectorDestroy.GetComponent<SelectorProps>().targetTile = hit;
 
                     //If the player presses the mouse 0, start damaging the object
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         isDestroying = true;
-                        //anim.SetBool("isShooting", true);
-                    }
-                    else
-                    {
-                        //SetBool("isShooting", false);
                     }
 
                     if (Input.GetKey(KeyCode.Mouse0) && isDestroying == true)
@@ -233,25 +219,15 @@ public class PlayerController : MonoBehaviour
                     {
                         isDestroying = false;
                     }
-
                 }
                 else
                 {
-                    //If the player goes out of range of the object, clear the highlight on that object
-                    if (lastHit != null)
-                    {
-                        lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
-                    }
+                    GameController.instance.selectorDestroy.SetActive(false);
                 }
             }
-        }
-
-        //Clear the highlight on the object if they're not in destroy mode
-        else
-        {
-            if (lastHit != null)
+            else
             {
-                lastHit.GetComponent<TileProps>().ui_tile.SetActive(false);
+                GameController.instance.selectorDestroy.SetActive(false);
             }
         }
     }
@@ -268,91 +244,67 @@ public class PlayerController : MonoBehaviour
 
             if (hit)
             {
+                Debug.Log("a");
                 if (hit.transform.gameObject.GetComponent<TileProps>())
                 {
+                    Debug.Log("b");
                     TileProps tile = hit.transform.gameObject.GetComponent<TileProps>();
 
-                    if (hit.transform.tag == "ShipTileFloor" && !tile.isOccupied)
+                    GameObject hitObj = hit.transform.gameObject;
+                    float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+
+                    if (hit.transform.tag == "ShipTileFloor" && !tile.isOccupied && objDistance < 2)
                     {
-                        GameObject hitObj = hit.transform.gameObject;
+                        Debug.Log("d");
+                        //work out if the player can afford it and color the blueprint accordingly
 
-                        float objDistance = Vector2.Distance(transform.position, hitObj.transform.position);
+                        GameController.instance.selectorBuild.SetActive(true);
+                        GameController.instance.selectorBuild.transform.position = hit.transform.position;
+                        GameController.instance.selectorBuild.GetComponent<SelectorProps>().targetTile = hit.transform.gameObject;
+                        GameController.instance.selectorBuild.GetComponent<SelectorProps>().buildingBlueprint.sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
 
-                        //if the hit obj is within than the players range
-                        if (objDistance < 2)
+                        if (InventoryController.instance.HasResources(buildingObject) == true)
                         {
-                            //if there's no objects previously hit, set the current object to that last object and highlight it
-                            if (lastHit == null)
+                            GameController.instance.selectorBuild.GetComponent<SelectorProps>().buildingBlueprint.color = Color.white;
+                        }
+                        else
+                        {
+                            GameController.instance.selectorBuild.GetComponent<SelectorProps>().buildingBlueprint.color = Color.red;
+                        }
+
+                        //If mouse 0 is clicked, build the object
+                        if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
+                        {
+                            //deduct the building costs
+                            if (InventoryController.instance.HasResources(buildingObject) == true)
                             {
-                                lastHit = hitObj;
-                                hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
-                            }
-                            else
-                            {
-                                //otherwise if the new object is different to the last object, clear the highlight on the last object, then set the lastObj to the current object and highlight it
-                                if (hitObj != lastHit)
-                                {
-                                    lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-                                    lastHit = hitObj;
-                                    hitObj.GetComponent<TileProps>().ui_BuildTile.SetActive(true);
-                                }
-                            }
+                                //Deduct the item costs
+                                InventoryController.instance.DeductResources(buildingObject);
 
-                            //work out if the player can afford it and color the blueprint accordingly
-                            if (hitObj.GetComponent<TileProps>().ui_BuildTile != null)
-                            {
-                                if (InventoryController.instance.HasResources(buildingObject) == true)
-                                {
-                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
-                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.white;
-                                }
-                                else
-                                {
-                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().sprite = buildingObject.GetComponent<BuildingProps>().buildingBlueprint;
-                                    hitObj.GetComponent<TileProps>().buildBlueprint.GetComponent<Image>().color = Color.red;
-                                }
-                            }
+                                //instantiate the new building, and child it to the hitObj
+                                GameObject newBuild = Instantiate(buildingObject, hitObj.transform.position, hitObj.transform.rotation, hitObj.transform);
 
-                            //If mouse 0 is clicked, build the object
-                            if (Input.GetKey(KeyCode.Mouse0) && hitObj.GetComponent<TileProps>().isOccupied == false)
-                            {
-                                //deduct the building costs
-                                if (InventoryController.instance.HasResources(buildingObject) == true)
-                                {
-                                    //Deduct the item costs
-                                    InventoryController.instance.DeductResources(buildingObject);
+                                //Add the building to the list of builtObjects
+                                playerBuildings.Add(newBuild.gameObject);
 
-                                    //instantiate the new building, and child it to the hitObj
-                                    GameObject newBuild = Instantiate(buildingObject, hitObj.transform.position, hitObj.transform.rotation, hitObj.transform);
-
-                                    //Add the building to the list of builtObjects
-                                    playerBuildings.Add(newBuild.gameObject);
-
-                                    lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-                                    //lastHit.GetComponent<TileProps>().canDestroy = false;
-                                    lastHit.GetComponent<TileProps>().isOccupied = true;
-                                }
+                                //lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
+                                hitObj.GetComponent<TileProps>().canDestroy = false;
+                                hitObj.GetComponent<TileProps>().isOccupied = true;
                             }
                         }
+
                     }
                 }
                 else
                 {
-                    //If the player goes out of range of the object, clear the highlight on that object
-                    if (lastHit != null)
-                    {
-                        lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-                    }
+                    GameController.instance.selectorBuild.SetActive(false);
                 }
             }
         }
         //Clear the highlight on the object if they're not in build mode
         else
         {
-            if (lastHit != null && lastHit.GetComponent<TileProps>().ui_BuildTile != null)
-            {
-                lastHit.GetComponent<TileProps>().ui_BuildTile.SetActive(false);
-            }
+            GameController.instance.selectorBuild.SetActive(false);
         }
     }
 

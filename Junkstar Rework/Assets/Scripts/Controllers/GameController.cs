@@ -25,6 +25,9 @@ public class GameController : MonoBehaviour
 
     public GameObject gameCursor;
 
+    public GameObject selectorBuild;
+    public GameObject selectorDestroy;
+
     // Singleton Initialization
     void Awake()
     {
