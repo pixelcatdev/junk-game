@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: 1
   cooldown: 0.25
-  damage: 10
+  damage: 25
   speed: 10
   explosionDamage: {fileID: 0}
 --- !u!96 &3231959557846852643

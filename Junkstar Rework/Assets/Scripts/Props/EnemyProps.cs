@@ -37,7 +37,7 @@ public class EnemyProps : MonoBehaviour
 
     void Move()
     {
-        if (TargetShipController.instance.playerIsBoarded)
+        if (TargetShipController.instance.playerIsBoarded || GameController.instance.playerShipBreached)
         {
             transform.position = Vector2.MoveTowards(transform.position, PlayerController.instance.transform.position, speed * Time.deltaTime);
         }

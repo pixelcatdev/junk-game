@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 6137700561574171486}
   - component: {fileID: 5723650614175861128}
   - component: {fileID: 2208526872083145055}
+  - component: {fileID: 2193236888824810380}
   m_Layer: 9
   m_Name: Building_Turret01
   m_TagString: Untagged
@@ -218,6 +219,7 @@ Transform:
   - {fileID: 1602888878064785007}
   - {fileID: 4876029128641977988}
   - {fileID: 5013923460930384270}
+  - {fileID: 2898580735429957552}
   - {fileID: 8669785190276878565}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -315,7 +317,9 @@ MonoBehaviour:
   curHealth: 0
   maxHealth: 100
   ui_tile: {fileID: 5286768561222165803}
+  ui_BuildTile: {fileID: 0}
   healthBar: {fileID: 2340007200682174511}
+  buildBlueprint: {fileID: 0}
   spawnOnDestroy: []
   lootList: []
   isOccupied: 0
@@ -336,6 +340,7 @@ MonoBehaviour:
   buildingName: Turret
   buildingInfo: Weak turret, slow fire rate
   buildingBlueprint: {fileID: 3916325095958849906, guid: 4607fbf833101e541bc86732c840527c, type: 3}
+  needsFloor: 0
   buildingRecipe:
   - lootObject: {fileID: 2335509057318779265, guid: a0ccce794ee424c4ab3f8f260d6efee5, type: 3}
     itemCost: 1
@@ -343,6 +348,25 @@ MonoBehaviour:
   - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     itemCost: 5
     canAfford: 0
+--- !u!114 &2193236888824810380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3662349294823646158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f736a4f82ca75a4f8101550ab76d484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretType: 1
+  aggroRadius: 5
+  aggroCollider: {fileID: 0}
+  projectile: {fileID: 4943611353516409487, guid: 55796e480718e2e44ba7f158f20c98ba, type: 3}
+  gunCooldown: 0.25
+  currentTargets: []
+  turretObj: {fileID: 4876029128641977988}
 --- !u!1 &4226455308522488096
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +482,7 @@ RectTransform:
   - {fileID: 354653925013870951}
   - {fileID: 8194926082079388370}
   m_Father: {fileID: 615047645505743812}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -663,6 +687,66 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &6640105203721106120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2898580735429957552}
+  - component: {fileID: 3742902244346669295}
+  - component: {fileID: 3248270666848793759}
+  m_Layer: 9
+  m_Name: AggroCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2898580735429957552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640105203721106120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 615047645505743812}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3742902244346669295
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640105203721106120}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &3248270666848793759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640105203721106120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5085c421e85ad499c760fc81f56f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6845654583573667400
 GameObject:
   m_ObjectHideFlags: 0

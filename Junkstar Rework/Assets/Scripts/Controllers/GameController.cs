@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public GameObject overWorld;
 
     public Transform player;
+    public bool playerShipBreached;
 
     //public bool playerShipIsDocked;
     public GameObject overWorldMap;

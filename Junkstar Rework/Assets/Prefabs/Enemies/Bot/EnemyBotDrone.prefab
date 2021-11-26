@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6699295413914290224}
   - component: {fileID: 5535948610465501113}
   - component: {fileID: 5933963238528673804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBotDrone
   m_TagString: isEnemy
   m_Icon: {fileID: 0}

@@ -8,14 +8,14 @@ Junkstar Game plan
 - crafting					
 	- building on tiles			DONE
 	- building recipes			DONE
-	- crafting UI				
+	- crafting UI				DONE
 - repairing
 	- tile repair
 - combat
-	- shooting
+	- shooting				DONE
 	- death
 	- enemy types
-	- enemy spawns
+	- enemy spawns				DONE
 	- turrets
 - overworld
 	- navigation				DONE
@@ -35,6 +35,9 @@ Junkstar Game plan
 	- debris field
 	- sos
 - missions
+	- bounty hunt
+	- demolition
+	- asset recovery
 - player customization
 - save/load
 - config
