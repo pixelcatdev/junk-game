@@ -40,7 +40,7 @@ Junkstar Game plan
 	- trash item				DONE
 	- store item				DONE
 - ship management
-	- health
+	- health				
 	- fuel
 	- upgrades
 - ship combat
