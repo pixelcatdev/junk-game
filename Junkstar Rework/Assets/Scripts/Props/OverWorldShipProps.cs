@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class OverWorldShipProps : MonoBehaviour
 {
+    const string stringGen = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS ", "Atala-", "Orphan ", "Dawn", "Morning ", "Midnight " };
-    string[] shipNameB = { "Storm", "Duchess", "Tokyo", "Jupiter", "Starlight", "Beauty", "Warrior", "Ocean", "Advent", "Trojan", "Pride", "Danger" };
 
     public enum shipSize { small, medium, large }
     public enum shipQuality { poor, average, good }
@@ -31,7 +30,11 @@ public class OverWorldShipProps : MonoBehaviour
         if (!isStation)
         {
             //Generate the name
-            shipName = shipNameA[Random.Range(0, shipNameA.Length)] + shipNameB[Random.Range(0, shipNameB.Length)];
+            int charAmount = 12; //Random.Range(minCharAmount, maxCharAmount); //set those to the minimum and maximum length of your string
+            for (int i = 0; i < charAmount; i++)
+            {
+                shipName += stringGen[Random.Range(0, stringGen.Length)];
+            }
 
             //Generate the size
             size = (shipSize)Random.Range(0, 3);

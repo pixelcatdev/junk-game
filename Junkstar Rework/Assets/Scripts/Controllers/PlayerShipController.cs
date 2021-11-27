@@ -12,6 +12,10 @@ public class PlayerShipController : MonoBehaviour
     public TextMeshProUGUI txt_ShipHealth;
     public TextMeshProUGUI txt_ShipFuel;
 
+    public float shipSpeed;
+    public float shipTurn;
+    public float shipScanner;
+
     private void Start()
     {
         NewGameSetup();
