@@ -9,12 +9,13 @@ public class OverworldController : MonoBehaviour
     public Transform mapScreen;
     public Transform playerShip;
     public GameObject wreckShip;
-    public GameObject ui_Selector;
 
     public List<GameObject> shipwrecks;
     public GameObject spaceStation;
-    private int curTarget;
-    private bool canSwitchTarget;
+    public Transform selectedTarget;
+
+    public int minWrecks;
+    public int maxWrecks;
 
     public bool isTravelling;
     public float travelSpeed;
@@ -29,7 +30,6 @@ public class OverworldController : MonoBehaviour
     private void Start()
     {
         //Scan();
-        canSwitchTarget = true;
     }
 
     private void Update()
@@ -44,7 +44,6 @@ public class OverworldController : MonoBehaviour
                     ClearScan();
                 }
                 Scan();
-                SwitchTarget();
             }
 
             //Debug for travelling to selected target
@@ -52,7 +51,6 @@ public class OverworldController : MonoBehaviour
             {
                 //Turn off any UI elements
                 playerShip.gameObject.GetComponent<LineRenderer>().enabled = false;
-                ui_Selector.SetActive(false);
 
                 isTravelling = true;
 
@@ -70,7 +68,11 @@ public class OverworldController : MonoBehaviour
                 GameController.instance.SwitchToGame();
             }
 
-            SelectTarget();
+            //SelectTarget();
+            if (!isTravelling)
+            {
+                CursorOver();
+            }            
         }
 
         Travel();
@@ -86,7 +88,7 @@ public class OverworldController : MonoBehaviour
         shipwrecks.Add(spaceStation);
 
         //Randomise shipwrecks
-        int randomWreckTotal = Random.Range(30, 50);
+        int randomWreckTotal = Random.Range(minWrecks, maxWrecks);
 
         for (int i = 0; i < randomWreckTotal; i++)
         {
@@ -95,23 +97,6 @@ public class OverworldController : MonoBehaviour
 
             shipwrecks.Add(newWreck);
         }
-
-        //Enable UI elements
-        EnableScanUI();
-
-
-    }
-
-    private void EnableScanUI()
-    {
-        //Enable UI elements
-        playerShip.gameObject.GetComponent<LineRenderer>().enabled = true;
-        ui_Selector.SetActive(true);
-
-        //Place cursor at first shipwreck
-        curTarget = 0;
-        ui_Selector.transform.position = shipwrecks[curTarget].transform.position;
-        UpdateTargetUI();
     }
 
     //Clears the map and removes all shipwrecks
@@ -128,70 +113,65 @@ public class OverworldController : MonoBehaviour
         shipwrecks.Clear();
     }   
 
-    //Navigate through the map
-    public void SelectTarget()
+    //Get ship info/set destination on mouse over
+    void CursorOver()
     {
-        if (shipwrecks.Count > 0 && canSwitchTarget && !isTravelling)
+        LayerMask hitLayer = LayerMask.GetMask("OverWorld");
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
+
+        if (hit)
         {
-            float dirX = Input.GetAxisRaw("Horizontal");
-
-            //Navigate right
-            if (dirX > 0)
+            if (hit.transform.gameObject.GetComponent<OverWorldShipProps>())
             {
-                if (curTarget + 1 > shipwrecks.Count - 1)
-                {
-                    curTarget = 0;
-                }
-                else
-                {
-                    curTarget += 1;
-                }
+                //Display the Target UI
+                DisplayOverWorldTarget(hit.transform);                
 
-                SwitchTarget();
-
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    isTravelling = true;
+                    ClearOverWorldTarget();
+                }
             }
-
-            //Navigate right
-            else if (dirX < 0)
+            else
             {
-                if (curTarget - 1 < 0)
-                {
-                    curTarget = shipwrecks.Count - 1;
-                }
-                else
-                {
-                    curTarget -= 1;
-                }
-
-                SwitchTarget();
+                ClearOverWorldTarget();
             }
-        }        
+        }
+        else
+        {
+            ClearOverWorldTarget();
+        }
     }
 
-    void SwitchTarget()
+    //Move the ship Selector to the current ship, set the line renderer to target the current ship and display the ships stats in the stats UI
+    void DisplayOverWorldTarget (Transform target)
     {
-        ui_Selector.transform.position = shipwrecks[curTarget].transform.position;
+        //Set the selectedTarget
+        selectedTarget = target;
+
+        //Update selector and targeting line
+        GameController.instance.selectorOverWorld.SetActive(true);
+        GameController.instance.selectorOverWorld.transform.position = target.position;
+        playerShip.gameObject.GetComponent<LineRenderer>().enabled = true;
         playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(0, playerShip.transform.position);
-        playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(1, shipwrecks[curTarget].transform.position);
-        canSwitchTarget = false;
-        StartCoroutine("SwitchTargetReset");
-        UpdateTargetUI();
-    }
+        playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(1, target.position);
 
-    void UpdateTargetUI()
-    {
-        txt_shipName.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().shipName.ToUpper();
-        txt_shipSize.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().size.ToString().ToUpper();
-        txt_shipQuality.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().quality.ToString().ToUpper();
-        txt_shipEnemy.text = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().enemy.ToString().ToUpper();
+        //Update txt UI elements displaying ship info
+
+        OverWorldShipProps shipStats = target.GetComponent<OverWorldShipProps>();
+
+        txt_shipName.text = shipStats.shipName.ToUpper();
+        txt_shipSize.text = shipStats.size.ToString().ToUpper();
+        txt_shipQuality.text = shipStats.quality.ToString().ToUpper();
+        txt_shipEnemy.text = shipStats.enemy.ToString().ToUpper();
 
         //If the target isnt the trading station, get the ships stats and pass them into TargetShipMap so it can create the appropriate map (quality, size, enemy etc)
-        if (!shipwrecks[curTarget].gameObject.GetComponent<OverWorldShipProps>().isStation)
+        if (!shipStats.isStation)
         {
-            TargetShipController.instance.shipName = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().shipName.ToUpper();
-            TargetShipController.instance.size = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().size.ToString();
-            TargetShipController.instance.quality = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().quality.ToString();
-            TargetShipController.instance.enemy = shipwrecks[curTarget].GetComponent<OverWorldShipProps>().enemy.ToString();
+            TargetShipController.instance.shipName = shipStats.shipName.ToUpper();
+            TargetShipController.instance.size = shipStats.size.ToString();
+            TargetShipController.instance.quality = shipStats.quality.ToString();
+            TargetShipController.instance.enemy = shipStats.enemy.ToString();
             TargetShipController.instance.isStation = false;
         }
         else
@@ -201,13 +181,25 @@ public class OverworldController : MonoBehaviour
             TargetShipController.instance.quality = null;
             TargetShipController.instance.enemy = null;
 
-        }        
+        }
 
         //Calculate Distance
-        float distance = Vector2.Distance(playerShip.position, shipwrecks[curTarget].transform.position);
+        float distance = Vector2.Distance(playerShip.position, target.position);
 
         //Calculate fuel
         //Fuel consumption per unit * distance vs Current Fuel
+    }
+
+    //Hide UI targeting info
+    void ClearOverWorldTarget ()
+    {
+        GameController.instance.selectorOverWorld.SetActive(false);
+        playerShip.gameObject.GetComponent<LineRenderer>().enabled = false;
+
+        txt_shipName.text = null;
+        txt_shipSize.text = null;
+        txt_shipQuality.text = null;
+        txt_shipEnemy.text = null;
     }
 
     //Move the player towards the target
@@ -216,11 +208,11 @@ public class OverworldController : MonoBehaviour
         //Move the player ship towards the target location
         if (isTravelling)
         {
-            float distance = Vector3.Distance(playerShip.position, shipwrecks[curTarget].transform.position);
+            float distance = Vector3.Distance(playerShip.position, selectedTarget.position);
 
             if (distance > 0f)
             {
-                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, shipwrecks[curTarget].transform.position, travelSpeed * Time.deltaTime);
+                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, selectedTarget.position, travelSpeed * Time.deltaTime);
             }
             else
             {
@@ -234,15 +226,8 @@ public class OverworldController : MonoBehaviour
     private void ReachDestination()
     {        
         isTravelling = false;
-        canSwitchTarget = true;
         TargetShipController.instance.MapGen();
+        ClearOverWorldTarget();
+        selectedTarget = null;
     }
-
-    //Stops the shipwreck selector spamming through all available wrecks
-    IEnumerator SwitchTargetReset()
-    {
-        yield return new WaitForSeconds(0.25f);
-        canSwitchTarget = true;
-    }
-
 }

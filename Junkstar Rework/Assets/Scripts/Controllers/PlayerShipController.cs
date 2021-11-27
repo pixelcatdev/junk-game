@@ -10,6 +10,7 @@ public class PlayerShipController : MonoBehaviour
     public List<GameObject> playerShipTiles;
     private ShipMapProps shipMapProps;
     public TextMeshProUGUI txt_ShipHealth;
+    public TextMeshProUGUI txt_ShipFuel;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class PlayerShipController : MonoBehaviour
     private void Update()
     {
         txt_ShipHealth.text = "SHIP: " + Mathf.RoundToInt((shipMapProps.mapCurHealth / shipMapProps.mapMaxHealth) * 100).ToString() + "%";
+        txt_ShipFuel.text = "FUEL: " + Mathf.RoundToInt((shipMapProps.mapCurFuel / 100) * 100).ToString() + "%";
     }
 
     void ShipHealth()

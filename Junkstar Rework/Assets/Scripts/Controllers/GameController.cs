@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public GameObject selectorBuild;
     public GameObject selectorDestroy;
     public GameObject selectorRepair;
+    public GameObject selectorOverWorld;
 
     // Singleton Initialization
     void Awake()
@@ -49,6 +50,7 @@ public class GameController : MonoBehaviour
     {
         GameController.instance.gameState = GameController.GameState.overworld;
         CameraController.instance.target = overWorldMap;
+        gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.overWorld;
 
         ui_overworld.SetActive(true);
         ui_game.SetActive(false);
@@ -57,9 +59,9 @@ public class GameController : MonoBehaviour
     public void SwitchToGame()
     {
         GameController.instance.gameState = GameController.GameState.game;
-        
         CameraController.instance.target = player.gameObject;
         CameraController.instance.JumpToTarget();
+        gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
 
         ui_overworld.SetActive(false);
         ui_game.SetActive(true);

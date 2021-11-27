@@ -5,7 +5,7 @@ using UnityEngine;
 public class OverWorldShipProps : MonoBehaviour
 {
 
-    string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS ", "Atala-", "Orphan ", "Dawn", "Morning ", "Midnight "};
+    string[] shipNameA = { "Raging ", "Restless ", "Star of ", "Eye of ", "The ", "SS ", "Atala-", "Orphan ", "Dawn", "Morning ", "Midnight " };
     string[] shipNameB = { "Storm", "Duchess", "Tokyo", "Jupiter", "Starlight", "Beauty", "Warrior", "Ocean", "Advent", "Trojan", "Pride", "Danger" };
 
     public enum shipSize { small, medium, large }
@@ -42,7 +42,7 @@ public class OverWorldShipProps : MonoBehaviour
             //Generate the enemyType
             enemy = (shipEnemy)Random.Range(0, 3);
         }
-       
+
     }
 
 }

@@ -8,4 +8,5 @@ public class ShipMapProps : MonoBehaviour
     public float mapMaxHealth;
     public float mapCritHealth;
     public float mapPower;
+    public float mapCurFuel;
 }
