@@ -40,9 +40,16 @@ Junkstar Game plan
 	- trash item				DONE
 	- store item				DONE
 - ship management
-	- health				
+	- health				DONE
 	- fuel
+		- fuel consumption		DONE
+		- refuelling
 	- upgrades
+		- engines (speed)
+		- thrusters (manouvreing)
+		- scanner (evasion)
+		- weapon 1
+		- weapon 2
 - ship combat
 	
 - contracts

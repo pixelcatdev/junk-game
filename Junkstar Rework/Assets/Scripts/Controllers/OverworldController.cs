@@ -22,11 +22,14 @@ public class OverworldController : MonoBehaviour
     public int maxWrecks;
 
     public bool isTravelling;
+    public bool isTravelPaused;
+    private bool eventTriggered;
     public float travelSpeed;
 
     public enum EventType { DebrisStrike, BoardingParty, ShipToShip }
     public EventType eventType;
     public bool isEvent;
+    private float eventDistanceTrigger;
 
     public TextMeshProUGUI txt_shipName;
     public TextMeshProUGUI txt_shipSize;
@@ -39,7 +42,7 @@ public class OverworldController : MonoBehaviour
 
     private void Start()
     {
-        //Scan();
+        Scan();
     }
 
     private void Update()
@@ -90,7 +93,7 @@ public class OverworldController : MonoBehaviour
 
         for (int i = 0; i < randomWreckTotal; i++)
         {
-            Vector2 newPos = new Vector2(playerShip.position.x, playerShip.position.y) + Random.insideUnitCircle * 4f;
+            Vector2 newPos = new Vector2(playerShip.position.x, playerShip.position.y) + Random.insideUnitCircle * 8f;
             GameObject newWreck = Instantiate(wreckShip, newPos, mapScreen.transform.rotation, transform.GetChild(0));
 
             shipwrecks.Add(newWreck);
@@ -132,6 +135,10 @@ public class OverworldController : MonoBehaviour
                         //ClearOverWorldTarget();
                         isTravelling = true;
 
+                        //Set the randomised event trigger distance
+                        eventDistanceTrigger = Random.Range(0, targetDistance - 0.25f);
+                        Debug.Log("Event will trigger at " + eventDistanceTrigger);
+
                         //If already docked with a generated map, undock and clear the map
                         TargetShipController.instance.playerShipIsDocked = false;
                         if (TargetShipController.instance.generatedMap)
@@ -155,7 +162,7 @@ public class OverworldController : MonoBehaviour
     //Determines if the player ship has enough fuel
     bool HasFuel()
     {
-        if(playerShipMap.GetComponent<ShipMapProps>().mapCurFuel - fuelCost > 0)
+        if(playerShipMap.GetComponent<ShipMapProps>().mapCurFuel - fuelCost >= 0)
         {
             return true;
         }
@@ -224,9 +231,6 @@ public class OverworldController : MonoBehaviour
 
         //Calculate Distance
         float distance = Vector2.Distance(playerShip.position, target.position);
-
-        //Calculate fuel
-        //Fuel consumption per unit * distance vs Current Fuel
     }
 
     //Hide UI targeting info
@@ -247,7 +251,7 @@ public class OverworldController : MonoBehaviour
     void Travel()
     {
         //Move the player ship towards the target location
-        if (isTravelling)
+        if (isTravelling && !isTravelPaused)
         {
             float distance = Vector3.Distance(playerShip.position, selectedTarget.position);
             playerShip.gameObject.GetComponent<LineRenderer>().SetPosition(0, playerShip.transform.position);
@@ -265,9 +269,55 @@ public class OverworldController : MonoBehaviour
 
     void TravelEvents()
     {
-        //Based on your scanner upgrade, divide the distance by 2 and when the player is halfway to the target ship, randomise the chance of an event happening
-        //If the event occurs, randomise what type of event it is and stop flight (flight will automatically recommence when the event is over)
-        //Use playerShipMap.GetComponent<PlayerShipController>().shipSpeed to randomise the chance of something happening
+        if (isTravelling && !eventTriggered)
+        {
+            float curDistance = Vector3.Distance(playerShip.position, selectedTarget.position);
+            if (curDistance <= eventDistanceTrigger)
+            {
+                //randomise chance of event based on player ship scanners value
+                float eventChance = Random.Range(1, 100);
+                float playerScanner = playerShipMap.GetComponent<PlayerShipController>().shipScanner;
+                Debug.Log("Event: " +eventChance);
+                if(eventChance > playerScanner)
+                {
+                    GenEvent();
+                }
+                else
+                {
+                    Debug.Log("Evaded event");
+                }
+                eventTriggered = true;
+            }
+        }        
+    }
+
+    void GenEvent()
+    {
+        Debug.Log("Event generating");
+        //Randomise type of event
+        //switch to event type accordingly
+        eventType = (EventType)Random.Range(0, 2);
+
+        switch (eventType)
+        {
+            case EventType.DebrisStrike:
+                Debug.Log("Debris has struck the ship dealing X damage");
+                //Generate a cloud of debris that'll move over and under the ship, damaging X random tiles in the process
+                break;
+            case EventType.BoardingParty:
+                isTravelPaused = true;
+                Debug.Log("Hijackers on approach vector. Prepare for boarding party assault.");
+                //Pick a random floor tile
+                StartCoroutine("BoardingParty");
+                break;
+            case EventType.ShipToShip:
+                isTravelPaused = true;
+                Debug.Log("Combat Raider on approach vector. Prepare for Ship to Ship combat.");
+                //Initiate Ship Combat
+                break;
+            default:
+                break;
+        }
     }
 
     //Triggers om arrival at target location
@@ -278,5 +328,17 @@ public class OverworldController : MonoBehaviour
         TargetShipController.instance.MapGen();
         ClearOverWorldTarget();
         selectedTarget = null;
+        eventTriggered = false;
+    }
+
+    IEnumerator BoardingParty()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("Raiders boarded");
+        PlayerShipController playerShip = playerShipMap.GetComponent<PlayerShipController>();
+        Transform airlock = playerShip.airlock;
+        //Spawn X boarders at this position
+        //Only end the event when all boarders are defeated
+        isTravelPaused = false;
     }
 }

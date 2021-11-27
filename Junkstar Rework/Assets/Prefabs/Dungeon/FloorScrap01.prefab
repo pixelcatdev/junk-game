@@ -387,9 +387,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -776157841
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 1622383607
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: -3311200877722795201, guid: 4607fbf833101e541bc86732c840527c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -467,6 +467,7 @@ MonoBehaviour:
   buildingInfo: 
   buildingBlueprint: {fileID: 0}
   needsFloor: 0
+  returnLootOnDestroy: 0
   buildingRecipe:
   - lootObject: {fileID: 846879895408548662, guid: ff68aee75b90e7a4895df959c9f2197a, type: 3}
     itemCost: 1

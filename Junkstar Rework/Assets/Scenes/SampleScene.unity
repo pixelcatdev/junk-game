@@ -18257,6 +18257,7 @@ MonoBehaviour:
   minWrecks: 5
   maxWrecks: 20
   isTravelling: 0
+  isTravelPaused: 0
   travelSpeed: 1
   eventType: 0
   isEvent: 0
@@ -37575,7 +37576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2359449873805982710, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3497227085040766125, guid: b15f5c43b2925574fa67219a5029d658, type: 3}
       propertyPath: inventorySlots.Array.size
