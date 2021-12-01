@@ -6,6 +6,10 @@ public class CameraController : MonoBehaviour
 {
     public GameObject target;
     public float parallaxSpeed;
+    public Camera cameraObj;
+
+    public float zoomAmount;
+    public bool isZooming;
 
     public static CameraController instance;
 
@@ -34,6 +38,18 @@ public class CameraController : MonoBehaviour
     {
         ChaseCam();
         ParallaxBackground();
+
+        if (isZooming)
+        {
+            Debug.Log(cameraObj.GetComponent<Camera>().orthographicSize);
+
+            while (cameraObj.GetComponent<Camera>().orthographicSize < zoomAmount)
+            {
+                
+                cameraObj.GetComponent<Camera>().orthographicSize += 1;
+            }           
+
+        }
     }
 
     void ChaseCam()
@@ -82,4 +98,23 @@ public class CameraController : MonoBehaviour
             }
         }
     }
+
+    public void ZoomCamera(float size)
+    {
+        StartCoroutine(resizeRoutine(cameraObj.GetComponent<Camera>().orthographicSize, (size / 50) * 70, 0.5f));
+    }
+
+    private IEnumerator resizeRoutine(float oldSize, float newSize, float time)
+    {
+        float elapsed = 0;
+        while (elapsed <= time)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / time);
+
+            cameraObj.GetComponent<Camera>().orthographicSize = Mathf.Lerp(oldSize, newSize, t);
+            yield return null;
+        }
+    }
+
 }

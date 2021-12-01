@@ -30,13 +30,10 @@ public class ProjectileProps : MonoBehaviour
                     Instantiate(explosionDamage, transform.position, transform.rotation);
                 }
             }
-        }
 
-        if (projectileType == ProjectileType.Enemy)
-        {
-            if (collision.gameObject.tag == "Player")
+            else if (collision.gameObject.tag == "ShipTileWall" || collision.gameObject.tag == "isExploder")
             {
-                //damage the player
+                collision.gameObject.GetComponent<TileProps>().TakeDamage(damage, true);
                 Destroy(gameObject);
 
                 if (explodeOnImpact)
@@ -46,26 +43,40 @@ public class ProjectileProps : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "ShipTileWall" || collision.gameObject.tag == "isExploder")
+        if (projectileType == ProjectileType.Enemy)
         {
-            collision.gameObject.GetComponent<TileProps>().TakeDamage(damage, true);
-            Destroy(gameObject);
-
-            if (explodeOnImpact)
+            if (collision.gameObject.tag == "Player")
             {
-                Instantiate(explosionDamage, transform.position, transform.rotation);
+                //damage the player
+                Destroy(collision.gameObject);
+
+                if (explodeOnImpact)
+                {
+                    Instantiate(explosionDamage, transform.position, transform.rotation);
+                }
             }
-        }
 
-        if (collision.gameObject.tag == "isHull")
-        {
-            Destroy(gameObject);
-
-            if (explodeOnImpact)
+            if (collision.gameObject.tag == "ShipTileWall" || collision.gameObject.tag == "isExploder")
             {
-                Instantiate(explosionDamage, transform.position, transform.rotation);
-            }
-        }
+                collision.gameObject.GetComponent<TileProps>().TakeDamage(damage, true);
+                Destroy(gameObject);
 
+                if (explodeOnImpact)
+                {
+                    Instantiate(explosionDamage, transform.position, transform.rotation);
+                }
+            }
+
+            if (collision.gameObject.tag == "isHull")
+            {
+                Destroy(gameObject);
+
+                if (explodeOnImpact)
+                {
+                    Instantiate(explosionDamage, transform.position, transform.rotation);
+                }
+            }
+
+        }
     }
 }

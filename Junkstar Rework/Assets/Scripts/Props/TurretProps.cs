@@ -103,8 +103,9 @@ public class TurretProps : MonoBehaviour
             }
             else if (turretType == TurretType.Enemy)
             {
-                if (hit.transform.gameObject.tag == "Player")
+                if (hit.transform.gameObject.tag == "Player" || hit.transform.gameObject.tag == "ShipProjectile")
                 {
+                    Debug.Log("Hitting");
                     var pos = target.transform.position;
 
                     if (Time.time > cooldownTimer)

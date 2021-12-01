@@ -13,8 +13,27 @@ public class PlayerShipController : MonoBehaviour
     public TextMeshProUGUI txt_ShipFuel;
 
     public float shipSpeed;
-    public float shipTurn;
     public float shipScanner;
+    public Transform weaponSlot1;
+    public Transform weaponSlot2;
+    public GameObject weapon1;
+    public GameObject weapon2;
+
+    public static PlayerShipController instance;
+
+    // Singleton Initialization
+    void Awake()
+    {
+        if (!PlayerShipController.instance)
+        {
+            PlayerShipController.instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
 
     private void Start()
     {

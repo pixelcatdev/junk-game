@@ -17,7 +17,11 @@ Junkstar Game plan
 		- explosive damage		DONE
 		- cooldown icon
 	- death
-	- enemy types
+	- enemy
+		- ai pathfinding
+		- ai type
+			- ranged
+			- melee
 	- enemy spawns				DONE
 	- turrets				DONE
 - overworld
@@ -25,7 +29,6 @@ Junkstar Game plan
 	- scan					DONE
 	- traders
 	- events
-		- ship attack
 		- boarding party
 		- debris field
 		- sos
@@ -45,12 +48,16 @@ Junkstar Game plan
 		- fuel consumption		DONE
 		- refuelling
 	- upgrades
-		- engines (speed)
-		- thrusters (manouvreing)
-		- scanner (evasion)
-		- weapon 1
-		- weapon 2
+		- upgrade recipes
+		- drive
+		- cpu
+		- scanner
+		- jumpdrive
 - ship combat
+	- combat UI				DONE
+	- enemy AI				DONE
+	- combat win				
+	- combat fail
 	
 - contracts
 	- bounty hunt

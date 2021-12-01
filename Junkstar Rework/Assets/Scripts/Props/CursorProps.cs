@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //Controls tooltips etc
 public class CursorProps : MonoBehaviour
 {
-    public enum CursorType { select, building, destroy, aim, repair, overWorld }
+    public enum CursorType { select, building, destroy, aim, repair, overWorld, shipCombat }
     public CursorType cursorType;
     public GameObject mainCursor;
     public GameObject overWorldCursor;
@@ -14,6 +14,7 @@ public class CursorProps : MonoBehaviour
     public GameObject destroyCursor;
     public GameObject repairCursor;
     public GameObject aimingCursor;
+    public GameObject shipCombatCursor;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(false);
             repairCursor.SetActive(false);
             overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(false);
         }
         else if (cursorType == CursorType.building)
         {
@@ -47,6 +49,7 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(false);
             repairCursor.SetActive(false);
             overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(false);
         }
         else if (cursorType == CursorType.destroy)
         {
@@ -56,6 +59,7 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(false);
             repairCursor.SetActive(false);
             overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(false);
         }
         else if (cursorType == CursorType.aim)
         {
@@ -65,6 +69,7 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(true);
             repairCursor.SetActive(false);
             overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(false);
         }
         else if (cursorType == CursorType.repair)
         {
@@ -74,6 +79,7 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(false);
             repairCursor.SetActive(true);
             overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(false);
         }
         else if (cursorType == CursorType.overWorld)
         {
@@ -83,7 +89,17 @@ public class CursorProps : MonoBehaviour
             aimingCursor.SetActive(false);
             repairCursor.SetActive(false);
             overWorldCursor.SetActive(true);
-
+            shipCombatCursor.SetActive(false);
+        }
+        else if (cursorType == CursorType.shipCombat)
+        {
+            mainCursor.SetActive(false);
+            buildingCursor.SetActive(false);
+            destroyCursor.SetActive(false);
+            aimingCursor.SetActive(false);
+            repairCursor.SetActive(false);
+            overWorldCursor.SetActive(false);
+            shipCombatCursor.SetActive(true);
         }
     }
 }

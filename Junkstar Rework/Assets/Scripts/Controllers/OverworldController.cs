@@ -341,4 +341,15 @@ public class OverworldController : MonoBehaviour
         //Only end the event when all boarders are defeated
         isTravelPaused = false;
     }
+
+    IEnumerator DebrisField()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("Debris strike");
+
+        //Destroy x random tiles
+        //Spawn X boarders at this position
+        //Only end the event when all boarders are defeated
+        isTravelPaused = false;
+    }
 }

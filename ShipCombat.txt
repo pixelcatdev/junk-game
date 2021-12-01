@@ -1,0 +1,66 @@
+Turn-based, Sheltered style of combat
+------------------
+
+Ship
+
+Hull		Total health, when reduced to 0, game over - restore hp by repairing with scrap
+Fuel		Total fuel, consumed during travel - restore by refuelling at tradestations or salvaging from shipwrecks
+Weapon Slot 1	Interchangeable weapons - can swap at trade stations
+Weapon Slot 2	Interchangeable weapons - can swap at trade stations
+Drive		Dictates speed during travel and evasive stats during combat - upgradable
+Cpu		Dictates targeting stats during combat - upgradable
+Scanner		Alerts player to incoming threats during travel and displays enemy stats during combat - upgradable
+Jumpdrive	Once completed, can be used to win the game - upgradable
+
+Attack	- Player Targeting + Random > Enemy Evasion + Random
+Evade	- Player Evasion + Bonus
+Escape	- Player Evasion + Random > Enemy Evasion + Random
+
+Ship Stats
+
+Upgrade your ship to improve its stats
+
+- Drive System = Evasion
+- Processor = Targeting
+- Scanner = Allows you to see what their next move is going to be, and what weapon they're powering up
+
+Upgrading these systems can improve your odds when it comes to ship to ship combat
+
+- CombatGen
+
+- set enemy stats
+- randomise who's turn it is first
+
+- take turn
+- coroutine to wait for x seconds until action is complete
+- repeat
+
+- attack
+
+- select random tile on target ship
+- if ship targeting + random > enemy evasion + random
+	- fire weapon at target, flag projectile willHit = true
+- else
+	- fire weapon at target, flag projectile willHit = false
+- end turn
+
+-------------------------------
+
+Simple Strategy comes in deciding what weapon to use, whether to evade and whether to flee
+If you can see that they're about to flee, you can use your Tether Launcher to grapple onto them preventing their escape
+If you can see they're about to launch a missile barrage, you can engage your PDCs to evade the missile
+
+Attack
+	- Select Weapon
+	- Select Target (Click a tile)
+	- Fire
+		- On Collision
+			- Calculate if it hits
+			- if it hits
+				- explode
+				- enemyHp -1
+			- else
+				- keep going
+			-endif
+
+- 

@@ -119,7 +119,6 @@ public class TileProps : MonoBehaviour
 
         if (tag == "ShipTileFloor" || tag == "ShipTileWall" || tag == "PlayerShipTile")
         {
-            Debug.Log(transform.parent.parent);
             transform.parent.parent.GetComponent<ShipMapProps>().mapCurHealth -= 1;
         }
 

@@ -33,6 +33,11 @@ public class TurretAggroColliderProps : MonoBehaviour
                 parentTurret.GetComponent<TurretProps>().currentTargets.Add(collision.gameObject);
             }
 
+            if (collision.gameObject.tag == "ShipProjectile")
+            {
+                parentTurret.GetComponent<TurretProps>().currentTargets.Add(collision.gameObject);
+            }
+
         }
     }
 
@@ -53,6 +58,11 @@ public class TurretAggroColliderProps : MonoBehaviour
         {
 
             if (collision.gameObject.tag == "Player")
+            {
+                parentTurret.GetComponent<TurretProps>().currentTargets.Remove(collision.gameObject);
+            }
+
+            if (collision.gameObject.tag == "ShipProjectile")
             {
                 parentTurret.GetComponent<TurretProps>().currentTargets.Remove(collision.gameObject);
             }

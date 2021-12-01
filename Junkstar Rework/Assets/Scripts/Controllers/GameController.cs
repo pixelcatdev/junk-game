@@ -15,13 +15,11 @@ public class GameController : MonoBehaviour
     public GameObject playerShipMap;
     public GameObject targetShipMap;
 
-    public enum GameState { menu, game, overworld, inventory }
+    public enum GameState { menu, game, overworld, inventory, spacecombat }
     public GameState gameState;
 
     public GameObject ui_overworld;
     public GameObject ui_game;
-
-    public static GameController instance;
 
     public GameObject gameCursor;
 
@@ -29,6 +27,10 @@ public class GameController : MonoBehaviour
     public GameObject selectorDestroy;
     public GameObject selectorRepair;
     public GameObject selectorOverWorld;
+    public GameObject selectorShipWeapon;
+    public GameObject selectorShipTarget;
+
+    public static GameController instance;
 
     // Singleton Initialization
     void Awake()

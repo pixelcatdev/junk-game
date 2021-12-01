@@ -96,27 +96,11 @@ public class PlayerController : MonoBehaviour
 
         if (mousePos.x < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).GetComponent<SpriteRenderer>())
-                {
-                    transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = true;
-                }
-            }
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (mousePos.x > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).GetComponent<SpriteRenderer>())
-                {
-                    transform.GetChild(i).GetComponent<SpriteRenderer>().flipX = false;
-                }
-            }
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         //Get interaction input
@@ -204,16 +188,20 @@ public class PlayerController : MonoBehaviour
             pos.z = transform.position.z - Camera.main.transform.position.z;
             pos = Camera.main.ScreenToWorldPoint(pos);
 
-            equipped.transform.rotation = Quaternion.FromToRotation(Vector3.right, pos - transform.position);
+            equipped.transform.rotation = Quaternion.FromToRotation(Vector2.right, pos - transform.position);
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             if (mousePos.x < 0)
             {
-                equipped.transform.Rotate(0, -180, 0);
+                //equipped.transform.rotation = Quaternion.Euler(0, 180, 0);
+                //equipped.transform.rotation = Quaternion.FromToRotation(Vector2.up, pos - transform.position);
             }
             else if (mousePos.x > 0)
             {
-                equipped.transform.Rotate(0, 0, 0);
+                //equipped.transform.rotation = Quaternion.Euler(0, 0, 0);
+                //equipped.transform.rotation = Quaternion.FromToRotation(Vector2.up, pos - transform.position);
+
             }
         }
     }
