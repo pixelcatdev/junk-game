@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShipCombatController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ShipCombatController : MonoBehaviour
     public List<GameObject> enemyShips;
 
     public GameObject ui_ShipCombat;
+    public TextMeshProUGUI txt_SelectedWeapon;
 
     public GameObject enemyShip;
     public GameObject playerShip;
@@ -22,8 +24,25 @@ public class ShipCombatController : MonoBehaviour
 
     private bool inCombat;
     private int attackStage;
+    private GameObject chosenWeapon;
+    private GameObject targetObject;
 
     public GameObject cameraTarget;
+
+    public static ShipCombatController instance;
+
+    // Singleton Initialization
+    void Awake()
+    {
+        if (!ShipCombatController.instance)
+        {
+            ShipCombatController.instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -79,6 +98,7 @@ public class ShipCombatController : MonoBehaviour
     {
         inCombat = false;
         ui_ShipCombat.SetActive(false);
+        txt_SelectedWeapon.text = null;
         Destroy(enemyShip.transform.GetChild(0).gameObject);
         CameraController.instance.ZoomCamera(8);
         CameraController.instance.target = PlayerController.instance.gameObject;
@@ -88,22 +108,8 @@ public class ShipCombatController : MonoBehaviour
 
     public void CombatAttack()
     {
-        Debug.Log("Select a weapon");
+        txt_SelectedWeapon.text = "(SELECT WEAPON SLOT)";
         attackStage = 1;
-
-        //int d20 = Random.Range(1, 20);
-        //int turnAttack = d20 + playerShipProps.targeting;
-
-        //if (turnAttack > enemyShipProps.drive)
-        //{
-        //    //enemyHp -= playerDamage;
-        //    Debug.Log("Your blasts hit the enemy");
-        //}
-        //else
-        //{
-        //    Debug.Log("Your blasts miss the enemy");
-        //}
-        //EnemyTurn();
     }
 
     public void CombatFlee()
@@ -124,7 +130,7 @@ public class ShipCombatController : MonoBehaviour
         }
     }
 
-    private void EnemyTurn()
+    public void EnemyTurn()
     {
         if (enemyShipProps.hull > Mathf.RoundToInt(enemyShipProps.hullMax / 4))
         {
@@ -185,28 +191,32 @@ public class ShipCombatController : MonoBehaviour
                     Debug.Log(hit.transform.name + " selected.");
                     GameController.instance.selectorShipWeapon.SetActive(true);
                     GameController.instance.selectorShipWeapon.transform.position = hit.transform.position;
+                    txt_SelectedWeapon.text = "(" + hit.transform.gameObject.GetComponent<ShipWeaponProps>().weaponName + ")";
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        Debug.Log("Select target");
                         GameController.instance.selectorShipWeapon.SetActive(false);
+                        chosenWeapon = hit.transform.gameObject;
                         attackStage = 2;
                     }                    
                 }
                 else
                 {
                     GameController.instance.selectorShipWeapon.SetActive(false);
+                    txt_SelectedWeapon.text = null;
                 }
             }
             else
             {
                 GameController.instance.selectorShipWeapon.SetActive(false);
+                txt_SelectedWeapon.text = null;
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 attackStage = 0;
                 GameController.instance.selectorShipWeapon.SetActive(false);
+                txt_SelectedWeapon.text = null;
                 Debug.Log("Cancelling Attack");
             }
         }
@@ -230,8 +240,37 @@ public class ShipCombatController : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("Firing");
+
                         GameController.instance.selectorShipTarget.SetActive(false);
-                        //Launch projectile
+
+                        int d20 = Random.Range(1, 20);
+                        int turnAttack = d20 + playerShipProps.targeting;
+                        bool willHitTarget = false;
+                        targetObject = hit.transform.gameObject;
+
+                        if (turnAttack > enemyShipProps.drive)
+                        {
+                            willHitTarget = true;
+                            Debug.Log("Your blast will hit the enemy");
+                        }
+                        else
+                        {
+                            willHitTarget = false;
+                            Debug.Log("Your blast will miss the enemy");
+                        }
+
+                        GameObject refProjectile = chosenWeapon.GetComponent<ShipWeaponProps>().projectile;
+                        Vector2 weaponPos = chosenWeapon.transform.position;
+
+                        var q = Quaternion.FromToRotation(Vector3.up, targetObject.transform.position - chosenWeapon.transform.position);
+                        GameObject projectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
+
+                        projectile.GetComponent<ShipProjectileProps>().targetObject = targetObject;
+                        projectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
+                        projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.up * chosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
+
+                        //EnemyTurn();
+
                         attackStage = 0;
                     }
                 }
@@ -249,6 +288,7 @@ public class ShipCombatController : MonoBehaviour
             {
                 attackStage = 0;
                 GameController.instance.selectorShipTarget.SetActive(false);
+                txt_SelectedWeapon.text = null;
                 Debug.Log("Cancelling Attack");
             }
         }

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3375098606244279681}
-  - component: {fileID: 2915630250500644998}
   - component: {fileID: 259543925540911222}
+  - component: {fileID: 2915630250500644998}
   m_Layer: 9
   m_Name: JunkCannon
   m_TagString: Untagged
@@ -33,20 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2915630250500644998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075389053246674215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d77d8ad99c243ce4e962a2b81f801dbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 3881092286434308652, guid: 0563ed4576677534e9d990599f3453b2, type: 3}
-  weaponCooldown: 1
 --- !u!61 &259543925540911222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73,6 +59,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &2915630250500644998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3075389053246674215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77d8ad99c243ce4e962a2b81f801dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 3881092286434308652, guid: 0563ed4576677534e9d990599f3453b2, type: 3}
+  weaponName: JUNK CANNON
+  weaponTxt: 
+  accuracy: 5
+  speed: 25
 --- !u!1 &7402102884654473801
 GameObject:
   m_ObjectHideFlags: 0

@@ -258,7 +258,7 @@ public class OverworldController : MonoBehaviour
 
             if (distance > 0f)
             {
-                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, selectedTarget.position, playerShipMap.GetComponent<PlayerShipController>().shipSpeed * Time.deltaTime);
+                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, selectedTarget.position, playerShipMap.GetComponent<ShipMapProps>().drive * Time.deltaTime);
             }
             else
             {
@@ -276,7 +276,7 @@ public class OverworldController : MonoBehaviour
             {
                 //randomise chance of event based on player ship scanners value
                 float eventChance = Random.Range(1, 100);
-                float playerScanner = playerShipMap.GetComponent<PlayerShipController>().shipScanner;
+                float playerScanner = playerShipMap.GetComponent<ShipMapProps>().scanner;
                 Debug.Log("Event: " +eventChance);
                 if(eventChance > playerScanner)
                 {

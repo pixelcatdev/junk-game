@@ -12,13 +12,6 @@ public class PlayerShipController : MonoBehaviour
     public TextMeshProUGUI txt_ShipHealth;
     public TextMeshProUGUI txt_ShipFuel;
 
-    public float shipSpeed;
-    public float shipScanner;
-    public Transform weaponSlot1;
-    public Transform weaponSlot2;
-    public GameObject weapon1;
-    public GameObject weapon2;
-
     public static PlayerShipController instance;
 
     // Singleton Initialization
