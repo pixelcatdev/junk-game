@@ -3480,6 +3480,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2224693148842514005, guid: 84214f4de13996a4d81ef053060ca59f, type: 3}
   m_PrefabInstance: {fileID: 1054949973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &182482798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3075389053246674215, guid: aff2b16d8699deb428ad6ce2d4ab65e3, type: 3}
+  m_PrefabInstance: {fileID: 186517388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &186517388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20127,7 +20132,7 @@ MonoBehaviour:
   hull: 0
   hullMax: 0
   fuel: 100
-  weaponSlot1: {fileID: 0}
+  weaponSlot1: {fileID: 182482798}
   weaponSlot2: {fileID: 5387203248533528522}
   drive: 2
   targeting: 0

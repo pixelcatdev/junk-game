@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ShipWeaponProps : MonoBehaviour
 {
@@ -12,4 +14,6 @@ public class ShipWeaponProps : MonoBehaviour
     public int cooldown;
     public int curCooldown;
     public int shotQty;
+    public GameObject ui_cooldown;
+    public TextMeshProUGUI txt_cooldown;
 }

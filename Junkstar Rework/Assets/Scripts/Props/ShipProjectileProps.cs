@@ -42,7 +42,7 @@ public class ShipProjectileProps : MonoBehaviour
                     }
                     else
                     {
-                        ShipCombatController.instance.StartCoroutine("TurnDelay", 2f);
+                        ShipCombatController.instance.EndTurn();
                     }                    
                 }
                 else if (projectileType == ProjectileType.enemy)
@@ -54,6 +54,8 @@ public class ShipProjectileProps : MonoBehaviour
                     {
                         Debug.Log("GameOver");
                     }
+
+                    ShipCombatController.instance.EndTurn();
                 }
 
                 hitIsChecked = true;

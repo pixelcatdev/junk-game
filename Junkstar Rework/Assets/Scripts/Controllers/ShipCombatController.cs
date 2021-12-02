@@ -252,16 +252,19 @@ public class ShipCombatController : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<ShipWeaponProps>())
                 {
-                    Debug.Log(hit.transform.name + " selected.");
-                    GameController.instance.selectorShipWeapon.SetActive(true);
-                    GameController.instance.selectorShipWeapon.transform.position = hit.transform.position;
-                    txt_SelectedWeapon.text = "(" + hit.transform.gameObject.GetComponent<ShipWeaponProps>().weaponName + ")";
-
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.transform.gameObject.GetComponent<ShipWeaponProps>().curCooldown == 0)
                     {
-                        GameController.instance.selectorShipWeapon.SetActive(false);
-                        playerChosenWeapon = hit.transform.gameObject;
-                        attackStage = 2;
+                        Debug.Log(hit.transform.name + " selected.");
+                        GameController.instance.selectorShipWeapon.SetActive(true);
+                        GameController.instance.selectorShipWeapon.transform.position = hit.transform.position;
+                        txt_SelectedWeapon.text = "(" + hit.transform.gameObject.GetComponent<ShipWeaponProps>().weaponName + ")";
+
+                        if (Input.GetKeyDown(KeyCode.Mouse0))
+                        {
+                            GameController.instance.selectorShipWeapon.SetActive(false);
+                            playerChosenWeapon = hit.transform.gameObject;
+                            attackStage = 2;
+                        }
                     }                    
                 }
                 else
@@ -304,6 +307,13 @@ public class ShipCombatController : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("Firing");
+
+                        if(playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown > 0)
+                        {
+                            playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().ui_cooldown.SetActive(true);
+                            playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().curCooldown = playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown;
+                            playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().txt_cooldown.text = playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown.ToString();
+                        }                        
 
                         GameController.instance.selectorShipTarget.SetActive(false);
 
@@ -369,6 +379,50 @@ public class ShipCombatController : MonoBehaviour
         attackStage = 3;
         //EnemyTurn();
         StartCoroutine("TurnDelay",2f);
+    }
+
+    void UpdateWeaponCooldowns()
+    {
+        ShipWeaponProps playerShipWeapon1 = playerShipProps.weaponSlot1.gameObject.GetComponent<ShipWeaponProps>();
+        ShipWeaponProps playerShipWeapon2 = playerShipProps.weaponSlot2.gameObject.GetComponent<ShipWeaponProps>();
+
+        Debug.Log(playerShipWeapon1);
+        Debug.Log(playerShipWeapon2);
+
+        if (playerShipProps.weaponSlot1 != null)
+        {
+            if (playerShipWeapon1.curCooldown > 0)
+            {
+                Debug.Log("Reducing weapon 1 cooldown");
+                playerShipWeapon1.curCooldown -= 1;
+                playerShipWeapon1.txt_cooldown.text = playerShipWeapon1.cooldown.ToString();
+            }
+            else
+            {
+                playerShipWeapon1.ui_cooldown.SetActive(false);
+            }
+        }
+
+        if (playerShipProps.weaponSlot2 != null)
+        {
+            if (playerShipWeapon2.curCooldown > 0)
+            {
+                Debug.Log("Reducing weapon 2 cooldown");
+                playerShipWeapon2.curCooldown -= 1;
+                playerShipWeapon2.txt_cooldown.text = playerShipWeapon2.cooldown.ToString();
+            }
+            else
+            {
+                playerShipWeapon2.ui_cooldown.SetActive(false);
+            }
+        }
+    }
+
+    public void EndTurn()
+    {
+        Debug.Log("Ending enemy turn");
+        UpdateWeaponCooldowns();
+        StartCoroutine("TurnDelay", 1.5f);
     }
 
     IEnumerator TurnDelay(float delay)
