@@ -116,10 +116,15 @@ public class TileProps : MonoBehaviour
 
         //Remove the tile from the Target Ships tilelist
         TargetShipController.instance.shipTiles.Remove(gameObject);
-
         if (tag == "ShipTileFloor" || tag == "ShipTileWall" || tag == "PlayerShipTile")
         {
             transform.parent.parent.GetComponent<ShipMapProps>().mapCurHealth -= 1;
+        }
+
+        //Remove the tile from the Combat Ships tilelist
+        if (tag == "ShipTile")
+        {
+            ShipCombatController.instance.enemyShip.GetComponent<ShipMapProps>().mapCurHealth -= 1;
         }
 
         //If it's a player built object, return all the loot and remove it from the list of player buildings

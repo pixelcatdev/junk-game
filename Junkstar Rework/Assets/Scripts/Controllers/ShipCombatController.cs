@@ -29,7 +29,7 @@ public class ShipCombatController : MonoBehaviour
     private GameObject playerTargetObject;
     private GameObject enemyTargetObject;
 
-    private float evadeBonus;
+    private int evadeBonus;
 
     public GameObject cameraTarget;
 
@@ -64,7 +64,7 @@ public class ShipCombatController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            CombatEnd();
+            CombatEnd(false);
         }
 
         if (inCombat)
@@ -90,6 +90,18 @@ public class ShipCombatController : MonoBehaviour
 
         //based on difficulty
         //Set the health of the ship
+        List<GameObject> enemyShipTiles = new List<GameObject>();
+
+        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("ShipTile"))
+        {
+            enemyShipTiles.Add(tile);
+        }
+
+        GameObject.FindGameObjectsWithTag("ShipTile");
+        enemyShipProps.mapMaxHealth = enemyShipTiles.Count;
+        Debug.Log("Hp: " + enemyShipTiles.Count);
+        enemyShipProps.mapCurHealth = enemyShipProps.mapMaxHealth;
+
         //Set the weapon slots 
         enemyShipProps.weaponSlot1 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot1");
         //enemyShipProps.weaponSlot2 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot2");
@@ -97,13 +109,18 @@ public class ShipCombatController : MonoBehaviour
         //Set the drive level
         //Set the targeting level
         //Randomise who goes first
-        EnemyAttackPlayer();
 
         Debug.Log("Combat generated");
     }
 
-    public void CombatEnd()
+    public void CombatEnd(bool hasWon)
     {
+        //If the player has won, blow up the target ship
+        if (hasWon)
+        {
+            //Spawn ship explosion
+        }
+
         inCombat = false;
         ui_ShipCombat.SetActive(false);
         txt_SelectedWeapon.text = null;
@@ -129,7 +146,7 @@ public class ShipCombatController : MonoBehaviour
         if (playerTotal > enemyTotal)
         {
             Debug.Log("You outrun your enemy.");
-            CombatEnd();
+            CombatEnd(false);
         }
         else
         {
@@ -219,7 +236,9 @@ public class ShipCombatController : MonoBehaviour
         enemyProjectile.GetComponent<Rigidbody2D>().AddForce(enemyProjectile.transform.up * enemyChosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
 
         attackStage = 0;
-        evadeBonus = 0;
+
+        playerShipProps.drive -= evadeBonus;
+        evadeBonus = 0;        
     }
 
     void SelectWeapon()
@@ -346,7 +365,15 @@ public class ShipCombatController : MonoBehaviour
     {
         txt_SelectedWeapon.text = "(TAKING EVASIVE MANOUVRES)";
         evadeBonus = 5;
+        playerShipProps.drive += evadeBonus;
         attackStage = 3;
+        //EnemyTurn();
+        StartCoroutine("TurnDelay",2f);
+    }
+
+    IEnumerator TurnDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         EnemyTurn();
     }
 
