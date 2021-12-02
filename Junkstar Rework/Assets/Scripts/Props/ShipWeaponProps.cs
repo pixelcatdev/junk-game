@@ -11,4 +11,5 @@ public class ShipWeaponProps : MonoBehaviour
     public float speed;
     public int cooldown;
     public int curCooldown;
+    public int shotQty;
 }

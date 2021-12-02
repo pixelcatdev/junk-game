@@ -24,8 +24,12 @@ public class ShipCombatController : MonoBehaviour
 
     private bool inCombat;
     private int attackStage;
-    private GameObject chosenWeapon;
-    private GameObject targetObject;
+    public GameObject playerChosenWeapon;
+    public GameObject enemyChosenWeapon;
+    private GameObject playerTargetObject;
+    private GameObject enemyTargetObject;
+
+    private float evadeBonus;
 
     public GameObject cameraTarget;
 
@@ -87,9 +91,13 @@ public class ShipCombatController : MonoBehaviour
         //based on difficulty
         //Set the health of the ship
         //Set the weapon slots 
+        enemyShipProps.weaponSlot1 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot1");
+        //enemyShipProps.weaponSlot2 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot2");
+
         //Set the drive level
         //Set the targeting level
         //Randomise who goes first
+        EnemyAttackPlayer();
 
         Debug.Log("Combat generated");
     }
@@ -126,55 +134,92 @@ public class ShipCombatController : MonoBehaviour
         else
         {
             Debug.Log("You fail to outrun your enemy.");
-            EnemyTurn();
+            //EnemyTurn();
         }
     }
 
     public void EnemyTurn()
     {
-        if (enemyShipProps.hull > Mathf.RoundToInt(enemyShipProps.hullMax / 4))
+        if(attackStage == 3)
         {
+            Debug.Log("Enemy turn");
             EnemyAttackPlayer();
-        }
-        else
-        {
-            //Try to flee
-            int fleeChance = Random.Range(0, 100);
-            if (fleeChance > 50)
-            {
-                int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
-                int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
-                Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
+        }        
 
-                if (enemyTotal > playerTotal)
-                {
-                    Debug.Log("The enemy flees.");
-                }
-                else
-                {
-                    Debug.Log("The enemy attempts to flee, but fails.");
-                }
-            }
-            else
-            {
-                EnemyAttackPlayer();
-            }
-        }
+        //if (enemyShipProps.hull > Mathf.RoundToInt(enemyShipProps.hullMax / 4))
+        //{
+        //    EnemyAttackPlayer();
+        //}
+        //else
+        //{
+
+
+        //    //Try to flee
+        //    int fleeChance = Random.Range(0, 100);
+        //    if (fleeChance > 50)
+        //    {
+        //        int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
+        //        int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
+        //        Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
+
+        //        if (enemyTotal > playerTotal)
+        //        {
+        //            Debug.Log("The enemy flees.");
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("The enemy attempts to flee, but fails.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        EnemyAttackPlayer();
+        //    }
+        //}
     }
 
     public void EnemyAttackPlayer()
     {
+        //Select a weapon
+        //enemyShipProps.weaponSlot1
+
+        enemyTargetObject = null;
+
+        enemyChosenWeapon = enemyShipProps.weaponSlot1;
+
+        GameController.instance.selectorShipTarget.SetActive(false);
+
         int d20 = Random.Range(1, 20);
-        int turnAttack = d20 + enemyShipProps.targeting;
+        int turnAttack = d20 + playerShipProps.targeting;
+        bool willHitTarget = false;
+
+        //Find a random player ship tile
+        enemyTargetObject = PlayerShipController.instance.playerShipTiles[Random.Range(0, PlayerShipController.instance.playerShipTiles.Count - 1)];
 
         if (turnAttack > playerShipProps.drive)
         {
-            Debug.Log("You take a hit!");
+            willHitTarget = true;
+            Debug.Log("Enemy blast will hit you");
         }
         else
         {
-            Debug.Log("The enemy misses!");
+            willHitTarget = false;
+            Debug.Log("Enemy blast will miss you");
         }
+
+        GameObject refProjectile = enemyChosenWeapon.GetComponent<ShipWeaponProps>().projectile;
+        Vector2 weaponPos = enemyChosenWeapon.transform.position;
+
+        var q = Quaternion.FromToRotation(Vector3.up, enemyTargetObject.transform.position - enemyChosenWeapon.transform.position);
+        GameObject enemyProjectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
+
+        enemyProjectile.GetComponent<ShipProjectileProps>().targetObject = enemyTargetObject;
+        enemyProjectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
+        enemyProjectile.GetComponent<ShipProjectileProps>().projectileType = ShipProjectileProps.ProjectileType.enemy;
+        enemyProjectile.GetComponent<Rigidbody2D>().AddForce(enemyProjectile.transform.up * enemyChosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
+
+        attackStage = 0;
+        evadeBonus = 0;
     }
 
     void SelectWeapon()
@@ -196,27 +241,27 @@ public class ShipCombatController : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         GameController.instance.selectorShipWeapon.SetActive(false);
-                        chosenWeapon = hit.transform.gameObject;
+                        playerChosenWeapon = hit.transform.gameObject;
                         attackStage = 2;
                     }                    
                 }
                 else
                 {
-                    GameController.instance.selectorShipWeapon.SetActive(false);
-                    txt_SelectedWeapon.text = null;
+                    //GameController.instance.selectorShipWeapon.SetActive(false);
+                    //txt_SelectedWeapon.text = null;
                 }
             }
             else
             {
-                GameController.instance.selectorShipWeapon.SetActive(false);
-                txt_SelectedWeapon.text = null;
+                //GameController.instance.selectorShipWeapon.SetActive(false);
+                //txt_SelectedWeapon.text = null;
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 attackStage = 0;
                 GameController.instance.selectorShipWeapon.SetActive(false);
-                txt_SelectedWeapon.text = null;
+                txt_SelectedWeapon.text = "(SELECT WEAPON SLOT)";
                 Debug.Log("Cancelling Attack");
             }
         }
@@ -246,7 +291,7 @@ public class ShipCombatController : MonoBehaviour
                         int d20 = Random.Range(1, 20);
                         int turnAttack = d20 + playerShipProps.targeting;
                         bool willHitTarget = false;
-                        targetObject = hit.transform.gameObject;
+                        playerTargetObject = hit.transform.gameObject;
 
                         if (turnAttack > enemyShipProps.drive)
                         {
@@ -259,19 +304,22 @@ public class ShipCombatController : MonoBehaviour
                             Debug.Log("Your blast will miss the enemy");
                         }
 
-                        GameObject refProjectile = chosenWeapon.GetComponent<ShipWeaponProps>().projectile;
-                        Vector2 weaponPos = chosenWeapon.transform.position;
+                        GameObject refProjectile = playerChosenWeapon.GetComponent<ShipWeaponProps>().projectile;
+                        Vector2 weaponPos = playerChosenWeapon.transform.position;
 
-                        var q = Quaternion.FromToRotation(Vector3.up, targetObject.transform.position - chosenWeapon.transform.position);
-                        GameObject projectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
+                        var q = Quaternion.FromToRotation(Vector3.up, playerTargetObject.transform.position - playerChosenWeapon.transform.position);
 
-                        projectile.GetComponent<ShipProjectileProps>().targetObject = targetObject;
-                        projectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
-                        projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.up * chosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
+                        for (int i = 0; i < playerChosenWeapon.GetComponent<ShipWeaponProps>().shotQty; i++)
+                        {
+                            GameObject projectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
 
-                        //EnemyTurn();
+                            projectile.GetComponent<ShipProjectileProps>().targetObject = playerTargetObject;
+                            projectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
+                            projectile.GetComponent<ShipProjectileProps>().projectileType = ShipProjectileProps.ProjectileType.player;
+                            projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.up * playerChosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
+                        }                        
 
-                        attackStage = 0;
+                        attackStage = 3;
                     }
                 }
                 else
@@ -288,9 +336,18 @@ public class ShipCombatController : MonoBehaviour
             {
                 attackStage = 0;
                 GameController.instance.selectorShipTarget.SetActive(false);
-                txt_SelectedWeapon.text = null;
+                txt_SelectedWeapon.text = "(SELECT WEAPON SLOT)";
                 Debug.Log("Cancelling Attack");
             }
         }
     }
+
+    public void CombatEvade()
+    {
+        txt_SelectedWeapon.text = "(TAKING EVASIVE MANOUVRES)";
+        evadeBonus = 5;
+        attackStage = 3;
+        EnemyTurn();
+    }
+
 }

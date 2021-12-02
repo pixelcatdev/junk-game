@@ -190,3 +190,5 @@ MonoBehaviour:
   accuracy: 2.5
   speed: 15
   cooldown: 3
+  curCooldown: 0
+  shotQty: 1

@@ -16,6 +16,9 @@ TagManager:
   - ShipTileFloorBroken
   - PlayerShipTile
   - Effect
+  - ShipProjectile
+  - EnemyWeaponSlot1
+  - EnemyWeaponSlot2
   layers:
   - Default
   - TransparentFX
