@@ -30,6 +30,9 @@ public class ShipCombatController : MonoBehaviour
     private GameObject playerTargetObject;
     private GameObject enemyTargetObject;
 
+    public GameObject effect_shipExplode;
+    public GameObject effect_cloud;
+
     private int evadeBonus;
 
     public GameObject cameraTarget;
@@ -119,17 +122,13 @@ public class ShipCombatController : MonoBehaviour
         //If the player has won, blow up the target ship
         if (hasWon)
         {
-            //Spawn ship explosion
+            StartCoroutine("ExplodeShip");
         }
-
-        inCombat = false;
-        ui_ShipCombat.SetActive(false);
-        txt_SelectedWeapon.text = null;
-        Destroy(enemyShip.transform.GetChild(0).gameObject);
-        CameraController.instance.ZoomCamera(8);
-        CameraController.instance.target = PlayerController.instance.gameObject;
-        GameController.instance.gameState = GameController.GameState.game;
-        GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
+        else
+        {
+            //Make ship fly away
+            //End combat in a different manner
+        }
     }
 
     public void CombatAttack()
@@ -454,6 +453,33 @@ public class ShipCombatController : MonoBehaviour
         txt_SelectedWeapon.text = "(CHOOSE ACTION)";
         ui_shipCombatDisable.SetActive(false);
         attackStage = 0;
+    }
+
+    IEnumerator ExplodeShip()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+
+            Vector2 newPos = new Vector2(enemyShip.transform.position.x, enemyShip.transform.position.y) + Random.insideUnitCircle * 6f;
+            GameObject explosionEffect = Instantiate(effect_cloud, newPos, transform.rotation, transform.GetChild(0));
+            explosionEffect.transform.localScale *= 7.5f;
+            explosionEffect.GetComponent<DestroyObjectProps>().destroyTimer = 0.25f;
+            yield return new WaitForSeconds(0.15f);
+        }
+        Destroy(enemyShip.transform.GetChild(0).gameObject);
+        Instantiate(effect_shipExplode, enemyShip.transform.position, transform.rotation, transform);
+
+        yield return new WaitForSeconds(1.5f);
+
+        inCombat = false;
+        ui_ShipCombat.SetActive(false);
+        txt_SelectedWeapon.text = null;
+
+        CameraController.instance.ZoomCamera(8);
+        CameraController.instance.target = PlayerController.instance.gameObject;
+        CameraController.instance.JumpToTarget();
+        GameController.instance.gameState = GameController.GameState.game;
+        GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
     }
 
 }

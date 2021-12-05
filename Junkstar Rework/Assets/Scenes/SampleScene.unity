@@ -36754,6 +36754,8 @@ MonoBehaviour:
   playerShip: {fileID: 1123583776}
   playerChosenWeapon: {fileID: 0}
   enemyChosenWeapon: {fileID: 0}
+  effect_shipExplode: {fileID: 36362226104080091, guid: 16e251357756c674eb4447664e21cc92, type: 3}
+  effect_cloud: {fileID: 4277631876284800167, guid: 1baf1825e54f8b74489d49493747ae40, type: 3}
   cameraTarget: {fileID: 2084296141}
 --- !u!1001 &1735508467
 PrefabInstance:
