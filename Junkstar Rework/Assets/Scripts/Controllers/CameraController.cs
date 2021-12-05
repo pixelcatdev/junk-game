@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public float zoomAmount;
     public bool isZooming;
 
+    public GameObject effect_starfield;
+
     public static CameraController instance;
 
     // Singleton Initialization

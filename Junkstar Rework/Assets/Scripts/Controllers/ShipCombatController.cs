@@ -15,6 +15,7 @@ public class ShipCombatController : MonoBehaviour
     public List<GameObject> enemyShips;
 
     public GameObject ui_ShipCombat;
+    public GameObject ui_shipCombatDisable;
     public TextMeshProUGUI txt_SelectedWeapon;
 
     public GameObject enemyShip;
@@ -159,7 +160,6 @@ public class ShipCombatController : MonoBehaviour
     {
         if(attackStage == 3)
         {
-            Debug.Log("Enemy turn");
             EnemyAttackPlayer();
         }        
 
@@ -213,27 +213,35 @@ public class ShipCombatController : MonoBehaviour
         //Find a random player ship tile
         enemyTargetObject = PlayerShipController.instance.playerShipTiles[Random.Range(0, PlayerShipController.instance.playerShipTiles.Count - 1)];
 
-        if (turnAttack > playerShipProps.drive)
+        try
         {
-            willHitTarget = true;
-            Debug.Log("Enemy blast will hit you");
+            if (turnAttack > playerShipProps.drive)
+            {
+                willHitTarget = true;
+            }
+            else
+            {
+                willHitTarget = false;
+            }
+
+            GameObject refProjectile = enemyChosenWeapon.GetComponent<ShipWeaponProps>().projectile;
+            Vector2 weaponPos = enemyChosenWeapon.transform.position;
+
+            var q = Quaternion.FromToRotation(Vector3.up, enemyTargetObject.transform.position - enemyChosenWeapon.transform.position);
+            GameObject enemyProjectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
+
+            enemyProjectile.GetComponent<ShipProjectileProps>().targetObject = enemyTargetObject;
+            enemyProjectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
+            enemyProjectile.GetComponent<ShipProjectileProps>().projectileType = ShipProjectileProps.ProjectileType.enemy;
+            enemyProjectile.GetComponent<Rigidbody2D>().AddForce(enemyProjectile.transform.up * enemyChosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
         }
-        else
+        catch (System.Exception)
         {
-            willHitTarget = false;
-            Debug.Log("Enemy blast will miss you");
+            Debug.Log(enemyTargetObject.name);
+            throw;
         }
 
-        GameObject refProjectile = enemyChosenWeapon.GetComponent<ShipWeaponProps>().projectile;
-        Vector2 weaponPos = enemyChosenWeapon.transform.position;
-
-        var q = Quaternion.FromToRotation(Vector3.up, enemyTargetObject.transform.position - enemyChosenWeapon.transform.position);
-        GameObject enemyProjectile = Instantiate(refProjectile, weaponPos, q, playerShip.transform);
-
-        enemyProjectile.GetComponent<ShipProjectileProps>().targetObject = enemyTargetObject;
-        enemyProjectile.GetComponent<ShipProjectileProps>().willHitTarget = willHitTarget;
-        enemyProjectile.GetComponent<ShipProjectileProps>().projectileType = ShipProjectileProps.ProjectileType.enemy;
-        enemyProjectile.GetComponent<Rigidbody2D>().AddForce(enemyProjectile.transform.up * enemyChosenWeapon.GetComponent<ShipWeaponProps>().speed, ForceMode2D.Impulse);
+        
 
         attackStage = 0;
 
@@ -245,6 +253,7 @@ public class ShipCombatController : MonoBehaviour
     {
         if (attackStage == 1)
         {
+            ui_shipCombatDisable.SetActive(false);
             LayerMask hitLayer = LayerMask.GetMask("Object");
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0f, hitLayer);
 
@@ -252,7 +261,7 @@ public class ShipCombatController : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<ShipWeaponProps>())
                 {
-                    if (hit.transform.gameObject.GetComponent<ShipWeaponProps>().curCooldown == 0)
+                    if (hit.transform.gameObject.GetComponent<ShipWeaponProps>().curCooldown == 0 && hit.transform.gameObject.GetComponent<ShipWeaponProps>().canSelect)
                     {
                         Debug.Log(hit.transform.name + " selected.");
                         GameController.instance.selectorShipWeapon.SetActive(true);
@@ -263,6 +272,7 @@ public class ShipCombatController : MonoBehaviour
                         {
                             GameController.instance.selectorShipWeapon.SetActive(false);
                             playerChosenWeapon = hit.transform.gameObject;
+                            txt_SelectedWeapon.text = "(SELECT TARGET)";
                             attackStage = 2;
                         }
                     }                    
@@ -283,7 +293,7 @@ public class ShipCombatController : MonoBehaviour
             {
                 attackStage = 0;
                 GameController.instance.selectorShipWeapon.SetActive(false);
-                txt_SelectedWeapon.text = "(SELECT WEAPON SLOT)";
+                txt_SelectedWeapon.text = "(CHOOSE ACTION)";
                 Debug.Log("Cancelling Attack");
             }
         }
@@ -300,15 +310,16 @@ public class ShipCombatController : MonoBehaviour
             {
                 if (hit.transform.tag == "ShipTile")
                 {
-                    Debug.Log(hit.transform.name + " targeted");
+                    //Debug.Log(hit.transform.name + " targeted");
                     GameController.instance.selectorShipTarget.SetActive(true);
                     GameController.instance.selectorShipTarget.transform.position = hit.transform.position;
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        Debug.Log("Firing");
+                        //Debug.Log("Firing");
+                        ui_shipCombatDisable.SetActive(true);
 
-                        if(playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown > 0)
+                        if (playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown > 0)
                         {
                             playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().ui_cooldown.SetActive(true);
                             playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().curCooldown = playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown;
@@ -325,12 +336,10 @@ public class ShipCombatController : MonoBehaviour
                         if (turnAttack > enemyShipProps.drive)
                         {
                             willHitTarget = true;
-                            Debug.Log("Your blast will hit the enemy");
                         }
                         else
                         {
                             willHitTarget = false;
-                            Debug.Log("Your blast will miss the enemy");
                         }
 
                         GameObject refProjectile = playerChosenWeapon.GetComponent<ShipWeaponProps>().projectile;
@@ -365,8 +374,8 @@ public class ShipCombatController : MonoBehaviour
             {
                 attackStage = 0;
                 GameController.instance.selectorShipTarget.SetActive(false);
-                txt_SelectedWeapon.text = "(SELECT WEAPON SLOT)";
-                Debug.Log("Cancelling Attack");
+                txt_SelectedWeapon.text = "(CHOOSE ACTION)";
+                //Debug.Log("Cancelling Attack");
             }
         }
     }
@@ -378,7 +387,19 @@ public class ShipCombatController : MonoBehaviour
         playerShipProps.drive += evadeBonus;
         attackStage = 3;
         //EnemyTurn();
-        StartCoroutine("TurnDelay",2f);
+        EndPlayerTurn();
+    }
+
+    public void EndPlayerTurn()
+    {
+        StartCoroutine("PlayerTurnDelay", 1.5f);
+    }
+
+    public void EndEnemyTurn()
+    {
+        Debug.Log("Ending enemy turn");
+        UpdateWeaponCooldowns();
+        StartCoroutine("EnemyTurnDelay", 1.5f);
     }
 
     void UpdateWeaponCooldowns()
@@ -391,44 +412,48 @@ public class ShipCombatController : MonoBehaviour
 
         if (playerShipProps.weaponSlot1 != null)
         {
-            if (playerShipWeapon1.curCooldown > 0)
+            if (playerShipWeapon1.curCooldown > 1)
             {
                 Debug.Log("Reducing weapon 1 cooldown");
                 playerShipWeapon1.curCooldown -= 1;
-                playerShipWeapon1.txt_cooldown.text = playerShipWeapon1.cooldown.ToString();
+                playerShipWeapon1.txt_cooldown.text = playerShipWeapon1.curCooldown.ToString();
             }
             else
             {
+                playerShipWeapon1.curCooldown = 0;
                 playerShipWeapon1.ui_cooldown.SetActive(false);
             }
         }
 
         if (playerShipProps.weaponSlot2 != null)
         {
-            if (playerShipWeapon2.curCooldown > 0)
+            if (playerShipWeapon2.curCooldown > 1)
             {
                 Debug.Log("Reducing weapon 2 cooldown");
                 playerShipWeapon2.curCooldown -= 1;
-                playerShipWeapon2.txt_cooldown.text = playerShipWeapon2.cooldown.ToString();
+                playerShipWeapon2.txt_cooldown.text = playerShipWeapon2.curCooldown.ToString();
             }
             else
             {
+                playerShipWeapon2.curCooldown = 0;
                 playerShipWeapon2.ui_cooldown.SetActive(false);
             }
         }
     }
-
-    public void EndTurn()
-    {
-        Debug.Log("Ending enemy turn");
-        UpdateWeaponCooldowns();
-        StartCoroutine("TurnDelay", 1.5f);
-    }
-
-    IEnumerator TurnDelay(float delay)
+   
+    IEnumerator PlayerTurnDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         EnemyTurn();
+    }
+
+    IEnumerator EnemyTurnDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        //Resetting back to player turn
+        txt_SelectedWeapon.text = "(CHOOSE ACTION)";
+        ui_shipCombatDisable.SetActive(false);
+        attackStage = 0;
     }
 
 }

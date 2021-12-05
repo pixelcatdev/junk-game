@@ -16,4 +16,5 @@ public class ShipWeaponProps : MonoBehaviour
     public int shotQty;
     public GameObject ui_cooldown;
     public TextMeshProUGUI txt_cooldown;
+    public bool canSelect;
 }

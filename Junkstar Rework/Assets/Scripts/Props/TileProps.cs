@@ -116,6 +116,8 @@ public class TileProps : MonoBehaviour
 
         //Remove the tile from the Target Ships tilelist
         TargetShipController.instance.shipTiles.Remove(gameObject);
+        PlayerShipController.instance.playerShipTiles.Remove(gameObject);
+
         if (tag == "ShipTileFloor" || tag == "ShipTileWall" || tag == "PlayerShipTile")
         {
             transform.parent.parent.GetComponent<ShipMapProps>().mapCurHealth -= 1;

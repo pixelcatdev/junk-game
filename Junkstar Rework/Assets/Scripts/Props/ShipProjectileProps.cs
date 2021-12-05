@@ -19,6 +19,7 @@ public class ShipProjectileProps : MonoBehaviour
 
             if (!hitIsChecked)
             {
+                //Only destroy and damage is marked for impact
                 if (willHitTarget)
                 {
                     collision.gameObject.GetComponent<TileProps>().DestroyObject(true, true);
@@ -35,6 +36,8 @@ public class ShipProjectileProps : MonoBehaviour
                 {
                     ShipMapProps enemyShipProps = ShipCombatController.instance.enemyShip.GetComponent<ShipMapProps>();
 
+                    Debug.Log("Enemy HP: " + enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth);
+
                     //Destroy the enemy ship and end combat if it's less than the critical value
                     if (enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth < 0.5f)
                     {
@@ -42,7 +45,7 @@ public class ShipProjectileProps : MonoBehaviour
                     }
                     else
                     {
-                        ShipCombatController.instance.EndTurn();
+                        ShipCombatController.instance.EndPlayerTurn();
                     }                    
                 }
                 else if (projectileType == ProjectileType.enemy)
@@ -55,7 +58,7 @@ public class ShipProjectileProps : MonoBehaviour
                         Debug.Log("GameOver");
                     }
 
-                    ShipCombatController.instance.EndTurn();
+                    ShipCombatController.instance.EndEnemyTurn();
                 }
 
                 hitIsChecked = true;

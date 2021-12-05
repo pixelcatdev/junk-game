@@ -253,10 +253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feca9ab1c1fc6ef4c8d9c5d4775220f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileType: 0
   targetObject: {fileID: 0}
   willHitTarget: 0
-  explodeOnImpact: 0
-  explosionDamage: {fileID: 0}
+  explodeOnImpact: 1
+  explosionDamage: {fileID: 8665982228556635498, guid: b06b831cb57ffab439e3a7e3f2b5f463, type: 3}
 --- !u!114 &-6389678150672516601
 MonoBehaviour:
   m_ObjectHideFlags: 0
