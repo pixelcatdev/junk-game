@@ -39,7 +39,7 @@ public class ShipProjectileProps : MonoBehaviour
                     Debug.Log("Enemy HP: " + enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth);
 
                     //Destroy the enemy ship and end combat if it's less than the critical value
-                    if (enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth < 0.75f)
+                    if (enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth < 0.5f)
                     {
                         ShipCombatController.instance.CombatEnd(true);
                     }

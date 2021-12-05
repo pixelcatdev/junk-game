@@ -19,4 +19,5 @@ public class ShipMapProps : MonoBehaviour
     public int targeting;
     public int scanner;
     public int jumpdrive;
+    public bool canFlee;
 }

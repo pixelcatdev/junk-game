@@ -29,6 +29,7 @@ public class ShipCombatController : MonoBehaviour
     public GameObject enemyChosenWeapon;
     private GameObject playerTargetObject;
     private GameObject enemyTargetObject;
+    private bool enemyExit;
 
     public GameObject effect_shipExplode;
     public GameObject effect_cloud;
@@ -76,6 +77,7 @@ public class ShipCombatController : MonoBehaviour
             Debug.Log("Attack stage: " + attackStage);
             SelectWeapon();
             SelectTarget();
+            ExitEnemyShip();
         }
     }
 
@@ -122,12 +124,12 @@ public class ShipCombatController : MonoBehaviour
         //If the player has won, blow up the target ship
         if (hasWon)
         {
-            StartCoroutine("ExplodeShip");
+            StartCoroutine("EnemyShipExplode");
         }
         else
         {
             //Make ship fly away
-            //End combat in a different manner
+            StartCoroutine("EnemyShipFlee");
         }
     }
 
@@ -157,41 +159,46 @@ public class ShipCombatController : MonoBehaviour
 
     public void EnemyTurn()
     {
-        if(attackStage == 3)
+        if (attackStage == 3)
         {
-            EnemyAttackPlayer();
-        }        
+            if (enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth > 0.5f)
+            {
+                EnemyAttackPlayer();
+            }
+            else
+            {
+                if (enemyShipProps.canFlee)
+                {
+                    //Try to flee
+                    int fleeChance = Random.Range(0, 100);
+                    if (fleeChance > 50)
+                    {
+                        int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
+                        int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
+                        Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
 
-        //if (enemyShipProps.hull > Mathf.RoundToInt(enemyShipProps.hullMax / 4))
-        //{
-        //    EnemyAttackPlayer();
-        //}
-        //else
-        //{
-
-
-        //    //Try to flee
-        //    int fleeChance = Random.Range(0, 100);
-        //    if (fleeChance > 50)
-        //    {
-        //        int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
-        //        int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
-        //        Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
-
-        //        if (enemyTotal > playerTotal)
-        //        {
-        //            Debug.Log("The enemy flees.");
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("The enemy attempts to flee, but fails.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        EnemyAttackPlayer();
-        //    }
-        //}
+                        if (enemyTotal > playerTotal)
+                        {
+                            Debug.Log("The enemy flees.");
+                            StartCoroutine("EnemyShipFlee");
+                        }
+                        else
+                        {
+                            Debug.Log("The enemy attempts to flee, but fails.");
+                            EndEnemyTurn();
+                        }
+                    }
+                    else
+                    {
+                        EnemyAttackPlayer();
+                    }
+                }
+                else
+                {
+                    EnemyAttackPlayer();
+                }
+            }
+        }
     }
 
     public void EnemyAttackPlayer()
@@ -439,6 +446,16 @@ public class ShipCombatController : MonoBehaviour
             }
         }
     }
+
+    void ExitEnemyShip()
+    {
+        if (enemyExit)
+        {
+            Debug.Log("X");
+            Vector2 exitPos = new Vector2(100f, 0f);
+            enemyShip.transform.GetChild(0).transform.position = Vector2.MoveTowards(enemyShip.transform.GetChild(0).transform.position, exitPos, 25 * Time.deltaTime);
+        }        
+    }
    
     IEnumerator PlayerTurnDelay(float delay)
     {
@@ -455,7 +472,7 @@ public class ShipCombatController : MonoBehaviour
         attackStage = 0;
     }
 
-    IEnumerator ExplodeShip()
+    IEnumerator EnemyShipExplode()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -480,6 +497,26 @@ public class ShipCombatController : MonoBehaviour
         CameraController.instance.JumpToTarget();
         GameController.instance.gameState = GameController.GameState.game;
         GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
+    }
+
+    IEnumerator EnemyShipFlee()
+    {
+        Debug.Log("Enemy Ship fleeing");
+        enemyExit = true;
+        yield return new WaitForSeconds(2f);
+
+        Destroy(enemyShip.transform.GetChild(0).gameObject);
+
+        inCombat = false;
+        ui_ShipCombat.SetActive(false);
+        txt_SelectedWeapon.text = null;
+
+        CameraController.instance.ZoomCamera(8);
+        CameraController.instance.target = PlayerController.instance.gameObject;
+        CameraController.instance.JumpToTarget();
+        GameController.instance.gameState = GameController.GameState.game;
+        GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
+        enemyExit = false;
     }
 
 }
