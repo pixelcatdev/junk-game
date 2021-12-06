@@ -300,9 +300,10 @@ MonoBehaviour:
   hull: 0
   hullMax: 0
   fuel: 0
+  weaponSlots: []
   weaponSlot1: {fileID: 0}
   weaponSlot2: {fileID: 0}
-  drive: 0
+  evade: 0
   targeting: 0
   scanner: 0
   jumpdrive: 0
@@ -15996,9 +15997,10 @@ MonoBehaviour:
   hull: 0
   hullMax: 0
   fuel: 0
+  weaponSlots: []
   weaponSlot1: {fileID: 0}
   weaponSlot2: {fileID: 0}
-  drive: 0
+  evade: 0
   targeting: 0
   scanner: 0
   jumpdrive: 0
@@ -20502,9 +20504,12 @@ MonoBehaviour:
   hull: 0
   hullMax: 0
   fuel: 100
+  weaponSlots:
+  - {fileID: 182482798}
+  - {fileID: 5387203248533528522}
   weaponSlot1: {fileID: 182482798}
   weaponSlot2: {fileID: 5387203248533528522}
-  drive: 1
+  evade: 0
   targeting: 0
   scanner: 75
   jumpdrive: 0

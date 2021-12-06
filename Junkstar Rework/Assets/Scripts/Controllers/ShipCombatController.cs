@@ -419,40 +419,23 @@ public class ShipCombatController : MonoBehaviour
     }
 
     void UpdateWeaponCooldowns()
-    {
-        ShipWeaponProps playerShipWeapon1 = playerShipProps.weaponSlot1.gameObject.GetComponent<ShipWeaponProps>();
-        ShipWeaponProps playerShipWeapon2 = playerShipProps.weaponSlot2.gameObject.GetComponent<ShipWeaponProps>();
-
-        Debug.Log(playerShipWeapon1);
-        Debug.Log(playerShipWeapon2);
-
-        if (playerShipProps.weaponSlot1 != null)
+    {        
+        //Debug.Log("Total weapons: " + playerShipProps.weaponSlots.Count);
+        for (int i = 0; i < playerShipProps.weaponSlots.Count; i++)
         {
-            if (playerShipWeapon1.curCooldown > 1)
+            ShipWeaponProps weaponProps = playerShipProps.weaponSlots[i].gameObject.GetComponent<ShipWeaponProps>();
+
+            Debug.Log("Weapon: " + weaponProps.weaponName + ", Current Cooldown: " + weaponProps.curCooldown);
+
+            if (weaponProps.curCooldown > 1)
             {
-                Debug.Log("Reducing weapon 1 cooldown");
-                playerShipWeapon1.curCooldown -= 1;
-                playerShipWeapon1.txt_cooldown.text = playerShipWeapon1.curCooldown.ToString();
+                weaponProps.curCooldown -= 1;
+                weaponProps.txt_cooldown.text = weaponProps.curCooldown.ToString();
             }
             else
             {
-                playerShipWeapon1.curCooldown = 0;
-                playerShipWeapon1.ui_cooldown.SetActive(false);
-            }
-        }
-
-        if (playerShipProps.weaponSlot2 != null)
-        {
-            if (playerShipWeapon2.curCooldown > 1)
-            {
-                Debug.Log("Reducing weapon 2 cooldown");
-                playerShipWeapon2.curCooldown -= 1;
-                playerShipWeapon2.txt_cooldown.text = playerShipWeapon2.curCooldown.ToString();
-            }
-            else
-            {
-                playerShipWeapon2.curCooldown = 0;
-                playerShipWeapon2.ui_cooldown.SetActive(false);
+                weaponProps.curCooldown = 0;
+                weaponProps.ui_cooldown.SetActive(false);
             }
         }
     }
