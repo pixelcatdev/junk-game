@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShipMapProps : MonoBehaviour
 {
+    public string shipName;
+
     public float mapCurHealth;
     public float mapMaxHealth;
     public float mapCritHealth;
@@ -13,9 +15,10 @@ public class ShipMapProps : MonoBehaviour
     public int hull;
     public int hullMax;
     public float fuel;
+    public List<GameObject> weaponSlots;
     public GameObject weaponSlot1;
     public GameObject weaponSlot2;
-    public int drive;
+    public int evade;
     public int targeting;
     public int scanner;
     public int jumpdrive;

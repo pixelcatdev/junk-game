@@ -157,7 +157,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -195,6 +195,7 @@ MonoBehaviour:
   shotQty: 1
   ui_cooldown: {fileID: 8493883589780400075}
   txt_cooldown: {fileID: 3255752866876116663}
+  canSelect: 0
 --- !u!1 &8493883589780400075
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ public class ShipCombatController : MonoBehaviour
 
     public GameObject ui_ShipCombat;
     public GameObject ui_shipCombatDisable;
+    public GameObject ui_enemyShipStats;
+    public TextMeshProUGUI txt_EnemyShipName;
+    public TextMeshProUGUI txt_EnemyShipHealth;
+
     public TextMeshProUGUI txt_SelectedWeapon;
 
     public GameObject enemyShip;
@@ -61,23 +65,29 @@ public class ShipCombatController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("Debug run ship combat");
-            CombatSetup();
-        }
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            CombatEnd(false);
-        }
-
         if (inCombat)
         {
-            Debug.Log("Attack stage: " + attackStage);
             SelectWeapon();
             SelectTarget();
             ExitEnemyShip();
+            DisplayEnemyStats();
+        }
+    }
+
+    public void DisplayEnemyStats()
+    {
+        //Only display if the players scanners are upgraded enough
+        Debug.Log("Scanner: " + playerShipProps.scanner);
+        if(playerShipProps.scanner > 50)
+        {
+            ui_enemyShipStats.SetActive(true);
+            txt_EnemyShipName.text = enemyShipProps.shipName.ToUpper();
+            Debug.Log("Enemy Ship HP: " + Mathf.RoundToInt((enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth) * 100));
+            txt_EnemyShipHealth.text = "SHIP: " + Mathf.RoundToInt((enemyShipProps.mapCurHealth / enemyShipProps.mapMaxHealth) * 100).ToString() + "%";
+        }
+        else
+        {
+            ui_enemyShipStats.SetActive(false);
         }
     }
 
@@ -85,8 +95,7 @@ public class ShipCombatController : MonoBehaviour
     {
         inCombat = true;
         ui_ShipCombat.SetActive(true);
-        GameController.instance.gameState = GameController.GameState.spacecombat;
-        GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.shipCombat;
+        GameController.instance.SwitchToShipCombat();
         //Scale the camera out
         CameraController.instance.target = cameraTarget;
         CameraController.instance.ZoomCamera(15);
@@ -116,6 +125,9 @@ public class ShipCombatController : MonoBehaviour
         //Set the targeting level
         //Randomise who goes first
 
+        ui_shipCombatDisable.SetActive(false);
+        attackStage = 0;
+
         Debug.Log("Combat generated");
     }
 
@@ -141,8 +153,8 @@ public class ShipCombatController : MonoBehaviour
 
     public void CombatFlee()
     {
-        int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
-        int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
+        int playerTotal = Random.Range(1, 20) + playerShipProps.evade;
+        int enemyTotal = Random.Range(1, 20) + enemyShipProps.evade;
         Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
 
         if (playerTotal > enemyTotal)
@@ -153,7 +165,7 @@ public class ShipCombatController : MonoBehaviour
         else
         {
             Debug.Log("You fail to outrun your enemy.");
-            //EnemyTurn();
+            EndPlayerTurn();
         }
     }
 
@@ -173,8 +185,8 @@ public class ShipCombatController : MonoBehaviour
                     int fleeChance = Random.Range(0, 100);
                     if (fleeChance > 50)
                     {
-                        int playerTotal = Random.Range(1, 20) + playerShipProps.drive;
-                        int enemyTotal = Random.Range(1, 20) + enemyShipProps.drive;
+                        int playerTotal = Random.Range(1, 20) + playerShipProps.evade;
+                        int enemyTotal = Random.Range(1, 20) + enemyShipProps.evade;
                         Debug.Log("Player Flee: " + playerTotal + " Enemy Flee: " + enemyTotal);
 
                         if (enemyTotal > playerTotal)
@@ -212,6 +224,8 @@ public class ShipCombatController : MonoBehaviour
 
         GameController.instance.selectorShipTarget.SetActive(false);
 
+        //Get the enemy to selector a random weapon from it's weapon slots (base it on a list?)
+
         int d20 = Random.Range(1, 20);
         int turnAttack = d20 + playerShipProps.targeting;
         bool willHitTarget = false;
@@ -221,7 +235,7 @@ public class ShipCombatController : MonoBehaviour
 
         try
         {
-            if (turnAttack > playerShipProps.drive)
+            if (turnAttack > playerShipProps.evade)
             {
                 willHitTarget = true;
             }
@@ -251,7 +265,7 @@ public class ShipCombatController : MonoBehaviour
 
         attackStage = 0;
 
-        playerShipProps.drive -= evadeBonus;
+        playerShipProps.evade -= evadeBonus;
         evadeBonus = 0;        
     }
 
@@ -300,7 +314,6 @@ public class ShipCombatController : MonoBehaviour
                 attackStage = 0;
                 GameController.instance.selectorShipWeapon.SetActive(false);
                 txt_SelectedWeapon.text = "(CHOOSE ACTION)";
-                Debug.Log("Cancelling Attack");
             }
         }
     }
@@ -316,13 +329,11 @@ public class ShipCombatController : MonoBehaviour
             {
                 if (hit.transform.tag == "ShipTile")
                 {
-                    //Debug.Log(hit.transform.name + " targeted");
                     GameController.instance.selectorShipTarget.SetActive(true);
                     GameController.instance.selectorShipTarget.transform.position = hit.transform.position;
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        //Debug.Log("Firing");
                         ui_shipCombatDisable.SetActive(true);
 
                         if (playerChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown > 0)
@@ -335,11 +346,12 @@ public class ShipCombatController : MonoBehaviour
                         GameController.instance.selectorShipTarget.SetActive(false);
 
                         int d20 = Random.Range(1, 20);
-                        int turnAttack = d20 + playerShipProps.targeting;
+                        int turnAttack = d20 + playerChosenWeapon.GetComponent<ShipWeaponProps>().accuracy; //playerShipProps.targeting;
+                        Debug.Log("Player attack is " + d20 + " + " + playerChosenWeapon.GetComponent<ShipWeaponProps>().accuracy);
                         bool willHitTarget = false;
                         playerTargetObject = hit.transform.gameObject;
 
-                        if (turnAttack > enemyShipProps.drive)
+                        if (turnAttack > enemyShipProps.evade)
                         {
                             willHitTarget = true;
                         }
@@ -381,7 +393,6 @@ public class ShipCombatController : MonoBehaviour
                 attackStage = 0;
                 GameController.instance.selectorShipTarget.SetActive(false);
                 txt_SelectedWeapon.text = "(CHOOSE ACTION)";
-                //Debug.Log("Cancelling Attack");
             }
         }
     }
@@ -390,9 +401,8 @@ public class ShipCombatController : MonoBehaviour
     {
         txt_SelectedWeapon.text = "(TAKING EVASIVE MANOUVRES)";
         evadeBonus = 5;
-        playerShipProps.drive += evadeBonus;
+        playerShipProps.evade += evadeBonus;
         attackStage = 3;
-        //EnemyTurn();
         EndPlayerTurn();
     }
 
@@ -447,6 +457,16 @@ public class ShipCombatController : MonoBehaviour
         }
     }
 
+    void ClearWeaponCooldowns()
+    {
+        ShipWeaponProps playerShipWeapon1 = playerShipProps.weaponSlot1.gameObject.GetComponent<ShipWeaponProps>();
+        ShipWeaponProps playerShipWeapon2 = playerShipProps.weaponSlot2.gameObject.GetComponent<ShipWeaponProps>();
+        playerShipWeapon1.curCooldown = 0;
+        playerShipWeapon1.ui_cooldown.SetActive(false);
+        playerShipWeapon2.curCooldown = 0;
+        playerShipWeapon2.ui_cooldown.SetActive(false);
+    }
+
     void ExitEnemyShip()
     {
         if (enemyExit)
@@ -485,6 +505,7 @@ public class ShipCombatController : MonoBehaviour
         }
         Destroy(enemyShip.transform.GetChild(0).gameObject);
         Instantiate(effect_shipExplode, enemyShip.transform.position, transform.rotation, transform);
+        ui_enemyShipStats.SetActive(false);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -492,17 +513,21 @@ public class ShipCombatController : MonoBehaviour
         ui_ShipCombat.SetActive(false);
         txt_SelectedWeapon.text = null;
 
+        ClearWeaponCooldowns();
+
         CameraController.instance.ZoomCamera(8);
         CameraController.instance.target = PlayerController.instance.gameObject;
         CameraController.instance.JumpToTarget();
         GameController.instance.gameState = GameController.GameState.game;
         GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
+        OverworldController.instance.isTravelPaused = false;
     }
 
     IEnumerator EnemyShipFlee()
     {
         Debug.Log("Enemy Ship fleeing");
         enemyExit = true;
+        ui_enemyShipStats.SetActive(false);
         yield return new WaitForSeconds(2f);
 
         Destroy(enemyShip.transform.GetChild(0).gameObject);
@@ -511,12 +536,16 @@ public class ShipCombatController : MonoBehaviour
         ui_ShipCombat.SetActive(false);
         txt_SelectedWeapon.text = null;
 
+        ClearWeaponCooldowns();
+
         CameraController.instance.ZoomCamera(8);
         CameraController.instance.target = PlayerController.instance.gameObject;
         CameraController.instance.JumpToTarget();
         GameController.instance.gameState = GameController.GameState.game;
         GameController.instance.gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
         enemyExit = false;
+
+        OverworldController.instance.isTravelPaused = false;
     }
 
 }

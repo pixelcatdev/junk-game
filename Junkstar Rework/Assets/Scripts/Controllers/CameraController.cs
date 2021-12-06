@@ -40,6 +40,7 @@ public class CameraController : MonoBehaviour
     {
         ChaseCam();
         ParallaxBackground();
+        OverlayEffects();
 
         if (isZooming)
         {
@@ -51,6 +52,24 @@ public class CameraController : MonoBehaviour
                 cameraObj.GetComponent<Camera>().orthographicSize += 1;
             }           
 
+        }
+    }
+
+    void OverlayEffects()
+    {
+        if (OverworldController.instance.isTravelling) // && GameController.instance.gameState == GameController.GameState.game)
+        {
+            if (!effect_starfield.GetComponent<ParticleSystem>().isPlaying)
+            {
+                effect_starfield.GetComponent<ParticleSystem>().Play();
+            }            
+        }
+        else
+        {
+            if (effect_starfield.GetComponent<ParticleSystem>().isPlaying)
+            {
+                effect_starfield.GetComponent<ParticleSystem>().Stop();
+            }
         }
     }
 

@@ -40,6 +40,21 @@ public class OverworldController : MonoBehaviour
     public TextMeshProUGUI txt_playerShipCurHealth;
     public TextMeshProUGUI txt_playerShipFuel;
 
+    public static OverworldController instance;
+
+    // Singleton Initialization
+    void Awake()
+    {
+        if (!OverworldController.instance)
+        {
+            OverworldController.instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void Start()
     {
         Scan();
@@ -258,7 +273,7 @@ public class OverworldController : MonoBehaviour
 
             if (distance > 0f)
             {
-                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, selectedTarget.position, playerShipMap.GetComponent<ShipMapProps>().drive * Time.deltaTime);
+                playerShip.position = Vector2.MoveTowards(playerShip.transform.position, selectedTarget.position, travelSpeed * Time.deltaTime);
             }
             else
             {
@@ -296,7 +311,7 @@ public class OverworldController : MonoBehaviour
         Debug.Log("Event generating");
         //Randomise type of event
         //switch to event type accordingly
-        eventType = (EventType)Random.Range(0, 2);
+        eventType = EventType.ShipToShip;//(EventType)Random.Range(0, 3);
 
         switch (eventType)
         {
@@ -314,6 +329,7 @@ public class OverworldController : MonoBehaviour
                 isTravelPaused = true;
                 Debug.Log("Combat Raider on approach vector. Prepare for Ship to Ship combat.");
                 //Initiate Ship Combat
+                ShipCombatController.instance.CombatSetup();
                 break;
             default:
                 break;

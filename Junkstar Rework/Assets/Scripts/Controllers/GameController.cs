@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
 
     public void SwitchToOverworld()
     {
-        GameController.instance.gameState = GameController.GameState.overworld;
+        gameState = GameState.overworld;
         CameraController.instance.target = overWorldMap;
         gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.overWorld;
 
@@ -60,10 +60,19 @@ public class GameController : MonoBehaviour
 
     public void SwitchToGame()
     {
-        GameController.instance.gameState = GameController.GameState.game;
+        gameState = GameState.game;
         CameraController.instance.target = player.gameObject;
         CameraController.instance.JumpToTarget();
         gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.select;
+
+        ui_overworld.SetActive(false);
+        ui_game.SetActive(true);
+    }
+
+    public void SwitchToShipCombat()
+    {
+        gameState = GameState.spacecombat;
+        gameCursor.GetComponent<CursorProps>().cursorType = CursorProps.CursorType.shipCombat;
 
         ui_overworld.SetActive(false);
         ui_game.SetActive(true);
