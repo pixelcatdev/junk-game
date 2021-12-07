@@ -136,9 +136,10 @@ MonoBehaviour:
   hull: 0
   hullMax: 0
   fuel: 0
-  weaponSlot1: {fileID: 6814628517614411936}
-  weaponSlot2: {fileID: 9007759978109784966}
-  drive: 25
+  weaponSlots:
+  - {fileID: 6814628517614411936}
+  - {fileID: 9007759978109784966}
+  evade: 0
   targeting: 0
   scanner: 0
   jumpdrive: 0

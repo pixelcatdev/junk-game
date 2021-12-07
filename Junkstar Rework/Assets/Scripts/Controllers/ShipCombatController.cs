@@ -118,8 +118,7 @@ public class ShipCombatController : MonoBehaviour
         enemyShipProps.mapCurHealth = enemyShipProps.mapMaxHealth;
 
         //Set the weapon slots 
-        enemyShipProps.weaponSlot1 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot1");
-        //enemyShipProps.weaponSlot2 = GameObject.FindGameObjectWithTag("EnemyWeaponSlot2");
+        enemyShipProps.weaponSlots = enemyShip.transform.GetChild(0).GetComponent<ShipMapProps>().weaponSlots;
 
         //Set the drive level
         //Set the targeting level
@@ -167,6 +166,15 @@ public class ShipCombatController : MonoBehaviour
             Debug.Log("You fail to outrun your enemy.");
             EndPlayerTurn();
         }
+    }
+
+    public void CombatEvade()
+    {
+        txt_SelectedWeapon.text = "(TAKING EVASIVE MANOUVRES)";
+        evadeBonus = 5;
+        playerShipProps.evade += evadeBonus;
+        attackStage = 3;
+        EndPlayerTurn();
     }
 
     public void EnemyTurn()
@@ -220,11 +228,10 @@ public class ShipCombatController : MonoBehaviour
 
         enemyTargetObject = null;
 
-        enemyChosenWeapon = enemyShipProps.weaponSlot1;
+        //Randomise Enemy Weapon
+        enemyChosenWeapon = EnemyRandomiseWeapon();
 
         GameController.instance.selectorShipTarget.SetActive(false);
-
-        //Get the enemy to selector a random weapon from it's weapon slots (base it on a list?)
 
         int d20 = Random.Range(1, 20);
         int turnAttack = d20 + playerShipProps.targeting;
@@ -232,6 +239,14 @@ public class ShipCombatController : MonoBehaviour
 
         //Find a random player ship tile
         enemyTargetObject = PlayerShipController.instance.playerShipTiles[Random.Range(0, PlayerShipController.instance.playerShipTiles.Count - 1)];
+
+        //Apply any weapon cooldowns
+        if (enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown > 0)
+        {
+            enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().ui_cooldown.SetActive(true);
+            enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().curCooldown = enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown;
+            enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().txt_cooldown.text = enemyChosenWeapon.gameObject.GetComponent<ShipWeaponProps>().cooldown.ToString();
+        }
 
         try
         {
@@ -261,12 +276,27 @@ public class ShipCombatController : MonoBehaviour
             throw;
         }
 
-        
-
         attackStage = 0;
 
         playerShipProps.evade -= evadeBonus;
         evadeBonus = 0;        
+    }
+
+    GameObject EnemyRandomiseWeapon()
+    {
+        List<GameObject> enemyWeaponSlots = new List<GameObject>(enemyShipProps.weaponSlots);
+
+        for (int i = 0; i < enemyWeaponSlots.Count; i++)
+        {
+            if(enemyWeaponSlots[i].GetComponent<ShipWeaponProps>().curCooldown > 0)
+            {
+                enemyWeaponSlots.RemoveAt(i);
+            }
+        }
+
+        GameObject RandomWeapon = enemyWeaponSlots[Random.Range(0, enemyWeaponSlots.Count)];
+
+        return RandomWeapon;
     }
 
     void SelectWeapon()
@@ -396,16 +426,7 @@ public class ShipCombatController : MonoBehaviour
             }
         }
     }
-
-    public void CombatEvade()
-    {
-        txt_SelectedWeapon.text = "(TAKING EVASIVE MANOUVRES)";
-        evadeBonus = 5;
-        playerShipProps.evade += evadeBonus;
-        attackStage = 3;
-        EndPlayerTurn();
-    }
-
+    
     public void EndPlayerTurn()
     {
         StartCoroutine("PlayerTurnDelay", 1.5f);
@@ -423,31 +444,47 @@ public class ShipCombatController : MonoBehaviour
         //Debug.Log("Total weapons: " + playerShipProps.weaponSlots.Count);
         for (int i = 0; i < playerShipProps.weaponSlots.Count; i++)
         {
-            ShipWeaponProps weaponProps = playerShipProps.weaponSlots[i].gameObject.GetComponent<ShipWeaponProps>();
+            ShipWeaponProps playerWeaponProps = playerShipProps.weaponSlots[i].gameObject.GetComponent<ShipWeaponProps>();
 
-            Debug.Log("Weapon: " + weaponProps.weaponName + ", Current Cooldown: " + weaponProps.curCooldown);
-
-            if (weaponProps.curCooldown > 1)
+            if (playerWeaponProps.curCooldown > 1)
             {
-                weaponProps.curCooldown -= 1;
-                weaponProps.txt_cooldown.text = weaponProps.curCooldown.ToString();
+                playerWeaponProps.curCooldown -= 1;
+                playerWeaponProps.txt_cooldown.text = playerWeaponProps.curCooldown.ToString();
             }
             else
             {
-                weaponProps.curCooldown = 0;
-                weaponProps.ui_cooldown.SetActive(false);
+                playerWeaponProps.curCooldown = 0;
+                playerWeaponProps.ui_cooldown.SetActive(false);
+            }
+        }
+
+        //Debug.Log("Total weapons: " + playerShipProps.weaponSlots.Count);
+        for (int i = 0; i < enemyShipProps.weaponSlots.Count; i++)
+        {
+            ShipWeaponProps enemyWeaponProps = enemyShipProps.weaponSlots[i].gameObject.GetComponent<ShipWeaponProps>();
+
+            if (enemyWeaponProps.curCooldown > 1)
+            {
+                enemyWeaponProps.curCooldown -= 1;
+                enemyWeaponProps.txt_cooldown.text = enemyWeaponProps.curCooldown.ToString();
+            }
+            else
+            {
+                enemyWeaponProps.curCooldown = 0;
+                enemyWeaponProps.ui_cooldown.SetActive(false);
             }
         }
     }
 
     void ClearWeaponCooldowns()
     {
-        ShipWeaponProps playerShipWeapon1 = playerShipProps.weaponSlot1.gameObject.GetComponent<ShipWeaponProps>();
-        ShipWeaponProps playerShipWeapon2 = playerShipProps.weaponSlot2.gameObject.GetComponent<ShipWeaponProps>();
-        playerShipWeapon1.curCooldown = 0;
-        playerShipWeapon1.ui_cooldown.SetActive(false);
-        playerShipWeapon2.curCooldown = 0;
-        playerShipWeapon2.ui_cooldown.SetActive(false);
+        //Debug.Log("Total weapons: " + playerShipProps.weaponSlots.Count);
+        for (int i = 0; i < playerShipProps.weaponSlots.Count; i++)
+        {
+            ShipWeaponProps weaponProps = playerShipProps.weaponSlots[i].gameObject.GetComponent<ShipWeaponProps>();
+            weaponProps.curCooldown = 0;
+            weaponProps.ui_cooldown.SetActive(false);
+        }
     }
 
     void ExitEnemyShip()
