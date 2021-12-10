@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public enum CameraMode { stationary, chase }
+
     public GameObject target;
     public float parallaxSpeed;
     public Camera cameraObj;

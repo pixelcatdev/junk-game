@@ -1,31 +1,13 @@
 fileFormatVersion: 2
-guid: 1bd70f46a5db310458923e31d4f32e02
+guid: 67b0fae69f15f7c4b87d039427e8122b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5348514035862418681
-    second: Effects_Cloud
+      213: -987398545262825792
+    second: Ship_Engine01
   - first:
-      213: 2216454941612632252
-    second: Effects_Blast
-  - first:
-      213: 2554997971806839983
-    second: Effects_CloudSmall
-  - first:
-      213: -2438597350032453639
-    second: Effects_FireSmall01
-  - first:
-      213: -8392199497523928542
-    second: Effects_Ion01
-  - first:
-      213: 736808027885227353
-    second: Effects_Ion02
-  - first:
-      213: 7781281924459387517
-    second: Effects_Ion03
-  - first:
-      213: -5277249617035341177
-    second: Effects_Ion04
+      213: 264242266690119992
+    second: Ship_Engine02
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,95 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Effects_Cloud
+      name: Ship_Engine01
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70bca3072d246c5b0800000000000000
-      internalID: -5348514035862418681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_Blast
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb8ea7fa60e62ce10800000000000000
-      internalID: 2216454941612632252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_CloudSmall
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa4e36f4e1d257320800000000000000
-      internalID: 2554997971806839983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_FireSmall01
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ff4b1161ac582ed0800000000000000
-      internalID: -2438597350032453639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_Ion01
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
+        y: 176
         width: 64
         height: 80
       alignment: 0
@@ -235,18 +133,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 222efd1550be88b80800000000000000
-      internalID: -8392199497523928542
+      spriteID: 0ce2fd9214e0c42f0800000000000000
+      internalID: -987398545262825792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effects_Ion02
+      name: Ship_Engine02
       rect:
         serializedVersion: 2
         x: 64
-        y: 160
+        y: 176
         width: 64
         height: 80
       alignment: 0
@@ -256,50 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d41c16ffaa93a00800000000000000
-      internalID: 736808027885227353
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_Ion03
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 64
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7ad19ceeaaacfb60800000000000000
-      internalID: 7781281924459387517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effects_Ion04
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 160
-        width: 64
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 782da81fe6173c6b0800000000000000
-      internalID: -5277249617035341177
+      spriteID: 83965b801f6caa300800000000000000
+      internalID: 264242266690119992
       vertices: []
       indices: 
       edges: []

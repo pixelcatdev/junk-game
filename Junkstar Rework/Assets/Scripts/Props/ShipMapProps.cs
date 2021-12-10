@@ -19,7 +19,6 @@ public class ShipMapProps : MonoBehaviour
     //public GameObject weaponSlot1;
     //public GameObject weaponSlot2;
     public int evade;
-    public int targeting;
     public int scanner;
     public int jumpdrive;
     public bool canFlee;

@@ -40,14 +40,6 @@ public class InteractorProps : MonoBehaviour
             case InteractorType.door:
                 break;
 
-            //Trigger npc dialogue
-            case InteractorType.npc:
-                if(tag == "NpcTrader")
-                {
-                    GetComponent<TradeController>().StartTrade();
-                }
-                break;
-
             default:
                 break;
         }

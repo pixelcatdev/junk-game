@@ -10,7 +10,7 @@ using TMPro;
 public class TradeController : MonoBehaviour
 {
     public List<GameObject> lootRefs;
-    private InventoryProps tradeInventory;
+    public InventoryProps tradeInventory;
     private InventoryProps playerInventory;
 
     public List<InventorySlot> sellInventory = new List<InventorySlot>();
@@ -28,32 +28,47 @@ public class TradeController : MonoBehaviour
 
     public TextMeshProUGUI txt_total;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        tradeInventory = GetComponent<InventoryProps>();
-        playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
-        RandomiseStock();
-        UpdateTradeUI();
-    }
+    public static TradeController instance;
 
-    public void RandomiseStock()
+    // Singleton Initialization
+    void Awake()
     {
-        for (int i = 0; i < tradeInventory.inventorySlots.Count; i++)
+        if (!TradeController.instance)
         {
-            //get a random item from the lootRefs and randomise the quantity
-            GameObject randomLoot = GetRandomLoot();
-            tradeInventory.inventorySlots[i].slotSprite = randomLoot.GetComponent<LootProps>().lootSprite;
-            tradeInventory.inventorySlots[i].slotName = randomLoot.GetComponent<LootProps>().lootName;
-            tradeInventory.inventorySlots[i].slotTxt = randomLoot.GetComponent<LootProps>().lootTxt;
-            tradeInventory.inventorySlots[i].slotQty = UnityEngine.Random.Range(1, randomLoot.GetComponent<LootProps>().lootStack);
-            tradeInventory.inventorySlots[i].slotStack = randomLoot.GetComponent<LootProps>().lootStack;
-            tradeInventory.inventorySlots[i].slotValue = randomLoot.GetComponent<LootProps>().lootValue;
+            TradeController.instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        //tradeInventory = GetComponent<InventoryProps>();
+        playerInventory = PlayerController.instance.GetComponent<InventoryProps>();
+        //RandomiseStock();
+        UpdateTradeUI();
+    }
+
+    //public void RandomiseStock(InventoryProps refInventory)
+    //{
+    //    for (int i = 0; i < refInventory.inventorySlots.Count; i++)
+    //    {
+    //        //get a random item from the lootRefs and randomise the quantity
+    //        GameObject randomLoot = GetRandomLoot();
+    //        refInventory.inventorySlots[i].slotSprite = randomLoot.GetComponent<LootProps>().lootSprite;
+    //        refInventory.inventorySlots[i].slotName = randomLoot.GetComponent<LootProps>().lootName;
+    //        refInventory.inventorySlots[i].slotTxt = randomLoot.GetComponent<LootProps>().lootTxt;
+    //        refInventory.inventorySlots[i].slotQty = UnityEngine.Random.Range(1, randomLoot.GetComponent<LootProps>().lootStack);
+    //        refInventory.inventorySlots[i].slotStack = randomLoot.GetComponent<LootProps>().lootStack;
+    //        refInventory.inventorySlots[i].slotValue = randomLoot.GetComponent<LootProps>().lootValue;
+    //    }
+    //}
+
     //Gets a random game object for each trade inventory generation
-    GameObject GetRandomLoot()
+    public GameObject GetRandomLoot()
     {
         GameObject loot = lootRefs[UnityEngine.Random.Range(0, lootRefs.Count - 1)];
         return loot;
@@ -393,24 +408,28 @@ public class TradeController : MonoBehaviour
         }
 
         //loop through all trader inventory slots, set the sprite, qty
-        List<InventorySlot> traderSlots = GetComponent<InventoryProps>().inventorySlots;
-
-        for (int i = 0; i < traderSlotsUI.Count; i++)
+        if (tradeInventory != null)
         {
-            if (traderSlots[i].slotSprite != null)
+            List<InventorySlot> traderSlots = tradeInventory.inventorySlots;
+
+            for (int i = 0; i < traderSlotsUI.Count; i++)
             {
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = traderSlots[i].slotSprite;
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotValue.text = traderSlots[i].slotValue.ToString();
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + traderSlots[i].slotQty.ToString();
+                if (traderSlots[i].slotSprite != null)
+                {
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(true);
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = traderSlots[i].slotSprite;
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotValue.text = traderSlots[i].slotValue.ToString();
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = "X" + traderSlots[i].slotQty.ToString();
+                }
+                else
+                {
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotValue.text = null;
+                    traderSlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
+                }
             }
-            else
-            {
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotContents.SetActive(false);
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotSprite.sprite = null;
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotValue.text = null;
-                traderSlotsUI[i].GetComponent<InventorySlotProps>().slotQty.text = null;
-            }
+
         }
 
         ////loop through all buy inventory slots, set the sprite, qty

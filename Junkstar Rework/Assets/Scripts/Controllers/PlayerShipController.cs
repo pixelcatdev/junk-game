@@ -12,6 +12,8 @@ public class PlayerShipController : MonoBehaviour
     public TextMeshProUGUI txt_ShipHealth;
     public TextMeshProUGUI txt_ShipFuel;
 
+    public List<GameObject> effects_ion;
+
     public static PlayerShipController instance;
 
     // Singleton Initialization

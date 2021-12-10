@@ -18,6 +18,7 @@ Junkstar Game plan
 		- cooldown icon
 	- death
 	- enemy
+		- npc generation
 		- ai pathfinding
 		- ai type
 			- ranged

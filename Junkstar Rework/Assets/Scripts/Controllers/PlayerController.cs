@@ -116,6 +116,13 @@ public class PlayerController : MonoBehaviour
                 {
                     targetObj.GetComponent<InteractorProps>().Activate();
                 }
+
+                //If the target is an NPC
+                //If the object has an InteractorProps attached, call Activate()
+                if (targetObj.GetComponent<NpcProps>())
+                {
+                    targetObj.GetComponent<NpcProps>().Activate();
+                }
             }
         }
 

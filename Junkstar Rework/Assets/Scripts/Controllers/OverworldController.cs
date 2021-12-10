@@ -26,10 +26,15 @@ public class OverworldController : MonoBehaviour
     private bool eventTriggered;
     public float travelSpeed;
 
-    public enum EventType { DebrisStrike, BoardingParty, ShipToShip }
+    public enum EventType { DebrisStrike, BoardingParty, ShipToShip, TraderShip }
     public EventType eventType;
+    public string eventTxt;
+
     public bool isEvent;
     private float eventDistanceTrigger;
+
+    public GameObject ui_Alert;
+    public GameObject ui_EventPrompt;
 
     public TextMeshProUGUI txt_shipName;
     public TextMeshProUGUI txt_shipSize;
@@ -39,6 +44,8 @@ public class OverworldController : MonoBehaviour
     public TextMeshProUGUI txt_fuelCost;
     public TextMeshProUGUI txt_playerShipCurHealth;
     public TextMeshProUGUI txt_playerShipFuel;
+
+    public TextMeshProUGUI txt_eventPrompt;
 
     public static OverworldController instance;
 
@@ -149,6 +156,12 @@ public class OverworldController : MonoBehaviour
                     {
                         //ClearOverWorldTarget();
                         isTravelling = true;
+
+                        //Enable Ion Engine effects
+                        for (int i = 0; i < PlayerShipController.instance.effects_ion.Count; i++)
+                        {
+                            PlayerShipController.instance.effects_ion[i].SetActive(true);
+                        }
 
                         //Set the randomised event trigger distance
                         eventDistanceTrigger = Random.Range(0, targetDistance - 0.25f);
@@ -291,27 +304,66 @@ public class OverworldController : MonoBehaviour
             {
                 //randomise chance of event based on player ship scanners value
                 float eventChance = Random.Range(1, 100);
-                float playerScanner = playerShipMap.GetComponent<ShipMapProps>().scanner;
-                Debug.Log("Event: " +eventChance);
-                if(eventChance > playerScanner)
+                if(eventChance > 50)
                 {
                     GenEvent();
-                }
-                else
-                {
-                    Debug.Log("Evaded event");
                 }
                 eventTriggered = true;
             }
         }        
     }
 
+    string EventText()
+    {
+        string txt = null;
+
+        if(eventType == EventType.BoardingParty)
+        {
+            txt = "RAIDER BOARDING PARTY INBOUND";
+        }
+        else if (eventType == EventType.DebrisStrike)
+        {
+            txt = "COLLISION COURSE WITH DEBRIS FIELD DETECTED";
+        }
+        else if (eventType == EventType.ShipToShip)
+        {
+            txt = "HOSTILE SHIP ON APPROACH VECTOR";
+        }
+        else if (eventType == EventType.TraderShip)
+        {
+            txt = "PASSING SALVAGE SHIP HAILING FOR TRADE";
+        }
+
+        return txt;
+    }
+
+    //Generates the travel event
     void GenEvent()
     {
         Debug.Log("Event generating");
         //Randomise type of event
         //switch to event type accordingly
-        eventType = EventType.ShipToShip;//(EventType)Random.Range(0, 3);
+        eventType = (EventType)Random.Range(0, 4);
+
+        //If the player scanner has been upgraded
+        if (PlayerShipController.instance.GetComponent<ShipMapProps>().scanner > 50)
+        {
+            isTravelPaused = true;
+            //activate alert to the player somehow
+            //Set the txt for the event
+            ui_EventPrompt.SetActive(true);
+            txt_eventPrompt.text = EventText();
+        }
+        else
+        {
+            EngageEvent();
+        }
+    }
+
+    //Fires the travel event (prompted either automatically or if pressed from the Overworld prompt)
+    public void EngageEvent()
+    {
+        ui_EventPrompt.SetActive(false);
 
         switch (eventType)
         {
@@ -336,9 +388,22 @@ public class OverworldController : MonoBehaviour
         }
     }
 
+    public void EvadeEvent()
+    {
+        //Display that you evade the event
+        ui_EventPrompt.SetActive(false);
+        isTravelPaused = false;
+    }
+
     //Triggers om arrival at target location
     private void ReachDestination()
     {
+        //Disable Ion Engine effects
+        for (int i = 0; i < PlayerShipController.instance.effects_ion.Count; i++)
+        {
+            PlayerShipController.instance.effects_ion[i].SetActive(false);
+        }
+
         playerShipMap.GetComponent<ShipMapProps>().mapCurFuel -= fuelCost;
         isTravelling = false;
         TargetShipController.instance.MapGen();

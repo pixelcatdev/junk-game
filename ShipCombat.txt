@@ -66,14 +66,12 @@ Attack
 - 
 
 - refactor the ship combat - shipprops structure (or at least populate shipmapprops from a better source)
-- change shipmapprops var names so they're a bit more obvious
 - fix basic combat balancing
 - add enemy ship scan mode (this forcibly set the enemies next turn so you can predict what they're doing to doing)
 	- Powering up Junk Cannon
 	- Powering up Drive System
 
 - add enemy ship positioning
-	- randomiser direction that the enemy ship comes in front (left or right)
 	- fail to flee, move enemy ship away, wait, then move back to position again (rather than text based)
 
 - add evade/engage option on map (isTravelPaused = true when alert comes through)

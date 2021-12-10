@@ -22,6 +22,8 @@ public class ShipCombatController : MonoBehaviour
 
     public TextMeshProUGUI txt_SelectedWeapon;
 
+    public List<Transform> spawnPositions;
+    private Vector2 enemySpawnPos;
     public GameObject enemyShip;
     public GameObject playerShip;
     private ShipMapProps enemyShipProps;
@@ -72,6 +74,16 @@ public class ShipCombatController : MonoBehaviour
             ExitEnemyShip();
             DisplayEnemyStats();
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CombatSetup();
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            CombatEnd(false);
+        }
     }
 
     public void DisplayEnemyStats()
@@ -95,13 +107,20 @@ public class ShipCombatController : MonoBehaviour
     {
         inCombat = true;
         ui_ShipCombat.SetActive(true);
-        GameController.instance.SwitchToShipCombat();
-        //Scale the camera out
-        CameraController.instance.target = cameraTarget;
-        CameraController.instance.ZoomCamera(15);
+        GameController.instance.SwitchToShipCombat();       
 
         Debug.Log("Generating combat");
-        Instantiate(enemyShips[Random.Range(0, enemyShips.Count - 1)], enemyShip.transform.position, enemyShip.transform.rotation, enemyShip.transform);
+        //randomise left or right
+        Transform spawnPos = spawnPositions[Random.Range(0, spawnPositions.Count)];
+        enemySpawnPos = spawnPos.position;
+
+        //Scale the camera out
+
+        Vector2 cameraTarget = new Vector2((enemySpawnPos.x - playerShip.transform.position.x) / 2, 0);
+        CameraController.instance.target = playerShip;
+        CameraController.instance.ZoomCamera(15);
+
+        Instantiate(enemyShips[Random.Range(0, enemyShips.Count - 1)], enemySpawnPos, enemyShip.transform.rotation, enemyShip.transform);
 
         //based on difficulty
         //Set the health of the ship
@@ -120,8 +139,8 @@ public class ShipCombatController : MonoBehaviour
         //Set the weapon slots 
         enemyShipProps.weaponSlots = enemyShip.transform.GetChild(0).GetComponent<ShipMapProps>().weaponSlots;
 
-        //Set the drive level
-        //Set the targeting level
+        //Set the evade level
+        enemyShipProps.evade = playerShipProps.evade + Random.Range(-1, 2);
         //Randomise who goes first
 
         ui_shipCombatDisable.SetActive(false);
@@ -164,6 +183,8 @@ public class ShipCombatController : MonoBehaviour
         else
         {
             Debug.Log("You fail to outrun your enemy.");
+            ui_shipCombatDisable.SetActive(true);
+            attackStage = 3;
             EndPlayerTurn();
         }
     }
@@ -174,6 +195,7 @@ public class ShipCombatController : MonoBehaviour
         evadeBonus = 5;
         playerShipProps.evade += evadeBonus;
         attackStage = 3;
+        ui_shipCombatDisable.SetActive(true);
         EndPlayerTurn();
     }
 
@@ -234,7 +256,7 @@ public class ShipCombatController : MonoBehaviour
         GameController.instance.selectorShipTarget.SetActive(false);
 
         int d20 = Random.Range(1, 20);
-        int turnAttack = d20 + playerShipProps.targeting;
+        int turnAttack = d20 + enemyChosenWeapon.GetComponent<ShipWeaponProps>().accuracy;
         bool willHitTarget = false;
 
         //Find a random player ship tile
@@ -496,6 +518,11 @@ public class ShipCombatController : MonoBehaviour
             enemyShip.transform.GetChild(0).transform.position = Vector2.MoveTowards(enemyShip.transform.GetChild(0).transform.position, exitPos, 25 * Time.deltaTime);
         }        
     }
+
+    void MoveEnemyShip(Vector2 pos)
+    {
+        //Move enemy to target position (use for entering combat, exiting, fleeing etc)
+    }
    
     IEnumerator PlayerTurnDelay(float delay)
     {
@@ -517,14 +544,14 @@ public class ShipCombatController : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
 
-            Vector2 newPos = new Vector2(enemyShip.transform.position.x, enemyShip.transform.position.y) + Random.insideUnitCircle * 6f;
+            Vector2 newPos = new Vector2(enemySpawnPos.x, enemySpawnPos.y) + Random.insideUnitCircle * 6f;
             GameObject explosionEffect = Instantiate(effect_cloud, newPos, transform.rotation, transform.GetChild(0));
             explosionEffect.transform.localScale *= 7.5f;
             explosionEffect.GetComponent<DestroyObjectProps>().destroyTimer = 0.25f;
             yield return new WaitForSeconds(0.15f);
         }
         Destroy(enemyShip.transform.GetChild(0).gameObject);
-        Instantiate(effect_shipExplode, enemyShip.transform.position, transform.rotation, transform);
+        Instantiate(effect_shipExplode, enemySpawnPos, transform.rotation, transform);
         ui_enemyShipStats.SetActive(false);
 
         yield return new WaitForSeconds(1.5f);
